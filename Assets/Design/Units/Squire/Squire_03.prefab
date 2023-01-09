@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 2.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4838593872911144928, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4964975456590046881, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
       propertyPath: m_RootOrder
       value: 0

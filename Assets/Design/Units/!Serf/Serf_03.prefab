@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: knockback
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8165021229496439405, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8543040622007526176, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
       propertyPath: healthPool
       value: 10

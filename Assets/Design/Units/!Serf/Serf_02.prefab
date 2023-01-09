@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1090827339424147645, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3217975777293752780, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
       propertyPath: damage
       value: 2

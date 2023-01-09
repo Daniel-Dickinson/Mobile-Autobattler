@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TwoBears.Unit
 {
+    [RequireComponent(typeof(AudioSource))]
     public class RangedUnit : BaseUnit
     {
         [Header("Ranged Attack")]
@@ -14,7 +15,9 @@ namespace TwoBears.Unit
         [SerializeField] private float attackRangeMax = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
-        Animator anim;
+        //Components
+        private Animator anim;
+        private AudioSource audioSource;
 
         //Targeting
         private Vector3 attackPosition;
@@ -26,6 +29,7 @@ namespace TwoBears.Unit
             base.OnEnable();
 
             anim = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         //Action
@@ -74,6 +78,9 @@ namespace TwoBears.Unit
 
             //Add force
             proj.Launch(this, perceiver.Faction, attackDirection * projectileSpeed);
+
+            //Play hit
+            audioSource.Play();
 
             //Play animation
             if (anim != null) anim.Play("Attack");

@@ -55,7 +55,7 @@ namespace TwoBears.Shop
             seller = sellSlot;
             PersistanceManager.OnRunClear += ResetShop;
         }
-        private void Start()
+        private void OnEnable()
         {
             //Repopulate slots
             selection.PopulateSlots();

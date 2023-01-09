@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slinger_03
       objectReference: {fileID: 0}
+    - target: {fileID: 2615071024512887538, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

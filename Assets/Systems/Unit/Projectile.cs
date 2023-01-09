@@ -8,6 +8,7 @@ namespace TwoBears.Unit
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(AudioSource))]
     public class Projectile : MonoBehaviour
     {
         [Header("Stats")]
@@ -30,6 +31,7 @@ namespace TwoBears.Unit
 
         //Components
         private Rigidbody2D rb;
+        private AudioSource audioSource;
 
         //Life
         private float lifeRemaining;
@@ -38,6 +40,8 @@ namespace TwoBears.Unit
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            audioSource = GetComponent<AudioSource>();
+
             lifeRemaining = life;
         }
         private void FixedUpdate()
@@ -81,6 +85,9 @@ namespace TwoBears.Unit
 
             //Ignore
             if (ignore.Contains(collision.rigidbody)) return;
+
+            //Play hit
+            audioSource.Play();
 
             //Deactivate on armour hits
             if (armour == (armour | (1 << collision.rigidbody.gameObject.layer)))

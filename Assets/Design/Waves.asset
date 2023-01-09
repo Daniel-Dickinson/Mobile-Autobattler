@@ -14,49 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front:
   - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
     level: 0
     sublevel: 0
   middle:
   - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
     level: 0
     sublevel: 0
   - id: 0
     level: 0
     sublevel: 0
-  back:
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
-  - id: 0
-    level: 0
-    sublevel: 0
+  back: []
   units:
   - id: 0
     level: 0
@@ -88,6 +55,12 @@ MonoBehaviour:
     frontUnlocked: -1
     middleUnlocked: -1
     backUnlocked: 13
+  - id: 20
+    level: 2
+    cost: 27
+    frontUnlocked: -1
+    middleUnlocked: -1
+    backUnlocked: 23
   waves:
   - frontPoints: 3
     middlePoints: 6
@@ -169,45 +142,45 @@ MonoBehaviour:
     middlePoints: 66
     backPoints: 60
     reward: 15
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 66
+    middlePoints: 69
+    backPoints: 60
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 69
+    middlePoints: 72
+    backPoints: 66
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 72
+    middlePoints: 75
+    backPoints: 72
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 77
+    middlePoints: 81
+    backPoints: 75
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 78
+    middlePoints: 84
+    backPoints: 78
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 84
+    middlePoints: 87
+    backPoints: 81
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 87
+    middlePoints: 93
+    backPoints: 84
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 90
+    middlePoints: 93
+    backPoints: 90
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 93
+    middlePoints: 96
+    backPoints: 93
     reward: 9
-  - frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
+  - frontPoints: 99
+    middlePoints: 102
+    backPoints: 96
     reward: 9
   - frontPoints: 21
     middlePoints: 24
@@ -490,8 +463,8 @@ MonoBehaviour:
     backPoints: 21
     reward: 9
   foldoutOne: 0
-  foldoutTwo: 0
-  foldoutThree: 0
+  foldoutTwo: 1
+  foldoutThree: 1
   foldoutFour: 0
   foldoutFive: 0
   foldoutSix: 0

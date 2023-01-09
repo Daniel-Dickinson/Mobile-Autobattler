@@ -7,6 +7,7 @@ namespace TwoBears.Unit
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Perceiver))]
+    [RequireComponent(typeof(AudioSource))]
     public class Weapon : MonoBehaviour
     {
         [Header("Stats")]
@@ -30,6 +31,7 @@ namespace TwoBears.Unit
         //Components
         private Animator anim;
         private Perceiver perceiver;
+        private AudioSource audioSource;
 
         //Ignore
         private List<Rigidbody2D> ignore;
@@ -39,6 +41,7 @@ namespace TwoBears.Unit
         {
             anim = GetComponent<Animator>();
             perceiver = GetComponent<Perceiver>();
+            audioSource = GetComponent<AudioSource>();
         }
 
         //Physics
@@ -49,6 +52,9 @@ namespace TwoBears.Unit
 
             //Ignore
             if (ignore.Contains(other.attachedRigidbody)) return;
+
+            //Play hit
+            audioSource.Play();
 
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
@@ -98,6 +104,9 @@ namespace TwoBears.Unit
 
             //Weapon must be active
             if (!Attacking) return;
+
+            //Play hit
+            audioSource.Play();
 
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
