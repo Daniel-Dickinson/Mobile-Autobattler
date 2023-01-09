@@ -18,6 +18,7 @@ namespace TwoBears.Unit
 
         //Targeting
         private Vector3 attackPosition;
+        private Vector3 attackDirection;
 
         //Mono
         protected override void OnEnable()
@@ -53,10 +54,10 @@ namespace TwoBears.Unit
                     state = UnitState.Actioning;
 
                     //Calculate direction
-                    Vector3 direction = (target.transform.position - transform.position).normalized;
+                    attackDirection = (target.transform.position - transform.position).normalized;
 
                     //Set attack position & time
-                    attackPosition = target.transform.position + (direction * 0.15f);
+                    attackPosition = target.transform.position + (attackDirection * 0.15f);
                 }
             }
         }
@@ -69,10 +70,10 @@ namespace TwoBears.Unit
             if (state != UnitState.Actioning) return;
 
             //Instantiate projectile
-            Projectile proj = Instantiate(projectile, barrel.position, transform.rotation);
+            Projectile proj = Instantiate(projectile, barrel.position, Quaternion.LookRotation(Vector3.forward, attackDirection));
 
             //Add force
-            proj.Launch(this, perceiver.Faction, (attackPosition - transform.position).normalized * projectileSpeed);
+            proj.Launch(this, perceiver.Faction, attackDirection * projectileSpeed);
 
             //Play animation
             if (anim != null) anim.Play("Attack");

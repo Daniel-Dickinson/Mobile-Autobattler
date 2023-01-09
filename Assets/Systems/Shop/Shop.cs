@@ -53,14 +53,19 @@ namespace TwoBears.Shop
         private void Awake()
         {
             seller = sellSlot;
+            PersistanceManager.OnRunClear += ResetShop;
         }
-        private void OnEnable()
+        private void Start()
         {
             //Repopulate slots
             selection.PopulateSlots();
 
             //Set button text
             UpdateUpgradeButton();
+        }
+        private void OnDestroy()
+        {
+            PersistanceManager.OnRunClear -= ResetShop;
         }
 
         //Access
@@ -112,6 +117,17 @@ namespace TwoBears.Shop
         }
 
         //Utility
+        private void ResetShop()
+        {
+            //Reset
+            selection.ResetSlots(ShopSlotCount());
+
+            //Repopulate slots
+            selection.PopulateSlots();
+
+            //Set button text
+            UpdateUpgradeButton();
+        }
         private void UpdateUpgradeButton()
         {
             int cost = ShopUpgradeCost();

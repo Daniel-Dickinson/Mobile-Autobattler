@@ -60,6 +60,12 @@ namespace TwoBears.Shop
         }
         
         //Setup
+        public void ResetSlots(int slotCount)
+        {
+            this.slotCount = slotCount;
+
+            SetupSlots();
+        }
         private void SetupSlots()
         {
             //Initialize or clear

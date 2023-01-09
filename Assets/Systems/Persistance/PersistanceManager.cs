@@ -76,10 +76,11 @@ namespace TwoBears.Persistance
         //Run Progress
         public static void ClearRun()
         {
-            OnRunClear?.Invoke();
-
             //Reset state
             state.Restart();
+
+            //Clear run
+            OnRunClear?.Invoke();
 
             //Save changes
             Save();
