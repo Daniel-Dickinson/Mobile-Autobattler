@@ -32,12 +32,18 @@ namespace TwoBears.Shop
         public string level4Title = "Shop IV";
         public string level5Title = "Shop V";
 
+        [Header("Shop Costs")]
+        public int level2Cost = 4;
+        public int level3Cost = 16;
+        public int level4Cost = 60;
+        public int level5Cost = 240;
+
         [Header("Shop Slots")]
         public int level1Slots = 5;
         public int level2Slots = 6;
-        public int level3Slots = 7;
-        public int level4Slots = 8;
-        public int level5Slots = 10;
+        public int level3Slots = 8;
+        public int level4Slots = 10;
+        public int level5Slots = 13;
 
         [Header("Interest")]
         public float level1Interest = 0.0f;
@@ -61,7 +67,7 @@ namespace TwoBears.Shop
             selection.PopulateSlots();
 
             //Set button text
-            UpdateUpgradeButton();
+            UpdateText();
         }
         private void OnDestroy()
         {
@@ -102,7 +108,7 @@ namespace TwoBears.Shop
             selection.SlotCount = ShopSlotCount();
 
             //Update button
-            UpdateUpgradeButton();
+            UpdateText();
         }
 
         //Interest
@@ -126,13 +132,18 @@ namespace TwoBears.Shop
             selection.PopulateSlots();
 
             //Set button text
-            UpdateUpgradeButton();
+            UpdateText();
         }
-        private void UpdateUpgradeButton()
+        private void UpdateText()
         {
             int cost = ShopUpgradeCost();
+            string costString = (cost < 9999) ? cost.ToString() : " -";
+
+            //Set button
             upgradeButton.Cost = cost;
-            upgradeCost.text = cost.ToString();
+            upgradeCost.text = costString;
+
+            //Set title
             title.text = ShopTitle();
         }
 
@@ -165,10 +176,10 @@ namespace TwoBears.Shop
             switch (state.ShopLevel)
             {
                 default:
-                case 1: return 5;
-                case 2: return 15;
-                case 3: return 45;
-                case 4: return 150;
+                case 1: return level2Cost;
+                case 2: return level3Cost;
+                case 3: return level4Cost;
+                case 4: return level5Cost;
                 case 5: return 999999999;
             }
         }
