@@ -17,7 +17,7 @@ namespace TwoBears.Persistance
         [SerializeField] private Formation formation;
 
         [Header("World")]
-        [SerializeField] private int wave = -1;
+        [SerializeField] private int wave = 0;
         [SerializeField] private int shopLevel = 1;
 
         [Header("Slots")]
@@ -230,7 +230,7 @@ namespace TwoBears.Persistance
             formation.back = new FormationUnit[backSlots];
 
             //Reset wave
-            wave = -1;
+            wave = 0;
 
             //Reset gold
             gold = 15;

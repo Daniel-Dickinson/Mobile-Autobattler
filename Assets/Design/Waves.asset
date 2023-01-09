@@ -1,0 +1,501 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88d5f1e2e118184d9544f15ffb27727, type: 3}
+  m_Name: Waves
+  m_EditorClassIdentifier: 
+  front:
+  - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  middle:
+  - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  back:
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
+  units:
+  - id: 0
+    level: 0
+    cost: 3
+    frontUnlocked: 0
+    middleUnlocked: 0
+    backUnlocked: -1
+  - id: 0
+    level: 1
+    cost: 9
+    frontUnlocked: 5
+    middleUnlocked: 10
+    backUnlocked: -1
+  - id: 0
+    level: 2
+    cost: 27
+    frontUnlocked: 15
+    middleUnlocked: 20
+    backUnlocked: -1
+  - id: 20
+    level: 0
+    cost: 3
+    frontUnlocked: -1
+    middleUnlocked: -1
+    backUnlocked: 3
+  - id: 20
+    level: 1
+    cost: 9
+    frontUnlocked: -1
+    middleUnlocked: -1
+    backUnlocked: 13
+  waves:
+  - frontPoints: 3
+    middlePoints: 6
+    backPoints: 0
+    reward: 3
+  - frontPoints: 3
+    middlePoints: 9
+    backPoints: 0
+    reward: 3
+  - frontPoints: 6
+    middlePoints: 9
+    backPoints: 3
+    reward: 4
+  - frontPoints: 6
+    middlePoints: 12
+    backPoints: 3
+    reward: 5
+  - frontPoints: 9
+    middlePoints: 12
+    backPoints: 6
+    reward: 6
+  - frontPoints: 12
+    middlePoints: 12
+    backPoints: 9
+    reward: 6
+  - frontPoints: 12
+    middlePoints: 15
+    backPoints: 12
+    reward: 7
+  - frontPoints: 15
+    middlePoints: 18
+    backPoints: 15
+    reward: 7
+  - frontPoints: 21
+    middlePoints: 18
+    backPoints: 18
+    reward: 8
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 24
+    middlePoints: 27
+    backPoints: 21
+    reward: 10
+  - frontPoints: 27
+    middlePoints: 30
+    backPoints: 27
+    reward: 10
+  - frontPoints: 30
+    middlePoints: 33
+    backPoints: 30
+    reward: 11
+  - frontPoints: 36
+    middlePoints: 33
+    backPoints: 36
+    reward: 11
+  - frontPoints: 39
+    middlePoints: 42
+    backPoints: 36
+    reward: 12
+  - frontPoints: 42
+    middlePoints: 45
+    backPoints: 42
+    reward: 12
+  - frontPoints: 45
+    middlePoints: 48
+    backPoints: 45
+    reward: 13
+  - frontPoints: 48
+    middlePoints: 51
+    backPoints: 48
+    reward: 13
+  - frontPoints: 54
+    middlePoints: 57
+    backPoints: 54
+    reward: 14
+  - frontPoints: 60
+    middlePoints: 66
+    backPoints: 60
+    reward: 15
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  - frontPoints: 21
+    middlePoints: 24
+    backPoints: 21
+    reward: 9
+  foldoutOne: 0
+  foldoutTwo: 0
+  foldoutThree: 0
+  foldoutFour: 0
+  foldoutFive: 0
+  foldoutSix: 0
+  foldoutSeven: 0
+  foldoutEight: 0
+  foldoutNine: 0
+  foldoutTen: 0

@@ -1591,10 +1591,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8780573535099188709, guid: 1f6af06fc6701cb45b8e01ecb6f361f5, type: 3}
-      propertyPath: m_text
-      value: Shop I
-      objectReference: {fileID: 0}
     - target: {fileID: 8780573535362950576, guid: 1f6af06fc6701cb45b8e01ecb6f361f5, type: 3}
       propertyPath: m_Name
       value: Global

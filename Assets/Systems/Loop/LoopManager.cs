@@ -16,7 +16,7 @@ namespace TwoBears.Loop
         public FormationSpawn hostile;
 
         [Header("Waves")]
-        public WaveSelection waves;
+        public ProceduralFormation waves;
         
         [Header("UI Elements")]
         public GameObject shop;
@@ -79,11 +79,8 @@ namespace TwoBears.Loop
             //Close shop
             shop.SetActive(false);
 
-            //Increment wave
-            PersistanceManager.State.Wave++;
-
-            //Set hostile formation
-            hostile.formation = waves.waves[PersistanceManager.State.Wave];
+            //Populate formation
+            waves.Populate(PersistanceManager.State.Wave);
 
             //Spawn units
             PersistanceManager.SetupWaves();
@@ -105,6 +102,9 @@ namespace TwoBears.Loop
 
             //Clear wave
             PersistanceManager.ClearWaves();
+
+            //Increment wave
+            PersistanceManager.State.Wave++;
 
             //Set stage
             stage = LoopStage.Complete;
