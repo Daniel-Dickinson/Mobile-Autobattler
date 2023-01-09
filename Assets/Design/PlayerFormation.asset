@@ -19,6 +19,9 @@ MonoBehaviour:
   - id: -1
     level: 0
     sublevel: 0
+  - id: -1
+    level: 0
+    sublevel: 0
   middle:
   - id: -1
     level: 0
@@ -29,7 +32,13 @@ MonoBehaviour:
   - id: -1
     level: 0
     sublevel: 0
+  - id: -1
+    level: 0
+    sublevel: 0
   back:
+  - id: -1
+    level: 0
+    sublevel: 0
   - id: -1
     level: 0
     sublevel: 0
