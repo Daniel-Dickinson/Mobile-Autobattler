@@ -149,16 +149,17 @@ namespace TwoBears.Unit
             float distance = goalVector.magnitude;
 
             //Circle & avoid obstacles as we get close
-            if (distance <= circleRange)
-            {
-                float circleDir = target.CalculateApproachDirection(perceiver, direction, debugCrowd) * circleSpeed;
-                direction = Quaternion.Euler(0, 0, -circleDir) * direction;
-            }
+            Vector2 circleDir = (distance <= circleRange)? target.CalculateApproachDirection(perceiver, direction, debugCrowd) * circleSpeed : Vector2.zero;
+            if (circleDir.x != 0) direction = Quaternion.Euler(0, 0, -circleDir.x) * direction;
 
             //Don't get closer than attack range
             if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, target.transform.position) <= ActionRange(distance))
             {
+                //Charge forward by default
                 goalPosition = target.transform.position - (direction * ActionRange(distance));
+
+                //Move backwards if crowded
+                if (circleDir.y < 0) goalPosition = transform.position - (direction * circleSpeed);
             }
 
             //Move

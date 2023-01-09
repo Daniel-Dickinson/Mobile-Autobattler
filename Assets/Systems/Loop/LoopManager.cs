@@ -133,7 +133,7 @@ namespace TwoBears.Loop
             }
 
             //Complete if 0 hostile units remaining
-            if (hostileRemaining == 0) ShowComplete();
+            if (hostileRemaining <= 0) ShowComplete();
         }
 
         private void TrackPlayerUnits()
@@ -162,10 +162,12 @@ namespace TwoBears.Loop
         private void PlayerUnitKilled(BaseUnit unit)
         {
             playerRemaining--;
+            unit.OnDeath -= PlayerUnitKilled;
         }
         private void HostileUnitKilled(BaseUnit unit)
         {
             hostileRemaining--;
+            unit.OnDeath -= HostileUnitKilled;
         }
     }
 

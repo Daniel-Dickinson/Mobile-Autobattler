@@ -12,6 +12,9 @@ namespace TwoBears.Perception
         public float radius = 0.5f;
         public LayerMask unitMask;
 
+        [Header("Anti-Crowding")]
+        public float crowdingRadius = 1.0f;
+
         [Header("Obstacles")]
         public int rayCount = 32;
         public float rayDistance = 2.0f;
@@ -70,7 +73,7 @@ namespace TwoBears.Perception
         }
 
         //Approach
-        public float CalculateApproachDirection(Perceivable perceivable, Vector3 inputDirection, bool debug = false)
+        public Vector2 CalculateApproachDirection(Perceivable perceivable, Vector3 inputDirection, bool debug = false)
         {
             //Calculate index of current direction
             float inputAngle = Vector3.SignedAngle(Vector3.up, -inputDirection, -Vector3.forward);
@@ -81,7 +84,7 @@ namespace TwoBears.Perception
             if (obstacleSegments[inputIndex].Occupied)
             {
                 if (debug) Debug.DrawRay(transform.position, obstacleSegments[inputIndex].direction * rayDistance * 2.5f, Color.red);
-                return 0;
+                return Vector2.zero;
             }
 
             //Calculate extreme in each direction from obstacles
@@ -97,18 +100,21 @@ namespace TwoBears.Perception
                 //Debug.Log("CW (Cyan): " + clockwise + " -- " + "CCW (Green): " + counterClockwise);
             }
 
-            //Factor in other units
-            AntiCrowding(perceivable, inputDirection, ref clockwise, ref counterClockwise, debug);
+            //Track crowding
+            float crowding = AntiCrowding(perceivable, inputDirection, ref clockwise, ref counterClockwise, debug);
 
             //Return circle direction
-            if (clockwise > counterClockwise) return Mathf.Min(60, clockwise);
-            else if (clockwise < counterClockwise) return -Mathf.Min(60, counterClockwise);
-            else return 0;
+            if (clockwise > counterClockwise) return new Vector2(Mathf.Min(60, clockwise), crowding);
+            else if (clockwise < counterClockwise) return new Vector2(-Mathf.Min(60, counterClockwise), crowding);
+            else return Vector2.zero;
         }
 
         //Crowding
-        private void AntiCrowding(Perceivable perceivable, Vector3 inputDirection, ref float clockwise, ref float counterClockwise, bool debug = false)
+        private float AntiCrowding(Perceivable perceivable, Vector3 inputDirection, ref float clockwise, ref float counterClockwise, bool debug = false)
         {
+            //Track crowding
+            float crowding = 0;
+
             for (int i = 0; i < perceivables.Count; i++)
             {
                 //Grab other
@@ -151,6 +157,9 @@ namespace TwoBears.Perception
                     if (debug) Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, counterClockwiseOther) * -inputDirection * rayDistance * 2.5f, Color.yellow);
                 }
             }
+
+            //Return total crowding
+            return crowding;
         }
 
         //Obstacles

@@ -33,9 +33,9 @@ MonoBehaviour:
     level02: {fileID: 2561308623121996728, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}
     level03: {fileID: 5760455440822817900, guid: ea1cb0b4a75d4ff41838763d1463c2ad, type: 3}
   archer:
-    level01: {fileID: 0}
-    level02: {fileID: 0}
-    level03: {fileID: 0}
+    level01: {fileID: 640184104213289463, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
+    level02: {fileID: 4285691939097034649, guid: 0b973928c6e6b714b896eee030e78b04, type: 3}
+    level03: {fileID: 6751357914978468102, guid: 32e79c7605b2551418baf7b029ae4ad2, type: 3}
   priest:
     level01: {fileID: 0}
     level02: {fileID: 0}

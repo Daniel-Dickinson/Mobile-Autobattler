@@ -139,7 +139,7 @@ namespace TwoBears.Waves
             for (int i = 0; i < spawns.Count; i++)
             {
                 BaseUnit unit = spawns[i].GetComponent<BaseUnit>();
-                unit.RemoveHealth(9999999);
+                if (unit != null) unit.RemoveHealth(99);
             }
         }
     }

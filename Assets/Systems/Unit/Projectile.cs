@@ -11,18 +11,22 @@ namespace TwoBears.Unit
     public class Projectile : MonoBehaviour
     {
         [Header("Stats")]
-        public int damage = 1;
+        [SerializeField] private int damage = 1;
+
+        [Header("Impale")]
+        [SerializeField] private float impale = 0.0f;
 
         [Header("Cleanup")]
-        public float life = 5.0f;
+        [SerializeField] private float life = 5.0f;
 
         [Header("Layers")]
-        public LayerMask units;
-        public LayerMask armour;
+        [SerializeField] private LayerMask units;
+        [SerializeField] private LayerMask armour;
 
         //State
         private Faction faction;
         private List<Rigidbody2D> ignore;
+        private BaseUnit launcher;
 
         //Components
         private Rigidbody2D rb;
@@ -54,6 +58,7 @@ namespace TwoBears.Unit
 
             //Track faction
             this.faction = faction;
+            this.launcher = launcher;
 
             //Add launcher to ignore list
             ignore.Add(launcher.RigidBody);
@@ -67,6 +72,9 @@ namespace TwoBears.Unit
         {
             //Reduce life
             lifeRemaining = Mathf.Min(0.1f, lifeRemaining);
+
+            //Impale
+            if (impale > 0) Impale(collision.collider, collision.contacts[0].point);
 
             //Ignore the environment
             if (collision.rigidbody == null) return;
@@ -100,6 +108,46 @@ namespace TwoBears.Unit
 
                 return;
             }
+        }
+
+        private void Impale(Collider2D col, Vector3 hit)
+        {
+            //Calculate direction from launcher
+            Vector3 direction = (launcher.transform.position - hit).normalized;
+
+            //Disable physics
+            rb.simulated = false;
+            GetComponent<Collider2D>().enabled = false;
+
+            //Extend life
+            lifeRemaining = life * 5.0f;
+
+            //Check if unit
+            if (col.attachedRigidbody != null)
+            {
+                BaseUnit unit = col.attachedRigidbody.GetComponent<BaseUnit>();
+                if (unit != null)
+                {
+                    //Set position centered on unit
+                    transform.position = unit.transform.position - (direction * impale);
+
+                    //Set rotation
+                    transform.rotation = Quaternion.LookRotation(Vector3.forward, -direction);
+
+                    //Parent
+                    transform.SetParent(col.transform, true);
+                    return;
+                }
+            }
+
+            //Set position
+            transform.position = hit - (direction * impale);
+
+            //Set rotation
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, -direction);
+
+            //Parent
+            transform.SetParent(col.transform, true);
         }
     }
 }

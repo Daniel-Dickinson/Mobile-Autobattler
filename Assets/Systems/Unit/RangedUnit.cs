@@ -14,8 +14,18 @@ namespace TwoBears.Unit
         [SerializeField] private float attackRangeMax = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
+        Animator anim;
+
         //Targeting
         private Vector3 attackPosition;
+
+        //Mono
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            anim = GetComponent<Animator>();
+        }
 
         //Action
         protected override float ActionRange(float distanceToTarget)
@@ -63,6 +73,9 @@ namespace TwoBears.Unit
 
             //Add force
             proj.Launch(this, perceiver.Faction, (attackPosition - transform.position).normalized * projectileSpeed);
+
+            //Play animation
+            if (anim != null) anim.Play("Attack");
 
             //Now recovering
             Hold(recovery);

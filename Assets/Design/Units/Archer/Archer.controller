@@ -43,7 +43,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c18f4d23a36a62408ceebbb7389e7d9, type: 2}
+  m_Motion: {fileID: 7400000, guid: f6ba1e9427baf0b458c4d3d8cbe41b96, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -55,7 +55,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slinger
+  m_Name: Archer
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -116,7 +116,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: be59e4d0d0f59244294b01e2c0bb62f5, type: 2}
+  m_Motion: {fileID: 7400000, guid: e2558d097e2cb094580ffb272a048138, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
