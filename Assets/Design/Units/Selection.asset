@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8dcd60668f6f54c94c80e073a362b5, type: 3}
+  m_Name: Selection
+  m_EditorClassIdentifier: 
+  serf:
+    level01: {fileID: 640184104213289463, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
+    level02: {fileID: 8543040622007526183, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
+    level03: {fileID: 302225585147555472, guid: 62bcf132b83ddd7478d09c14a254b191, type: 3}
+  warrior:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
+  squire:
+    level01: {fileID: 640184104213289463, guid: ecae7a11f15351c49bab989751bf3d33, type: 3}
+    level02: {fileID: 4964975456590046890, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
+    level03: {fileID: 5105588539592139896, guid: d0548165421dffe4baa245cdedaeddf2, type: 3}
+  knight:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
+  slinger:
+    level01: {fileID: 640184104213289463, guid: 60aeb0f6bb6247649b80b9898c15b8df, type: 3}
+    level02: {fileID: 2561308623121996728, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}
+    level03: {fileID: 5760455440822817900, guid: ea1cb0b4a75d4ff41838763d1463c2ad, type: 3}
+  archer:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
+  priest:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
