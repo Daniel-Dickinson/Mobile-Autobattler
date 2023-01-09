@@ -95,14 +95,19 @@ namespace TwoBears.Waves
             if (source == null || source.Count == 0) return;
 
             //Spend points until we have 15 units or run out
+            bool alternate = false;
             int cheapestUnit = source[source.Count - 1].cost;
             while (points >= cheapestUnit && output.Count < 15)
             {
                 //Grab unit
                 ProceduralUnit unit = GetMostExpensiveUnit(source, points);
 
+                //Always add to the each side -- Keeps strongest units in the center
+                alternate = !alternate;
+
                 //Add unit
-                output.Add(unit);
+                if (alternate) output.Add(unit);
+                else output.Insert(0, unit);
 
                 //Subtract cost
                 points -= unit.cost;

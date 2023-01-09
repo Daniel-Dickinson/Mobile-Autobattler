@@ -128,5 +128,19 @@ namespace TwoBears.Waves
             //Track
             spawns.Add(spawn);
         }
+
+        //Debug
+        public void KillAll()
+        {
+            //Spawns required
+            if (spawns == null) return;
+
+            //Destroy spawn
+            for (int i = 0; i < spawns.Count; i++)
+            {
+                BaseUnit unit = spawns[i].GetComponent<BaseUnit>();
+                unit.RemoveHealth(9999999);
+            }
+        }
     }
 }

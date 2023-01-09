@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 298697604930644929, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 298697604930644929, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
       propertyPath: healthPool

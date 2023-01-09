@@ -29,9 +29,9 @@ namespace TwoBears.Unit
         }
 
         //Action
-        protected override float ActionRange
+        protected override float ActionRange(float distanceToTarget)
         {
-            get { return chargeRange; }
+            return chargeRange;
         }
         protected override void SetupAction(float deltaTime)
         {

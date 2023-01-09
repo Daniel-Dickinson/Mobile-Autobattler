@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPool: 3
-  moveSpeed: 4
+  moveSpeed: 5
   moveSmooth: 0.2
   circleRange: 3
   circleSpeed: 0.2

@@ -10,16 +10,17 @@ namespace TwoBears.Unit
         [SerializeField] private Transform barrel;
         [SerializeField] private Projectile projectile;
         [SerializeField] private float projectileSpeed = 40.0f;
-        [SerializeField] private float attackRange = 5.0f;
+        [SerializeField] private float attackRangeMin = 2.8f;
+        [SerializeField] private float attackRangeMax = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
         //Targeting
         private Vector3 attackPosition;
 
         //Action
-        protected override float ActionRange
+        protected override float ActionRange(float distanceToTarget)
         {
-            get { return attackRange; }
+            return Mathf.Clamp(distanceToTarget, attackRangeMin, attackRangeMax);
         }
         protected override void SetupAction(float deltaTime)
         {
@@ -30,7 +31,7 @@ namespace TwoBears.Unit
             float distance = Vector3.Distance(target.transform.position, transform.position);
 
             //Setup attack for next frame when available
-            if (distance < (attackRange + 0.05f) && projectile != null && perceiver.UnitVisible(target, true))
+            if (distance < (ActionRange(distance) + 0.05f) && projectile != null && perceiver.UnitVisible(target, true))
             {
                 //Reduce targeting time
                 targetTime -= deltaTime;

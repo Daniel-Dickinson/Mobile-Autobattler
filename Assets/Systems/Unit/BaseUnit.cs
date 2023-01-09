@@ -156,9 +156,9 @@ namespace TwoBears.Unit
             }
 
             //Don't get closer than attack range
-            if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, target.transform.position) <= ActionRange)
+            if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, target.transform.position) <= ActionRange(distance))
             {
-                goalPosition = target.transform.position - (direction * ActionRange);
+                goalPosition = target.transform.position - (direction * ActionRange(distance));
             }
 
             //Move
@@ -187,10 +187,7 @@ namespace TwoBears.Unit
         }
 
         //Action
-        protected abstract float ActionRange
-        {
-            get;
-        }
+        protected abstract float ActionRange(float distanceToTarget);
         protected abstract void SetupAction(float deltaTime);
         protected abstract void Action(float deltaTime);
 

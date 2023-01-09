@@ -33,6 +33,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2231926375652046731, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}
+      propertyPath: attackRangeMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231926375652046731, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}
       propertyPath: projectileSpeed
       value: 30
       objectReference: {fileID: 0}
