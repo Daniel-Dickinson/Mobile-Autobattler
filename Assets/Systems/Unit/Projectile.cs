@@ -31,6 +31,7 @@ namespace TwoBears.Unit
 
         //Components
         private Rigidbody2D rb;
+        private TrailRenderer trail;
         private AudioSource audioSource;
 
         //Life
@@ -40,7 +41,10 @@ namespace TwoBears.Unit
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            trail = GetComponent<TrailRenderer>();
             audioSource = GetComponent<AudioSource>();
+
+            trail.emitting = false;
 
             lifeRemaining = life;
         }
@@ -69,6 +73,9 @@ namespace TwoBears.Unit
 
             //Add velocity
             rb.velocity = launchVector;
+
+            //Trail now emitting
+            if (trail != null) trail.emitting = true;
         }
 
         //Physics
@@ -85,6 +92,9 @@ namespace TwoBears.Unit
 
             //Ignore
             if (ignore.Contains(collision.rigidbody)) return;
+
+            //Stop trail
+            if (trail != null) trail.emitting = false;
 
             //Play hit
             audioSource.Play();

@@ -15,9 +15,12 @@ namespace TwoBears.Unit
         public float knockback = 0.5f;
 
         [Header("Layers")]
-        public LayerMask units;
-        public LayerMask weapon;
-        public LayerMask armour;
+        [SerializeField] private LayerMask units;
+        [SerializeField] private LayerMask weapon;
+        [SerializeField] private LayerMask armour;
+
+        [Header("Trail")]
+        [SerializeField] private TrailRenderer trail;
 
         //State
         private bool Attacking
@@ -42,6 +45,8 @@ namespace TwoBears.Unit
             anim = GetComponent<Animator>();
             perceiver = GetComponent<Perceiver>();
             audioSource = GetComponent<AudioSource>();
+
+            if (trail != null) trail.emitting = false;
         }
 
         //Physics
@@ -108,6 +113,7 @@ namespace TwoBears.Unit
             //Play hit
             audioSource.Play();
 
+
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
             {
@@ -149,9 +155,19 @@ namespace TwoBears.Unit
             //Play animation
             anim.Play("Attack");
 
+            //Start trail
+            if (trail != null) trail.emitting = true;
+
             //Initialize ignore
             if (ignore == null) ignore = new List<Rigidbody2D>();
             else ignore.Clear();
+        }
+
+        //Stop Trail -- Called by attack animation when appropriate
+        public void StopTrail()
+        {
+            //Stop trail
+            if (trail != null) trail.emitting = false;
         }
     }
 }
