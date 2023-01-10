@@ -242,6 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba0e2f787c54ef428d0adb69d17e694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primary: 1
+  secondary: 0
+  tertiary: 0
   healthPool: 3
   moveSpeed: 8
   moveSmooth: 0.2

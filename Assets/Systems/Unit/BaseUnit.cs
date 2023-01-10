@@ -11,6 +11,11 @@ namespace TwoBears.Unit
     [RequireComponent(typeof(Collider2D))]
     public abstract class BaseUnit : MonoBehaviour
     {
+        [Header("Class")]
+        public UnitClass primary;
+        public UnitClass secondary;
+        public UnitClass tertiary;
+
         [Header("Health")]
         [SerializeField] private int healthPool = 3;
 
@@ -283,5 +288,7 @@ namespace TwoBears.Unit
     }
 
     public enum UnitState { Movement, Actioning, Recovering }
+    public enum UnitClass { None, Warrior, Defender, Ranger, Healer, Caster, Merchant }
+
     public delegate void UnitEvent(BaseUnit unit);
 }

@@ -2919,7 +2919,7 @@ GameObject:
   - component: {fileID: 8160655531474783065}
   - component: {fileID: 6253094090291418342}
   m_Layer: 5
-  m_Name: Image_01
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2995,7 +2995,7 @@ GameObject:
   - component: {fileID: 3562672850602950903}
   - component: {fileID: 2558161490509812404}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3456,7 +3456,7 @@ GameObject:
   - component: {fileID: 6428347000120113567}
   - component: {fileID: 259473195379073064}
   m_Layer: 5
-  m_Name: Image_05
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3852,7 +3852,7 @@ GameObject:
   - component: {fileID: 5591846506276251747}
   - component: {fileID: 571715680839460974}
   m_Layer: 5
-  m_Name: Image_05
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3998,6 +3998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7636662878996104092}
+  - component: {fileID: 1084509852}
   m_Layer: 5
   m_Name: Units
   m_TagString: Untagged
@@ -4028,6 +4029,21 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 0}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1084509852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485843638612347836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4385023758a2d74e960222ea97dc636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
+  formation: {fileID: 11400000, guid: 1c37859b705e10742af5eb142bd5df21, type: 2}
+  selection: {fileID: 11400000, guid: 5522da90bdc9be84fa3ce9fe2c317bc0, type: 2}
 --- !u!1 &2500503781873407921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4037,6 +4053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4634971024557881187}
+  - component: {fileID: 3287567870425066999}
   m_Layer: 5
   m_Name: Warriors
   m_TagString: Untagged
@@ -4066,6 +4083,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &3287567870425066999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500503781873407921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff6144033e0a3549b374743a0206c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitClass: 1
+  counter: {fileID: 1084509852}
+  full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  nub1: {fileID: 2558161490509812404}
+  nub2: {fileID: 2632088312481377796}
+  nub3: {fileID: 4069998676545784972}
+  nub4: {fileID: 4003414935330029598}
+  nub5: {fileID: 6951973394257562410}
+  nub6: {fileID: 571715680839460974}
 --- !u!1 &2832480380533828589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4345,7 +4384,7 @@ GameObject:
   - component: {fileID: 1265624284488395145}
   - component: {fileID: 5898229072493499866}
   m_Layer: 5
-  m_Name: Image_02
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5014,7 +5053,7 @@ GameObject:
   - component: {fileID: 771153297620013353}
   - component: {fileID: 4361400448975623197}
   m_Layer: 5
-  m_Name: Image_01
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5507,7 +5546,7 @@ GameObject:
   - component: {fileID: 9194793433337452444}
   - component: {fileID: 6951973394257562410}
   m_Layer: 5
-  m_Name: Image_04
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5583,7 +5622,7 @@ GameObject:
   - component: {fileID: 7884002782238164600}
   - component: {fileID: 1809208524632445916}
   m_Layer: 5
-  m_Name: Image_03
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5735,7 +5774,7 @@ GameObject:
   - component: {fileID: 7456919223551860658}
   - component: {fileID: 5268214189164986118}
   m_Layer: 5
-  m_Name: Image_05
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5811,7 +5850,7 @@ GameObject:
   - component: {fileID: 2609519139858569634}
   - component: {fileID: 7586568143074642997}
   m_Layer: 5
-  m_Name: Image_02
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6127,7 +6166,7 @@ GameObject:
   - component: {fileID: 7550464753893486606}
   - component: {fileID: 4866119667094289489}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6241,7 +6280,7 @@ GameObject:
   - component: {fileID: 1531634158431409557}
   - component: {fileID: 2632088312481377796}
   m_Layer: 5
-  m_Name: Image_01
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6466,6 +6505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350704215988493517}
+  - component: {fileID: 3249076228551432749}
   m_Layer: 5
   m_Name: Defenders
   m_TagString: Untagged
@@ -6495,6 +6535,28 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: 0}
   m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &3249076228551432749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504307768773250224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff6144033e0a3549b374743a0206c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitClass: 2
+  counter: {fileID: 1084509852}
+  full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  nub1: {fileID: 4866119667094289489}
+  nub2: {fileID: 6253094090291418342}
+  nub3: {fileID: 5898229072493499866}
+  nub4: {fileID: 1809208524632445916}
+  nub5: {fileID: 982828561761235670}
+  nub6: {fileID: 259473195379073064}
 --- !u!1 &7695930478366337113
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,7 +6569,7 @@ GameObject:
   - component: {fileID: 6781645404513580906}
   - component: {fileID: 982828561761235670}
   m_Layer: 5
-  m_Name: Image_04
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6583,7 +6645,7 @@ GameObject:
   - component: {fileID: 7818472176932180725}
   - component: {fileID: 4069998676545784972}
   m_Layer: 5
-  m_Name: Image_02
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6659,7 +6721,7 @@ GameObject:
   - component: {fileID: 2317975944971916607}
   - component: {fileID: 4003414935330029598}
   m_Layer: 5
-  m_Name: Image_03
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6788,7 +6850,7 @@ GameObject:
   - component: {fileID: 4337736688457706870}
   - component: {fileID: 5160177588565169308}
   m_Layer: 5
-  m_Name: Image_03
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6902,7 +6964,7 @@ GameObject:
   - component: {fileID: 519078744347908386}
   - component: {fileID: 2322271923098126447}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7153,7 +7215,7 @@ GameObject:
   - component: {fileID: 4361768585276795985}
   - component: {fileID: 7209980799064572734}
   m_Layer: 5
-  m_Name: Image_04
+  m_Name: Nub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10873,6 +10935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4851947224033964905}
+  - component: {fileID: 4717848594605548609}
   m_Layer: 5
   m_Name: Rangers
   m_TagString: Untagged
@@ -10902,6 +10965,28 @@ RectTransform:
   m_AnchoredPosition: {x: 236, y: 0}
   m_SizeDelta: {x: 80, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &4717848594605548609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9119176899290630876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff6144033e0a3549b374743a0206c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitClass: 3
+  counter: {fileID: 1084509852}
+  full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  nub1: {fileID: 2322271923098126447}
+  nub2: {fileID: 4361400448975623197}
+  nub3: {fileID: 7586568143074642997}
+  nub4: {fileID: 5160177588565169308}
+  nub5: {fileID: 7209980799064572734}
+  nub6: {fileID: 5268214189164986118}
 --- !u!1001 &3265672996434968536
 PrefabInstance:
   m_ObjectHideFlags: 0
