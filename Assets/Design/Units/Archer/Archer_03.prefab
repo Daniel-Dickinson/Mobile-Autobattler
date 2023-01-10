@@ -85,12 +85,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 241209585477356017, guid: b2bb04d6576ed7943aad55557d013435, type: 3}
     - target: {fileID: 3859753814516594116, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
+      propertyPath: attackRange
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859753814516594116, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
       propertyPath: hesitanceMax
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
       propertyPath: hesitanceMin
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859753814516594116, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
+      propertyPath: moveRangeMax
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
       propertyPath: attackRangeMax

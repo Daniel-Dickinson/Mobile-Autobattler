@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: hesitanceMin
       value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 2105737996054080876, guid: ae06214009b5f4e4bbfa24bdf2a6f1fe, type: 3}
+      propertyPath: moveRangeMax
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6772033609569869831, guid: ae06214009b5f4e4bbfa24bdf2a6f1fe, type: 3}
       propertyPath: m_Name
       value: Knight_03

@@ -11,8 +11,7 @@ namespace TwoBears.Unit
         [SerializeField] private Transform barrel;
         [SerializeField] private Projectile projectile;
         [SerializeField] private float projectileSpeed = 40.0f;
-        [SerializeField] private float attackRangeMin = 2.8f;
-        [SerializeField] private float attackRangeMax = 4.0f;
+        [SerializeField] private float attackRange = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
         //Components
@@ -20,7 +19,6 @@ namespace TwoBears.Unit
         private AudioSource audioSource;
 
         //Targeting
-        private Vector3 attackPosition;
         private Vector3 attackDirection;
 
         //Mono
@@ -33,20 +31,22 @@ namespace TwoBears.Unit
         }
 
         //Action
-        protected override float ActionRange(float distanceToTarget)
+        protected override void Targeting()
         {
-            return Mathf.Clamp(distanceToTarget, attackRangeMin, attackRangeMax);
+            actionTarget = perceiver.GetNearestVisibleTarget();
+            movementTarget = actionTarget;
         }
+
         protected override void SetupAction(float deltaTime)
         {
             //Target required
-            if (target == null) return;
+            if (actionTarget == null) return;
 
             //Calculate distance to target
-            float distance = Vector3.Distance(target.transform.position, transform.position);
+            float distance = Vector3.Distance(actionTarget.transform.position, transform.position);
 
             //Setup attack for next frame when available
-            if (distance < (ActionRange(distance) + 0.05f) && projectile != null && perceiver.UnitVisible(target, true))
+            if (distance < attackRange && projectile != null && perceiver.UnitVisible(actionTarget, true))
             {
                 //Reduce targeting time
                 targetTime -= deltaTime;
@@ -58,10 +58,7 @@ namespace TwoBears.Unit
                     state = UnitState.Actioning;
 
                     //Calculate direction
-                    attackDirection = (target.transform.position - transform.position).normalized;
-
-                    //Set attack position & time
-                    attackPosition = target.transform.position + (attackDirection * 0.15f);
+                    attackDirection = (actionTarget.transform.position - transform.position).normalized;
                 }
             }
         }

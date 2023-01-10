@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: hesitanceMin
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3912773833459641932, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
+      propertyPath: moveRangeMax
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5963915758494180124, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
       propertyPath: damage
       value: 4

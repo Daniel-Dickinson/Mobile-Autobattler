@@ -21,10 +21,12 @@ namespace TwoBears.Unit
 
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 0.5f;
-        
         [SerializeField] private float moveSmooth = 0.01f;
+        [SerializeField] private float moveRangeMin = 0.5f;
+        [SerializeField] private float moveRangeMax = 0.5f;
 
         [Header("Circling")]
+        [SerializeField] private CircleMode circleMode;
         [SerializeField] private float circleRange = 3.0f;
         [SerializeField] private float circleSpeed = 1.0f;
 
@@ -75,7 +77,8 @@ namespace TwoBears.Unit
         protected Collider2D col;
 
         //Targeting
-        protected Perceivable target;
+        protected Perceivable actionTarget;
+        protected Perceivable movementTarget;
         protected float targetTime;
 
         //Pathfinding
@@ -118,14 +121,24 @@ namespace TwoBears.Unit
             PerformBehaviour(Time.fixedDeltaTime);
         }
 
+        //Targeting
+        protected virtual void Targeting()
+        {
+            //Get nearest target
+            actionTarget = perceiver.GetNearestTarget();
+
+            //Movement target same as action
+            movementTarget = actionTarget;
+        }
+
         //Behaviour
         private void PerformBehaviour(float deltaTime)
         {
-            //Get nearest target
-            target = perceiver.GetTarget();
+            //Aquire targets
+            Targeting();
 
             //Target required
-            if (target == null) return;
+            if (actionTarget == null) return;
 
             switch (state)
             {
@@ -147,29 +160,35 @@ namespace TwoBears.Unit
                     break;
             }
         }
+
+        //Movement
+        protected float MovementRange(float distanceToTarget)
+        {
+            return Mathf.Clamp(distanceToTarget, moveRangeMin, moveRangeMax);
+        }
         protected virtual void Move(float deltaTime)
         {
             //Calculate path to goal position
-            UpdatePath(target.transform.position);
+            UpdatePath(movementTarget.transform.position);
 
             //Calculate path position
-            Vector3 goalPosition = TraversePath(target.transform.position);
-            Vector3 goalVector = target.transform.position - transform.position;
+            Vector3 goalPosition = TraversePath(movementTarget.transform.position);
+            Vector3 goalVector = movementTarget.transform.position - transform.position;
             Vector3 direction = goalVector.normalized;
             float distance = goalVector.magnitude;
 
             //Circle & avoid obstacles as we get close
-            Vector2 circleDir = (distance <= circleRange)? target.CalculateApproachDirection(perceiver, direction, debugCrowd) * circleSpeed : Vector2.zero;
+            Vector2 circleDir = (distance <= circleRange)? movementTarget.CalculateApproachDirection(perceiver, direction, distance, circleMode, debugCrowd) * circleSpeed : Vector2.zero;
             if (circleDir.x != 0) direction = Quaternion.Euler(0, 0, -circleDir.x) * direction;
 
-            //Don't get closer than attack range
-            if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, target.transform.position) <= ActionRange(distance))
+            //Don't get closer than movement range
+            if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, movementTarget.transform.position) <= MovementRange(distance))
             {
                 //Charge forward by default
-                goalPosition = target.transform.position - (direction * ActionRange(distance));
+                goalPosition = movementTarget.transform.position - (direction * MovementRange(distance));
 
                 //Move backwards if crowded
-                if (circleDir.y < 0) goalPosition = transform.position - (direction * circleSpeed);
+                if (circleDir.y < 0) goalPosition = transform.position + (circleDir.y * direction * circleSpeed);
             }
 
             //Move
@@ -186,19 +205,22 @@ namespace TwoBears.Unit
             }
 
             //Rotate
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (target.transform.position - transform.position).normalized);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 180.0f * deltaTime);
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (actionTarget.transform.position - transform.position).normalized);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 600.0f * deltaTime);
         }
         protected virtual void Recover(float deltaTime)
         {
             if (recoveryTime > 0) recoveryTime -= deltaTime;
+
+            //Rotate
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (actionTarget.transform.position - transform.position).normalized);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 300.0f * deltaTime);
 
             //Return to movement after recovery
             if (recoveryTime <= 0 && rb.velocity.magnitude <= 0.05f) state = UnitState.Movement;
         }
 
         //Action
-        protected abstract float ActionRange(float distanceToTarget);
         protected abstract void SetupAction(float deltaTime);
         protected abstract void Action(float deltaTime);
 

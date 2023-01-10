@@ -29,20 +29,16 @@ namespace TwoBears.Unit
         }
 
         //Action
-        protected override float ActionRange(float distanceToTarget)
-        {
-            return chargeRange;
-        }
         protected override void SetupAction(float deltaTime)
         {
             //Target required
-            if (target == null) return;
+            if (actionTarget == null) return;
 
             //Calculate distance to target
-            float distance = Vector3.Distance(target.transform.position, transform.position);
+            float distance = Vector3.Distance(actionTarget.transform.position, transform.position);
 
             //Setup attack for next frame when available
-            if (distance < (chargeRange + 0.05f) && weapon != null && weapon.enabled && perceiver.UnitVisible(target))
+            if (distance < (chargeRange + 0.05f) && weapon != null && weapon.enabled && perceiver.UnitVisible(actionTarget))
             {
                 //Reduce targeting time
                 targetTime -= deltaTime;
@@ -54,10 +50,10 @@ namespace TwoBears.Unit
                     state = UnitState.Actioning;
 
                     //Calculate direction
-                    Vector3 direction = (target.transform.position - transform.position).normalized;
+                    Vector3 direction = (actionTarget.transform.position - transform.position).normalized;
 
                     //Set attack position & time
-                    attackPosition = target.transform.position + (direction * 0.15f);
+                    attackPosition = actionTarget.transform.position + (direction * 0.15f);
                     attackTime = distance / chargeSpeed;
                 }
             }

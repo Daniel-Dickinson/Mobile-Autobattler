@@ -223,13 +223,13 @@ MonoBehaviour:
     m_Bits: 448
   crowdingRadius: 1
   rayCount: 32
-  rayDistance: 2
+  nearDistance: 2
+  farDistance: 6
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1
   debugDirection: 0
   debugObstacles: 0
-  targeting: 0
 --- !u!114 &5197269632914789532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +248,9 @@ MonoBehaviour:
   healthPool: 3
   moveSpeed: 8
   moveSmooth: 0.2
+  moveRangeMin: 0.6
+  moveRangeMax: 0.75
+  circleMode: 0
   circleRange: 3
   circleSpeed: 1
   hesitanceMin: 0.8
@@ -283,6 +286,7 @@ MonoBehaviour:
   armour:
     serializedVersion: 2
     m_Bits: 256
+  trail: {fileID: 0}
 --- !u!114 &1380182028688600670
 MonoBehaviour:
   m_ObjectHideFlags: 0

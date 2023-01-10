@@ -223,13 +223,13 @@ MonoBehaviour:
     m_Bits: 448
   crowdingRadius: 1
   rayCount: 32
-  rayDistance: 2
+  nearDistance: 2
+  farDistance: 6
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1
   debugDirection: 0
   debugObstacles: 0
-  targeting: 1
 --- !u!114 &3859753814516594116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +248,9 @@ MonoBehaviour:
   healthPool: 2
   moveSpeed: 2
   moveSmooth: 0.2
+  moveRangeMin: 2
+  moveRangeMax: 9.5
+  circleMode: 1
   circleRange: 6
   circleSpeed: 0.1
   hesitanceMin: 3.5
@@ -259,8 +262,7 @@ MonoBehaviour:
   barrel: {fileID: 8344548612534556832}
   projectile: {fileID: 241209585477356017, guid: f26aca14412f4f543b48b085b736443d, type: 3}
   projectileSpeed: 40
-  attackRangeMin: 2.8
-  attackRangeMax: 10
+  attackRange: 10
   recovery: 0.01
 --- !u!114 &1380182028688600670
 MonoBehaviour:

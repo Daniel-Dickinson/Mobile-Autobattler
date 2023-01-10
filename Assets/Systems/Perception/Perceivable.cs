@@ -17,7 +17,8 @@ namespace TwoBears.Perception
 
         [Header("Obstacles")]
         public int rayCount = 32;
-        public float rayDistance = 2.0f;
+        public float nearDistance = 2.0f;
+        public float farDistance = 6.0f;
         public LayerMask obstacleMask;
 
         [Header("Debug")]
@@ -73,7 +74,7 @@ namespace TwoBears.Perception
         }
 
         //Approach
-        public Vector2 CalculateApproachDirection(Perceivable perceivable, Vector3 inputDirection, bool debug = false)
+        public Vector2 CalculateApproachDirection(Perceivable perceivable, Vector3 inputDirection, float inputDistance, CircleMode mode, bool debug = false)
         {
             //Calculate index of current direction
             float inputAngle = Vector3.SignedAngle(Vector3.up, -inputDirection, -Vector3.forward);
@@ -81,36 +82,35 @@ namespace TwoBears.Perception
             int inputIndex = Mathf.RoundToInt(Mathf.Lerp(0, rayCount - 1, Mathf.InverseLerp(0, 360, inputAngle)));
 
             //If obstacle blocks path stay still
-            if (obstacleSegments[inputIndex].Occupied)
+            if (obstacleSegments[inputIndex].Occupied(mode))
             {
-                if (debug) Debug.DrawRay(transform.position, obstacleSegments[inputIndex].direction * rayDistance * 2.5f, Color.red);
+                if (debug) Debug.DrawRay(transform.position, obstacleSegments[inputIndex].direction * nearDistance * 2.5f, Color.red);
                 return Vector2.zero;
             }
 
             //Calculate extreme in each direction from obstacles
-            float clockwise = GetClockwiseSpace(inputIndex);
-            float counterClockwise = GetCounterClockwiseSpace(inputIndex);
+            float clockwise = GetClockwiseSpace(inputIndex, mode);
+            float counterClockwise = GetCounterClockwiseSpace(inputIndex, mode);
 
             if (debug)
             {
-                Debug.DrawRay(transform.position, -inputDirection * rayDistance * 2.5f, Color.red);
-                Debug.DrawRay(transform.position, obstacleSegments[inputIndex].direction * rayDistance * 2.5f, Color.blue);
-                Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -clockwise) * obstacleSegments[inputIndex].direction * rayDistance * 2.5f, Color.cyan);
-                Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, counterClockwise) * obstacleSegments[inputIndex].direction * rayDistance * 2.5f, Color.green);
-                //Debug.Log("CW (Cyan): " + clockwise + " -- " + "CCW (Green): " + counterClockwise);
+                Debug.DrawRay(transform.position, -inputDirection * nearDistance * 2.5f, Color.red);
+                Debug.DrawRay(transform.position, obstacleSegments[inputIndex].direction * nearDistance * 2.5f, Color.blue);
+                Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -clockwise) * obstacleSegments[inputIndex].direction * nearDistance * 2.5f, Color.cyan);
+                Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, counterClockwise) * obstacleSegments[inputIndex].direction * nearDistance * 2.5f, Color.green);
             }
 
             //Track crowding
-            float crowding = AntiCrowding(perceivable, inputDirection, ref clockwise, ref counterClockwise, debug);
+            float crowding = AntiCrowding(perceivable, inputDirection, inputDistance, ref clockwise, ref counterClockwise, debug);
 
             //Return circle direction
             if (clockwise > counterClockwise) return new Vector2(Mathf.Min(60, clockwise), crowding);
             else if (clockwise < counterClockwise) return new Vector2(-Mathf.Min(60, counterClockwise), crowding);
-            else return Vector2.zero;
+            else return new Vector2(0, crowding);
         }
 
         //Crowding
-        private float AntiCrowding(Perceivable perceivable, Vector3 inputDirection, ref float clockwise, ref float counterClockwise, bool debug = false)
+        private float AntiCrowding(Perceivable perceivable, Vector3 inputDirection, float inputDistance, ref float clockwise, ref float counterClockwise, bool debug = false)
         {
             //Track crowding
             float crowding = 0;
@@ -132,7 +132,7 @@ namespace TwoBears.Perception
                 float otherDistance = otherVector.magnitude;
 
                 //Distance check
-                if (otherDistance > rayDistance * 2.0f) continue;
+                if (otherDistance > inputDistance * 1.2f) continue;
 
                 //Calculate direction to unit
                 Vector3 otherDirection = otherVector.normalized;
@@ -145,16 +145,19 @@ namespace TwoBears.Perception
                 float counterClockwiseOther = Vector3.SignedAngle(otherDirection , -inputDirection, -Vector3.forward);
                 if (counterClockwiseOther < 0) counterClockwiseOther += 360.0f;
 
+                //If nearby allies are closer to the target than us, move backwards & let them go first
+                if ((clockwiseOther < 45 || counterClockwiseOther < 45) && other.Faction == faction && otherDistance < inputDistance) crowding -= 0.4f;
+
                 //Update ref values if closer
                 if (clockwiseOther < clockwise)
                 {
                     clockwise = clockwiseOther;
-                    if (debug) Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -clockwiseOther) * -inputDirection * rayDistance * 2.5f, Color.magenta);
+                    if (debug) Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, -clockwiseOther) * -inputDirection * nearDistance * 2.5f, Color.magenta);
                 }
                 if (counterClockwiseOther < counterClockwise)
                 {
                     counterClockwise = counterClockwiseOther;
-                    if (debug) Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, counterClockwiseOther) * -inputDirection * rayDistance * 2.5f, Color.yellow);
+                    if (debug) Debug.DrawRay(transform.position, Quaternion.Euler(0, 0, counterClockwiseOther) * -inputDirection * nearDistance * 2.5f, Color.yellow);
                 }
             }
 
@@ -168,19 +171,19 @@ namespace TwoBears.Perception
             //Update each segment
             for (int i = 0; i < rayCount; i++)
             {
-                obstacleSegments[i].Update(transform.position, rayDistance, obstacleMask);
-                if (debugObstacles) Debug.DrawRay(transform.position, obstacleSegments[i].direction * rayDistance, obstacleSegments[i].Occupied? Color.cyan: Color.Lerp(Color.black, Color.white, Mathf.InverseLerp(0, rayCount, i)));
+                obstacleSegments[i].Update(transform.position, nearDistance, farDistance, obstacleMask);
+                if (debugObstacles) Debug.DrawRay(transform.position, obstacleSegments[i].direction * nearDistance, obstacleSegments[i].Occupied(CircleMode.Near)? Color.cyan: Color.Lerp(Color.black, Color.white, Mathf.InverseLerp(0, rayCount, i)));
             }
         }
 
         //Obstacle Utility
-        private float GetClockwiseSpace(int index)
+        private float GetClockwiseSpace(int index, CircleMode mode)
         {
             float spacing = 0;
             float spacePerSegment = 360 / rayCount;
             for (int i = 0; i < rayCount; i++)
             {
-                if (obstacleSegments[index].Occupied) return spacing;
+                if (obstacleSegments[index].Occupied(mode)) return spacing;
                 else
                 {
                     index = GetClockwiseIndex(index);
@@ -189,13 +192,13 @@ namespace TwoBears.Perception
             }
             return spacing;
         }
-        private float GetCounterClockwiseSpace(int index)
+        private float GetCounterClockwiseSpace(int index, CircleMode mode)
         {
             float spacing = 0;
             float spacePerSegment = 360 / rayCount;
             for (int i = 0; i < rayCount; i++)
             {
-                if (obstacleSegments[index].Occupied) return spacing;
+                if (obstacleSegments[index].Occupied(mode)) return spacing;
                 else
                 {
                     index = GetCounterClockwiseIndex(index);
@@ -222,7 +225,8 @@ namespace TwoBears.Perception
     public class ObstacleSegment
     {
         public Vector3 direction;
-        private bool occupied;
+        private bool occupiedNear;
+        private bool occupiedFar;
 
         //Constructor
         public ObstacleSegment(int index, int count)
@@ -232,16 +236,19 @@ namespace TwoBears.Perception
         }
 
         //Access
-        public bool Occupied
+        public bool Occupied(CircleMode mode)
         {
-            get { return occupied; }
+            if (mode == CircleMode.Near) return occupiedNear;
+            else return occupiedFar;
         }
-        public void Update(Vector3 position, float distance, LayerMask mask)
+        public void Update(Vector3 position, float nearDistance, float farDistance, LayerMask mask)
         {
-            occupied = Physics2D.Raycast(position, direction, distance, mask);
+            occupiedNear = Physics2D.Raycast(position, direction, nearDistance, mask);
+            occupiedFar = Physics2D.Raycast(position, direction, farDistance, mask);
         }
     }
 
     public enum Faction { Player, Hostile, Neutral }
+    public enum CircleMode { Near, Far }
     public enum CircleDirection { Still, CounterClockwise, Clockwise }
 }
