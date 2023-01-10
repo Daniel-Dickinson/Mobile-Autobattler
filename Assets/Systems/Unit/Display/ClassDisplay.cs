@@ -25,6 +25,11 @@ namespace TwoBears.Unit
         [SerializeField] private Image nub5;
         [SerializeField] private Image nub6;
 
+        [Header("Links")]
+        [SerializeField] private Image link2;
+        [SerializeField] private Image link4;
+        [SerializeField] private Image link6;
+
         //Mono
         private void Awake()
         {
@@ -42,6 +47,7 @@ namespace TwoBears.Unit
         }
         private void UpdateNubs(int count)
         {
+            //Nubs
             nub1.color = (count >= 1) ? full : empty;
             nub2.color = (count >= 2) ? full : empty;
 
@@ -49,6 +55,11 @@ namespace TwoBears.Unit
             if (nub4 != null) nub4.color = (count >= 4) ? full : empty;
             if (nub5 != null) nub5.color = (count >= 5) ? full : empty;
             if (nub6 != null) nub6.color = (count >= 6) ? full : empty;
+
+            //Links
+            if (link2 != null) link2.color = (count >= 2) ? full : empty;
+            if (link4 != null) link4.color = (count >= 4) ? full : empty;
+            if (link6 != null) link6.color = (count >= 6) ? full : empty;
         }
     }
 }

@@ -40,6 +40,11 @@ namespace TwoBears.Unit
         [SerializeField] private bool debugCrowd = false;
 
         //Health
+        public void RaiseMaxHealth(int delta)
+        {
+            healthPool += delta;
+            health += delta;
+        }
         public int MaxHealth
         {
             get { return healthPool; }

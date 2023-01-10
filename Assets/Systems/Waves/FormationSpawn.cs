@@ -25,7 +25,11 @@ namespace TwoBears.Waves
         public Action OnSpawn;
 
         //Spawns
-        private List<GameObject> spawns;
+        public List<BaseUnit> Spawns
+        {
+            get { return spawns; }
+        }
+        private List<BaseUnit> spawns;
 
         //Mono
         private void OnEnable()
@@ -54,7 +58,7 @@ namespace TwoBears.Waves
             if (spawns == null) return;
 
             //Destroy spawn
-            for (int i = 0; i < spawns.Count; i++) Destroy(spawns[i]);
+            for (int i = 0; i < spawns.Count; i++) Destroy(spawns[i].gameObject);
 
             //Clear
             spawns.Clear();
@@ -109,7 +113,7 @@ namespace TwoBears.Waves
         public void SpawnUnit(FormationUnit unit, Vector3 localPosition)
         {
             //Initialize spawns
-            if (spawns == null) spawns = new List<GameObject>();
+            if (spawns == null) spawns = new List<BaseUnit>();
 
             //Determine source
             GameObject source = selection.GetUnit(unit.id, unit.level);
@@ -126,7 +130,7 @@ namespace TwoBears.Waves
             spawn.name = source.name;
 
             //Track
-            spawns.Add(spawn);
+            spawns.Add(spawn.GetComponent<BaseUnit>());
         }
 
         //Debug
