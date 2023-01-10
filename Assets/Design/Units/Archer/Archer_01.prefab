@@ -40,7 +40,7 @@ Transform:
   - {fileID: 8251924379727684409}
   - {fileID: 8344548612534556832}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &640184104213289459
 SpriteRenderer:
@@ -252,7 +252,8 @@ MonoBehaviour:
   circleSpeed: 0.1
   hesitanceMin: 3.5
   hesitanceMax: 4.5
-  shape: {fileID: 2270123175400397655}
+  shapes:
+  - {fileID: 2270123175400397655}
   debugGoal: 0
   debugCrowd: 0
   barrel: {fileID: 8344548612534556832}

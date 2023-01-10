@@ -252,7 +252,8 @@ MonoBehaviour:
   circleSpeed: 1
   hesitanceMin: 0.8
   hesitanceMax: 1
-  shape: {fileID: 2270123175400397655}
+  shapes:
+  - {fileID: 2270123175400397655}
   debugGoal: 0
   debugCrowd: 0
   chargeRange: 0.8

@@ -24,7 +24,7 @@ namespace TwoBears.Unit
         {
             //Calculate buff
             float buff = GetBuffPercentile(count);
-            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * buff);
+            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * (buff / 100));
 
             //Increase health pool
             unit.RaiseMaxHealth(buffMultiplier);

@@ -32,8 +32,8 @@ namespace TwoBears.Unit
         public float hesitanceMin = 0.5f;
         public float hesitanceMax = 1.0f;
 
-        [Header("Subshape")]
-        public GameObject shape;
+        [Header("Subshapes")]
+        public GameObject[] shapes;
 
         [Header("Debug")]
         [SerializeField] private bool debugGoal = false;
@@ -106,12 +106,12 @@ namespace TwoBears.Unit
             targetTime = Random.Range(0, hesitanceMax);
 
             //Enable sub-shape
-            if (shape != null) shape.SetActive(true);
+            if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(true);
         }
         protected virtual void OnDisable()
         {
             //Disable sub-shape
-            if (shape != null) shape.SetActive(false);
+            if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(false);
         }
         protected virtual void FixedUpdate()
         {
