@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: maxSize
       value: 2.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6555456649819972966, guid: 76e4f1b7c8063ef49b66eddff507436b, type: 3}
+      propertyPath: duration
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8822723121336643326, guid: 76e4f1b7c8063ef49b66eddff507436b, type: 3}
       propertyPath: m_RootOrder
       value: 3

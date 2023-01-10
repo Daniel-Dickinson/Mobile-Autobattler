@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  knockback: 8
+  knockback: 3
   units:
     serializedVersion: 2
     m_Bits: 64

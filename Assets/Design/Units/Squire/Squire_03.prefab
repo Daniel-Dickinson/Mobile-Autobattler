@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6966449844375185041, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
+      propertyPath: knockback
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7806676674881234978, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
       propertyPath: m_Size.x
       value: 1.8
