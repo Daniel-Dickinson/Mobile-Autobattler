@@ -124,13 +124,26 @@ namespace TwoBears.Waves
 
             //Grab Perceiver & set faction
             Perceiver perceiver = spawn.GetComponent<Perceiver>();
-            perceiver.Faction = faction;
+            if (perceiver != null) perceiver.Faction = faction;
+            else
+            {
+                //Grab all child units if swarm
+                Perceiver[] perceivers = spawn.GetComponentsInChildren<Perceiver>();
+                for (int i = 0; i < perceivers.Length; i++) perceivers[i].Faction = faction;
+            }
 
             //Rename
             spawn.name = source.name;
 
-            //Track
-            spawns.Add(spawn.GetComponent<BaseUnit>());
+            //Track unit
+            BaseUnit spawnedUnit = spawn.GetComponent<BaseUnit>();
+            if (spawnedUnit != null) spawns.Add(spawnedUnit);
+            else
+            {
+                //Track swarm units
+                BaseUnit[] spawnedUnits = spawn.GetComponentsInChildren<BaseUnit>();
+                for (int i = 0; i < spawnedUnits.Length; i++) spawns.Add(spawnedUnits[i]);
+            }
         }
 
         //Debug

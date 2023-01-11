@@ -98,6 +98,9 @@ namespace TwoBears.Unit
             GameObject goUnit = selection.GetUnit(unit.id, 0);
             BaseUnit baseUnit = goUnit.GetComponent<BaseUnit>();
 
+            //Get child unit if swarm
+            if (baseUnit == null) baseUnit = goUnit.GetComponentInChildren<BaseUnit>();
+
             //Count all classes
             AddToCount(baseUnit.primary);
             AddToCount(baseUnit.secondary);

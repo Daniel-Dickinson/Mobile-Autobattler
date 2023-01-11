@@ -9,7 +9,7 @@ namespace TwoBears.Unit
     {
         [Header("Warriors")] 
         public UnitType serf;
-        public UnitType warrior;
+        public UnitType swarm;
 
         [Header("Defenders")]
         public UnitType squire;
@@ -37,7 +37,7 @@ namespace TwoBears.Unit
 
                 //Warriors
                 case 1:
-                    return warrior.GetUnit(level);
+                    return swarm.GetUnit(level);
 
                 //Defenders
                 case 10:

@@ -16,10 +16,10 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
     level02: {fileID: 8543040622007526183, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
     level03: {fileID: 302225585147555472, guid: 62bcf132b83ddd7478d09c14a254b191, type: 3}
-  warrior:
-    level01: {fileID: 0}
-    level02: {fileID: 0}
-    level03: {fileID: 0}
+  swarm:
+    level01: {fileID: 1259607334329569763, guid: f2edad55316dc7c42af84a437453c6c4, type: 3}
+    level02: {fileID: 3016629338834196819, guid: 470e9ad044509d44185c84df19ba7442, type: 3}
+    level03: {fileID: 5114233604368127335, guid: 3847a65e60d39f448abafe0b3527ee0d, type: 3}
   squire:
     level01: {fileID: 640184104213289463, guid: ecae7a11f15351c49bab989751bf3d33, type: 3}
     level02: {fileID: 4964975456590046890, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
