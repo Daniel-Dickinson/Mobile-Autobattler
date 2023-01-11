@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2908399797827709825
 SpriteRenderer:
@@ -101,8 +101,8 @@ MonoBehaviour:
   count: 2
   summon: {fileID: 640184104213289463, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
   radius: 0.1
-  minSize: 0.8
-  maxSize: 2.4
+  minSize: 0
+  maxSize: 0.3
   curve:
     serializedVersion: 2
     m_Curve:
@@ -127,7 +127,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 1
+  duration: 0.8
   audioSource: {fileID: 7428219846927699481}
 --- !u!82 &7428219846927699481
 AudioSource:
@@ -139,10 +139,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1fcbcfcd1b207884eba36f6e8e1d4b57, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4de836a6a79f87f43aed7f953b2c5563, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
-  m_Pitch: 1
+  m_Volume: 0.15
+  m_Pitch: 2.2
   Loop: 0
   Mute: 0
   Spatialize: 0

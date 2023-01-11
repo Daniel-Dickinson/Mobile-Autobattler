@@ -329,6 +329,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
+      propertyPath: abilityRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
+      propertyPath: moveRangeMax
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
       propertyPath: shapes.Array.size
       value: 4
       objectReference: {fileID: 0}

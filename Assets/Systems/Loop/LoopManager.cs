@@ -108,6 +108,36 @@ namespace TwoBears.Loop
         }
 
         //UI Internal
+        private IEnumerator DelayedComplete(float delay)
+        {
+            //Set stage
+            stage = LoopStage.Complete;
+
+            //Wait for delay
+            while (delay > 0)
+            {
+                delay -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            //Show complete
+            ShowComplete();
+        }
+        private IEnumerator DelayedDefeat(float delay)
+        {
+            //Set stage
+            stage = LoopStage.Complete;
+
+            //Wait for delay
+            while (delay > 0)
+            {
+                delay -= Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            //Show defeat
+            ShowDefeat();
+        }
         private void ShowComplete()
         {
             //Show UI
@@ -118,9 +148,8 @@ namespace TwoBears.Loop
 
             //Increment wave
             PersistanceManager.State.Wave++;
-
-            //Set stage
-            stage = LoopStage.Complete;
+            
+            //Stage change
             OnStageChange?.Invoke();
         }
         private void ShowDefeat()
@@ -128,8 +157,7 @@ namespace TwoBears.Loop
             //Show UI
             defeat.SetActive(true);
 
-            //Set stage
-            stage = LoopStage.Defeat;
+            //State change
             OnStageChange?.Invoke();
         }
 
@@ -141,12 +169,12 @@ namespace TwoBears.Loop
             //Defeat if 0 player units remaining
             if (playerRemaining == 0)
             {
-                ShowDefeat();
+                StartCoroutine(DelayedDefeat(0.5f));
                 return;
             }
 
             //Complete if 0 hostile units remaining
-            if (hostileRemaining <= 0) ShowComplete();
+            if (hostileRemaining <= 0) StartCoroutine(DelayedComplete(0.5f));
         }
 
         //Setup

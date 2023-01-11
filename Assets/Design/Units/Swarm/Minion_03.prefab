@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7716490832882172746, guid: c927298cbe08af84293e1c84539b518e, type: 3}
       propertyPath: healthPool
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

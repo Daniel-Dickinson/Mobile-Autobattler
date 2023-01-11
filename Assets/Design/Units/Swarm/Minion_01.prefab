@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
@@ -222,6 +222,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   crowdingRadius: 1
+  crowdingSpread: 0.4
   rayCount: 32
   nearDistance: 2
   farDistance: 6
@@ -317,7 +318,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2bc7bfb1f4ece4548ac0622b33a707d2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.15
   m_Pitch: 1.4
   Loop: 0
   Mute: 0

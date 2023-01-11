@@ -221,6 +221,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   crowdingRadius: 1
+  crowdingSpread: 0.4
   rayCount: 32
   nearDistance: 2
   farDistance: 6
@@ -244,26 +245,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primary: 7
-  secondary: 0
+  secondary: 5
   tertiary: 0
   healthPool: 2
   moveSpeed: 12
   moveSmooth: 0.2
   moveRangeMin: 1
-  moveRangeMax: 3
+  moveRangeMax: 5.5
   circleMode: 1
   circleRange: 3
   circleSpeed: 0.01
-  hesitanceMin: 1.8
-  hesitanceMax: 2.6
+  hesitanceMin: 3
+  hesitanceMax: 4
   shapes:
   - {fileID: 3060194206358215901}
   debugGoal: 0
   debugCrowd: 0
   ability: {fileID: 2965820149908257124, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
   targeting: 2
-  attachToTarget: 1
-  abilityRange: 4
+  attachToTarget: 0
+  abilityRange: 6
   recovery: 0.1
 --- !u!114 &1380182028688600670
 MonoBehaviour:

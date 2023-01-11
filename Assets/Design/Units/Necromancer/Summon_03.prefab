@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Summon_03
       objectReference: {fileID: 0}
+    - target: {fileID: 3047692120862270534, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4693901872439763100, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -222,6 +222,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   crowdingRadius: 1
+  crowdingSpread: 0.4
   rayCount: 32
   nearDistance: 2
   farDistance: 6
@@ -229,9 +230,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   producesCorpse: 1
-  corpse:
-    serializedVersion: 2
-    m_Bits: 512
+  corpseLayer: 9
   debugDirection: 0
   debugObstacles: 0
 --- !u!114 &5197269632914789532
@@ -531,5 +530,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 2}
+  m_Size: {x: 10, y: 2}
   m_EdgeRadius: 0

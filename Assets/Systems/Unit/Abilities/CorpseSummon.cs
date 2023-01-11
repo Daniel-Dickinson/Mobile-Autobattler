@@ -15,7 +15,6 @@ namespace TwoBears.Unit
         [SerializeField] private GameObject summon;
         [SerializeField] private float radius = 0.5f;
 
-
         [Header("Indicator")]
         [SerializeField] private float minSize = 0.2f;
         [SerializeField] private float maxSize = 1.0f;

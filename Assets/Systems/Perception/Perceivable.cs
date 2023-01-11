@@ -15,6 +15,7 @@ namespace TwoBears.Perception
 
         [Header("Anti-Crowding")]
         public float crowdingRadius = 1.0f;
+        public float crowdingSpread = 0.4f;
 
         [Header("Obstacles")]
         public int rayCount = 32;
@@ -110,7 +111,7 @@ namespace TwoBears.Perception
             }
 
             //Track crowding
-            float crowding = AntiCrowding(perceivable, inputDirection, inputDistance, ref clockwise, ref counterClockwise, debug);
+            float crowding = CircularAntiCrowding(perceivable, inputDirection, inputDistance, ref clockwise, ref counterClockwise, debug);
 
             //Return circle direction
             if (clockwise > counterClockwise) return new Vector2(Mathf.Min(60, clockwise), crowding);
@@ -119,7 +120,57 @@ namespace TwoBears.Perception
         }
 
         //Crowding
-        private float AntiCrowding(Perceivable perceivable, Vector3 inputDirection, float inputDistance, ref float clockwise, ref float counterClockwise, bool debug = false)
+        public Vector2 SelfAntiCrowding(Perceivable target, Vector3 direction)
+        {
+            //Track crowding
+            Vector3 nearestVector = Vector2.zero;
+            float nearestDistance = Mathf.Infinity;
+
+            for (int i = 0; i < perceivables.Count; i++)
+            {
+                //Grab other
+                Perceivable other = perceivables[i];
+
+                //Must be valid
+                if (other == null) continue;
+
+                //Don't test against self or target
+                if (other == this) continue;
+                if (other == target) continue;
+
+                //Calculate vector to unit
+                Vector3 otherVector = other.transform.position - transform.position;
+                float otherDistance = otherVector.magnitude;
+
+                //Distance check
+                if (otherDistance < crowdingRadius && otherDistance < nearestDistance)
+                {
+                    //Set nearest vector
+                    nearestVector = otherVector;
+
+                    //Set nearest distance
+                    nearestDistance = otherDistance;
+                }
+            }
+
+            //Calculate direction to unit
+            Vector3 nearestDirection = nearestVector.normalized;
+
+            //Calculate relative direction
+            Vector3 relativeDirection = transform.InverseTransformDirection(-nearestDirection);
+
+            //Calculate severity
+            float crowdingStrength = (1 - Mathf.Clamp01(nearestDistance / crowdingRadius)) * crowdingSpread;
+
+            //Calculate anti-crowding
+            Vector3 crowding = relativeDirection * crowdingStrength;
+
+            Debug.DrawRay(transform.position, nearestDirection * 0.1f, Color.red);
+
+            //Return total crowding
+            return crowding;
+        }
+        private float CircularAntiCrowding(Perceivable perceivable, Vector3 inputDirection, float inputDistance, ref float clockwise, ref float counterClockwise, bool debug = false)
         {
             //Track crowding
             float crowding = 0;

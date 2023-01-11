@@ -146,8 +146,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197269632914789532, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
       propertyPath: healthPool
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197269632914789532, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
+      propertyPath: shapes.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5197269632914789532, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
+      propertyPath: shapes.Array.data[1]
+      value: 
+      objectReference: {fileID: 3262455651155800537}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

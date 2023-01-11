@@ -211,7 +211,6 @@ namespace TwoBears.Perception
             {
                 if (corpses[i] == null) continue;
                 if (corpses[i] == this) continue;
-                if (!corpses[i].IsHostileTowards(Faction)) continue;
 
                 float distance = Vector3.Distance(corpses[i].transform.position, transform.position);
 
@@ -237,7 +236,6 @@ namespace TwoBears.Perception
             {
                 if (corpses[i] == null) continue;
                 if (corpses[i] == this) continue;
-                if (!corpses[i].IsHostileTowards(Faction)) continue;
 
                 //Check visibility
                 if (!UnitVisible(corpses[i], true)) continue;

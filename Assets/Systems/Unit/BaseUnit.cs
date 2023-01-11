@@ -2,6 +2,7 @@ using UnityEngine;
 
 using Pathfinding;
 using TwoBears.Perception;
+using System.Xml.Serialization;
 
 namespace TwoBears.Unit
 {
@@ -184,8 +185,11 @@ namespace TwoBears.Unit
             float distance = goalVector.magnitude;
 
             //Circle & avoid obstacles as we get close
-            Vector2 circleDir = (distance <= circleRange)? movementTarget.CalculateApproachDirection(perceiver, direction, distance, circleMode, debugCrowd) * circleSpeed : Vector2.zero;
+            Vector2 circleDir = CalculateCircling(distance, direction);
             if (circleDir.x != 0) direction = Quaternion.Euler(0, 0, -circleDir.x) * direction;
+
+            //Debug
+            Debug.DrawRay(transform.position, transform.rotation * new Vector2(circleDir.x, 0) * 0.1f, Color.green);
 
             //Don't get closer than movement range
             if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, movementTarget.transform.position) <= MovementRange(distance))
@@ -195,6 +199,11 @@ namespace TwoBears.Unit
 
                 //Move backwards if crowded
                 if (circleDir.y < 0) goalPosition = transform.position + (circleDir.y * direction * circleSpeed);
+            }
+            else
+            {
+                //Offset goal position to split crowded units up on approach
+                if (distance >= circleRange) goalPosition += new Vector3(circleDir.x, circleDir.y);
             }
 
             //Move
@@ -265,6 +274,13 @@ namespace TwoBears.Unit
 
             //Return position of next node
             return nextPosition;
+        }
+
+        //Circling / Anticrowding
+        private Vector2 CalculateCircling(float distance, Vector3 direction)
+        {
+            if (distance <= circleRange) return movementTarget.CalculateApproachDirection(perceiver, direction, distance, circleMode, debugCrowd) * circleSpeed;
+            else return perceiver.SelfAntiCrowding(movementTarget, direction);
         }
 
         //Health
