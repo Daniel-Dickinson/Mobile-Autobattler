@@ -10,13 +10,19 @@ namespace TwoBears.Unit
         [SerializeField] private float knockback4 = 60;
         [SerializeField] private float knockback6 = 100;
 
+        protected override void ApplyBuff(BaseUnit unit)
+        {
+            int count = counter.GetCount(UnitClass.Warrior);
+
+            if (IsClass(unit, UnitClass.Warrior)) ApplyBuff(unit, count);
+        }
         protected override void ApplyBuffs(List<BaseUnit> units)
         {
-            int count = counter.GetCount(UnitClass.Ranger);
+            int count = counter.GetCount(UnitClass.Warrior);
 
             for (int i = 0; i < units.Count; i++)
             {
-                if (IsClass(units[i], UnitClass.Ranger)) ApplyBuff(units[i], count);
+                if (IsClass(units[i], UnitClass.Warrior)) ApplyBuff(units[i], count);
             }
         }
 

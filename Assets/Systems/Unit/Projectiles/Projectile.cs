@@ -29,6 +29,9 @@ namespace TwoBears.Unit
         private List<Rigidbody2D> ignore;
         private BaseUnit launcher;
 
+        //Events
+        public HitEvent OnHit;
+
         //Components
         private Rigidbody2D rb;
         private TrailRenderer trail;
@@ -99,6 +102,9 @@ namespace TwoBears.Unit
             //Play hit
             audioSource.Play();
 
+            //Play on hit
+            OnHit?.Invoke(launcher, faction, collision);
+
             //Deactivate on armour hits
             if (armour == (armour | (1 << collision.rigidbody.gameObject.layer)))
             {
@@ -167,4 +173,6 @@ namespace TwoBears.Unit
             transform.SetParent(col.transform, true);
         }
     }
+
+    public delegate void HitEvent(BaseUnit launcher, Faction faction, Collision2D collision);
 }

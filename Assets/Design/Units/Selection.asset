@@ -48,3 +48,7 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: b37146902adab32448875b3be827d1ca, type: 3}
     level02: {fileID: 2258058325365617780, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
     level03: {fileID: 8998724484571882327, guid: 5c72b4ba57eceb04a9965e61c32179d7, type: 3}
+  broodmother:
+    level01: {fileID: 640184104213289463, guid: 62672be4c7403e6439192533e7636043, type: 3}
+    level02: {fileID: 6412907331617300501, guid: 85fbd48b36febe344a2fd5ff506218a9, type: 3}
+    level03: {fileID: 6946654761188278759, guid: 9bac7690a0b8867478636b8bd29af488, type: 3}

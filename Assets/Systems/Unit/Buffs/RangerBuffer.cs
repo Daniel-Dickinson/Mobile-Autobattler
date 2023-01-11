@@ -10,6 +10,12 @@ namespace TwoBears.Unit
         [SerializeField] private float attSpd4 = 25;
         [SerializeField] private float attSpd6 = 50;
 
+        protected override void ApplyBuff(BaseUnit unit)
+        {
+            int count = counter.GetCount(UnitClass.Ranger);
+
+            if (IsClass(unit, UnitClass.Ranger)) ApplyBuff(unit, count);
+        }
         protected override void ApplyBuffs(List<BaseUnit> units)
         {
             int count = counter.GetCount(UnitClass.Ranger);

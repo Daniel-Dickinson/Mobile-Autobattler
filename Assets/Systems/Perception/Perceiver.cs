@@ -206,6 +206,9 @@ namespace TwoBears.Perception
             Perceivable target = null;
             float nearest = Mathf.Infinity;
 
+            //Corpses required 
+            if (corpses == null) return null;
+
             //Find nearest target
             for (int i = 0; i < corpses.Count; i++)
             {
@@ -230,6 +233,9 @@ namespace TwoBears.Perception
         {
             Perceivable target = null;
             float nearest = Mathf.Infinity;
+
+            //Corpses required 
+            if (corpses == null) return null;
 
             //Find nearest target
             for (int i = 0; i < corpses.Count; i++)

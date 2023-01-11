@@ -19,10 +19,12 @@ namespace TwoBears.Unit
         {
             spawner = GetComponent<FormationSpawn>();
             spawner.OnSpawn += BuffAllUnits;
+            spawner.OnSummon += ApplyBuff;
         }
         private void OnDestroy()
         {
             spawner.OnSpawn -= BuffAllUnits;
+            spawner.OnSummon -= ApplyBuff;
         }
 
         //Core
@@ -30,6 +32,9 @@ namespace TwoBears.Unit
         {
             ApplyBuffs(spawner.Spawns);
         }
+
+        //Apply
+        protected abstract void ApplyBuff(BaseUnit unit);
         protected abstract void ApplyBuffs(List<BaseUnit> units);
 
         //Utility

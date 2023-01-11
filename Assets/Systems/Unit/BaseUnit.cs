@@ -314,10 +314,11 @@ namespace TwoBears.Unit
             state = UnitState.Recovering;
 
             //Add knockback force
+            if (rb == null) rb = GetComponent<Rigidbody2D>();
             rb.AddForce(knockback, ForceMode2D.Impulse);
 
             //Randomize build time
-            targetTime = UnityEngine.Random.Range(hesitanceMin, hesitanceMax);
+            targetTime = Random.Range(hesitanceMin, hesitanceMax);
         }
 
         //Death

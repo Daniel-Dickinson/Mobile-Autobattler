@@ -10,6 +10,12 @@ namespace TwoBears.Unit
         [SerializeField] private float health4 = 40;
         [SerializeField] private float health6 = 60;
 
+        protected override void ApplyBuff(BaseUnit unit)
+        {
+            int count = counter.GetCount(UnitClass.Defender);
+
+            if (IsClass(unit, UnitClass.Defender)) ApplyBuff(unit, count);
+        }
         protected override void ApplyBuffs(List<BaseUnit> units)
         {
             int count = counter.GetCount(UnitClass.Defender);

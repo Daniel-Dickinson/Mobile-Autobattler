@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7238816188528808763, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: count
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7238816188528808763, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: summon

@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 2248804571283830127}
   - component: {fileID: 1965794169}
   - component: {fileID: 1965794171}
+  - component: {fileID: 2202004004490725319}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -765,6 +766,23 @@ MonoBehaviour:
   knockback2: 30
   knockback4: 60
   knockback6: 100
+--- !u!114 &2202004004490725319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451538162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305eac3020f550342b0f04d2cf797b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counter: {fileID: 1084509852}
+  damage2: 2
+  damage4: 4
+  health2: 2
+  health4: 4
 --- !u!1 &503596401
 GameObject:
   m_ObjectHideFlags: 0

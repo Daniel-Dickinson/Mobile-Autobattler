@@ -27,6 +27,7 @@ namespace TwoBears.Unit
 
         [Header("Summoners")]
         public UnitType necromancer;
+        public UnitType broodmother;
 
         //Request
         public GameObject GetUnit(int id, int level)
@@ -68,6 +69,8 @@ namespace TwoBears.Unit
                 //Summoners
                 case 60:
                     return necromancer.GetUnit(level);
+                case 61:
+                    return broodmother.GetUnit(level);
             }
         }
     }
