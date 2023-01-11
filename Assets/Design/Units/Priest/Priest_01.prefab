@@ -251,7 +251,7 @@ MonoBehaviour:
   moveRangeMax: 3
   circleMode: 1
   circleRange: 3
-  circleSpeed: 0.1
+  circleSpeed: 0.01
   hesitanceMin: 1.8
   hesitanceMax: 2.6
   shapes:
@@ -261,8 +261,7 @@ MonoBehaviour:
   ability: {fileID: 3238335883277615451, guid: 86f6f569499344b44a86bd1191bce6f5, type: 3}
   targeting: 1
   attachToTarget: 1
-  abilityRangeMin: 0.8
-  abilityRangeMax: 4
+  abilityRange: 4
   recovery: 0.1
 --- !u!114 &1380182028688600670
 MonoBehaviour:

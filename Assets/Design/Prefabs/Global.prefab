@@ -6169,7 +6169,9 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 1
-  icon: {fileID: 0}
+  icon1: {fileID: 0}
+  icon2: {fileID: 0}
+  icon3: {fileID: 0}
   scale1: 1
   scale2: 1.25
   scale3: 1.5
