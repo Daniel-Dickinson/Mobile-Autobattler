@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TwoBears.Unit;
 using UnityEngine;
 
 namespace TwoBears.Perception
@@ -21,6 +22,10 @@ namespace TwoBears.Perception
         public float farDistance = 6.0f;
         public LayerMask obstacleMask;
 
+        [Header("Death")]
+        public bool producesCorpse = true;
+        public int corpseLayer = 9;
+
         [Header("Debug")]
         [SerializeField] protected bool debugDirection = false; 
         [SerializeField] protected bool debugObstacles = false;
@@ -30,6 +35,7 @@ namespace TwoBears.Perception
 
         //Data
         protected static List<Perceivable> perceivables;
+        protected static List<Perceivable> corpses;
 
         //Access
         public Faction Faction
@@ -71,6 +77,9 @@ namespace TwoBears.Perception
         {
             if (perceivables == null) return;
             perceivables.Remove(this);
+
+            if (corpses == null) return;
+            corpses.Remove(this);
         }
 
         //Approach
@@ -219,6 +228,23 @@ namespace TwoBears.Perception
             int newIndex = index - 1;
             if (newIndex < 0) newIndex = rayCount - 1;
             return newIndex;
+        }
+
+        //Death
+        public void ConvertToCorpse()
+        {
+            if (perceivables == null) return;
+            perceivables.Remove(this);
+
+            //Add to corpses
+            if (producesCorpse)
+            {
+                if (corpses == null) corpses = new List<Perceivable>();
+                corpses.Add(this);
+            }
+
+            //Set as corpse layer
+            gameObject.layer = corpseLayer;
         }
     }
 

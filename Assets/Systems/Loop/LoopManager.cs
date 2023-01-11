@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Waves;
+using TwoBears.Perception;
 using TwoBears.Persistance;
 using TwoBears.Unit;
 using System;
@@ -40,6 +41,12 @@ namespace TwoBears.Loop
         private int hostileRemaining;
 
         //Mono
+        private void Awake()
+        {
+            //Attach to summon events
+            player.OnSummon += TrackPlayerSummon;
+            hostile.OnSummon += TrackHostileSummon;
+        }
         private void OnEnable()
         {
             //Start at shop
@@ -49,6 +56,12 @@ namespace TwoBears.Loop
         {
             //Track remaining units
             TrackUnits();
+        }
+        private void OnDestroy()
+        {
+            //Detach to summon events
+            player.OnSummon -= TrackPlayerSummon;
+            hostile.OnSummon -= TrackHostileSummon;
         }
 
         //UI Access
@@ -136,6 +149,7 @@ namespace TwoBears.Loop
             if (hostileRemaining <= 0) ShowComplete();
         }
 
+        //Setup
         private void TrackPlayerUnits()
         {
             //Get player units
@@ -159,15 +173,32 @@ namespace TwoBears.Loop
             for (int i = 0; i < units.Length; i++) units[i].OnDeath += HostileUnitKilled;
         }
 
+        //Summons
+        private void TrackPlayerSummon(BaseUnit unit)
+        {
+            if (unit == null) return;
+
+            playerRemaining++;
+            unit.OnDeath += PlayerUnitKilled;
+        }
+        private void TrackHostileSummon(BaseUnit unit)
+        {
+            if (unit == null) return;
+
+            hostileRemaining++;
+            unit.OnDeath += HostileUnitKilled;
+        }
+
+        //Events
         private void PlayerUnitKilled(BaseUnit unit)
         {
             playerRemaining--;
-            unit.OnDeath -= PlayerUnitKilled;
+            if (unit != null) unit.OnDeath -= PlayerUnitKilled;
         }
         private void HostileUnitKilled(BaseUnit unit)
         {
             hostileRemaining--;
-            unit.OnDeath -= HostileUnitKilled;
+            if (unit != null) unit.OnDeath -= HostileUnitKilled;
         }
     }
 

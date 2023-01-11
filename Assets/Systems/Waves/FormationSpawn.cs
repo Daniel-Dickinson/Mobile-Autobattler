@@ -5,6 +5,7 @@ using UnityEngine;
 
 using TwoBears.Unit;
 using TwoBears.Perception;
+using UnityEngine.Events;
 
 namespace TwoBears.Waves
 {
@@ -23,6 +24,7 @@ namespace TwoBears.Waves
 
         //Events
         public Action OnSpawn;
+        public UnitEvent OnSummon;
 
         //Spawns
         public List<BaseUnit> Spawns
@@ -57,8 +59,8 @@ namespace TwoBears.Waves
             //Spawns required
             if (spawns == null) return;
 
-            //Destroy spawn
-            for (int i = 0; i < spawns.Count; i++) Destroy(spawns[i].gameObject);
+            //Destroy all children
+            for (int i = transform.childCount - 1; i >= 0; i--) Destroy(transform.GetChild(i).gameObject);
 
             //Clear
             spawns.Clear();
@@ -144,6 +146,19 @@ namespace TwoBears.Waves
                 BaseUnit[] spawnedUnits = spawn.GetComponentsInChildren<BaseUnit>();
                 for (int i = 0; i < spawnedUnits.Length; i++) spawns.Add(spawnedUnits[i]);
             }
+        }
+
+        //Summons
+        public void RegisterSpawn(BaseUnit unit)
+        {
+            //Valid unit required
+            if (unit == null) return;
+
+            //Add unit -- can now be cleared at end of round
+            spawns.Add(unit);
+
+            //On Summon
+            OnSummon?.Invoke(unit);
         }
 
         //Debug

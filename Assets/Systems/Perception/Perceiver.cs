@@ -31,7 +31,7 @@ namespace TwoBears.Perception
             return !Physics2D.CircleCast(rayStart, 0.2f, direction, rayDist, mask);
         }
 
-        //Targeting
+        //Enemies
         public Perceivable GetNearestTarget()
         {
             Perceivable target = null;
@@ -195,6 +195,69 @@ namespace TwoBears.Perception
 
             //Fallback to get nearest ally
             if (target == null) target = GetStrongestAlly();
+
+            //Return
+            return target;
+        }
+
+        //Enemies
+        public Perceivable GetNearestCorpse()
+        {
+            Perceivable target = null;
+            float nearest = Mathf.Infinity;
+
+            //Find nearest target
+            for (int i = 0; i < corpses.Count; i++)
+            {
+                if (corpses[i] == null) continue;
+                if (corpses[i] == this) continue;
+                if (!corpses[i].IsHostileTowards(Faction)) continue;
+
+                float distance = Vector3.Distance(corpses[i].transform.position, transform.position);
+
+                if (distance < nearest)
+                {
+                    target = corpses[i];
+                    nearest = distance;
+                }
+            }
+
+            //Debug
+            if (target != null && debugDirection) Debug.DrawLine(target.transform.position, transform.position, Color.red);
+
+            return target;
+        }
+        public Perceivable GetNearestVisibleCorpse()
+        {
+            Perceivable target = null;
+            float nearest = Mathf.Infinity;
+
+            //Find nearest target
+            for (int i = 0; i < corpses.Count; i++)
+            {
+                if (corpses[i] == null) continue;
+                if (corpses[i] == this) continue;
+                if (!corpses[i].IsHostileTowards(Faction)) continue;
+
+                //Check visibility
+                if (!UnitVisible(corpses[i], true)) continue;
+
+                //Calculate distance
+                float distance = Vector3.Distance(corpses[i].transform.position, transform.position);
+
+                //Select for nearest
+                if (distance < nearest)
+                {
+                    target = corpses[i];
+                    nearest = distance;
+                }
+            }
+
+            //Debug
+            if (target != null && debugDirection) Debug.DrawLine(target.transform.position, transform.position, Color.red);
+
+            //Fallback to nearest
+            if (target == null) target = GetNearestCorpse();
 
             //Return
             return target;

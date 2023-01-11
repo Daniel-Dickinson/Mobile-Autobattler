@@ -33,8 +33,8 @@ namespace TwoBears.Unit
                     movementTarget = perceiver.GetMostWoundedAlly();
                     break;
                 case TargetingMode.Necromancer:
-                    actionTarget = perceiver.GetNearestWoundedAlly();
-                    movementTarget = perceiver.GetMostWoundedAlly();
+                    actionTarget = perceiver.GetNearestVisibleCorpse();
+                    movementTarget = actionTarget;
                     break;
             }
             
@@ -85,7 +85,7 @@ namespace TwoBears.Unit
             else proj = Instantiate(ability, abilityPosition, Quaternion.LookRotation(Vector3.forward, abilityDirection));
 
             //Tigger ability
-            proj.Trigger(abilityTarget);
+            proj.Trigger(perceiver, abilityTarget);
 
             //Play animation
             //if (anim != null) anim.Play("Attack");

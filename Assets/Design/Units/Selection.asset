@@ -40,3 +40,11 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
     level02: {fileID: 2935130641733191631, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
     level03: {fileID: 7690775822836332889, guid: 259f408f508255043ba2eb03dc5449cb, type: 3}
+  mage:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
+  necromancer:
+    level01: {fileID: 640184104213289463, guid: b37146902adab32448875b3be827d1ca, type: 3}
+    level02: {fileID: 2258058325365617780, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
+    level03: {fileID: 8998724484571882327, guid: 5c72b4ba57eceb04a9965e61c32179d7, type: 3}

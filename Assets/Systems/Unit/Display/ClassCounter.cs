@@ -38,6 +38,7 @@ namespace TwoBears.Unit
         private int healers;
         private int casters;
         private int merchants;
+        private int summoners;
 
         //Core
         private void UpdateCount()
@@ -68,6 +69,8 @@ namespace TwoBears.Unit
                     return casters;
                 case UnitClass.Merchant:
                     return merchants;
+                case UnitClass.Summoner:
+                    return summoners;
             }
         }
 
@@ -83,6 +86,7 @@ namespace TwoBears.Unit
             healers = 0;
             casters = 0;
             merchants = 0;
+            summoners = 0;
         }
         private void CountArray(FormationUnit[] units)
         {
@@ -135,6 +139,9 @@ namespace TwoBears.Unit
 
                 case UnitClass.Merchant:
                     merchants++;
+                    break;
+                case UnitClass.Summoner:
+                    summoners++;
                     break;
             }
         }

@@ -227,6 +227,9 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1
+  corpse:
+    serializedVersion: 2
+    m_Bits: 512
   debugDirection: 0
   debugObstacles: 0
 --- !u!114 &3988129102394126779

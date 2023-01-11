@@ -22,6 +22,12 @@ namespace TwoBears.Unit
         [Header("Healers")]
         public UnitType priest;
 
+        [Header("Casters")]
+        public UnitType mage;
+
+        [Header("Summoners")]
+        public UnitType necromancer;
+
         //Request
         public GameObject GetUnit(int id, int level)
         {
@@ -54,6 +60,14 @@ namespace TwoBears.Unit
                 //Healers
                 case 30:
                     return priest.GetUnit(level);
+
+                //Casters
+                case 40:
+                    return mage.GetUnit(level);
+
+                //Summoners
+                case 60:
+                    return necromancer.GetUnit(level);
             }
         }
     }

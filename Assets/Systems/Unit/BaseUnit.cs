@@ -113,9 +113,15 @@ namespace TwoBears.Unit
         }
         protected virtual void OnDisable()
         {
-            //Disable sub-shape
+           //Disable sub-shape
             if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(false);
         }
+        protected virtual void OnDestroy()
+        {
+            //Kill -- Give other systems a chance to detach events
+            OnDeath?.Invoke(this);
+        }
+        
         protected virtual void FixedUpdate()
         {
             PerformBehaviour(Time.fixedDeltaTime);
@@ -307,15 +313,14 @@ namespace TwoBears.Unit
             //Disable components
             enabled = false;
             seeker.enabled = false;
-            perceiver.enabled = false;
 
-            //Disable physics
-            col.enabled = false;
+            //Convert to corpse
+            perceiver.ConvertToCorpse();
         }
     }
 
     public enum UnitState { Movement, Actioning, Recovering }
-    public enum UnitClass { None, Warrior, Defender, Ranger, Healer, Caster, Merchant }
+    public enum UnitClass { None, Warrior, Defender, Ranger, Healer, Caster, Merchant, Summoner, Minion }
 
     public delegate void UnitEvent(BaseUnit unit);
 }
