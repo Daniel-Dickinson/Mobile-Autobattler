@@ -9,7 +9,6 @@ namespace TwoBears.Waves
     public class ProceduralFormationEditor : Editor
     {
         //Properties
-        private SerializedProperty units;
         private SerializedProperty waves;
 
         //Foldouts
@@ -27,7 +26,6 @@ namespace TwoBears.Waves
         //Editor
         private void OnEnable()
         {
-            units = serializedObject.FindProperty("units");
             waves = serializedObject.FindProperty("waves");
 
             foldoutOne = serializedObject.FindProperty("foldoutOne");
@@ -54,10 +52,6 @@ namespace TwoBears.Waves
             serializedObject.Update();
 
             EditorGUI.BeginChangeCheck();
-
-            //Units
-            EditorGUILayout.PropertyField(units);
-            EditorGUILayout.Space();
 
             //Waves
             WavesGUI(foldoutOne, serializedObject.targetObject as ProceduralFormation, 0, 9);
@@ -99,21 +93,26 @@ namespace TwoBears.Waves
         {
             //Grab properties
             SerializedProperty wave = waves.GetArrayElementAtIndex(index);
+            SerializedProperty draft = wave.FindPropertyRelative("draft");
+            SerializedProperty reward = wave.FindPropertyRelative("reward");
             SerializedProperty frontPoints = wave.FindPropertyRelative("frontPoints");
             SerializedProperty middlePoints = wave.FindPropertyRelative("middlePoints");
             SerializedProperty backPoints = wave.FindPropertyRelative("backPoints");
-            SerializedProperty reward = wave.FindPropertyRelative("reward");
+            
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Wave " + (index + 1), EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
 
+            EditorGUILayout.PropertyField(draft);
+            EditorGUILayout.PropertyField(reward);
+
             EditorGUILayout.PropertyField(frontPoints);
             EditorGUILayout.PropertyField(middlePoints);
             EditorGUILayout.PropertyField(backPoints);
-            EditorGUILayout.LabelField("Total : " + (frontPoints.intValue + middlePoints.intValue + backPoints.intValue) + " / " + formation.GetPlayerPointsForWave(index).ToString());
-            EditorGUILayout.PropertyField(reward);
 
+            EditorGUILayout.LabelField("Total : " + (frontPoints.intValue + middlePoints.intValue + backPoints.intValue) + " / " + formation.GetPlayerPointsForWave(index).ToString());
+            
             EditorGUI.indentLevel--;
             EditorGUILayout.Space();
         }

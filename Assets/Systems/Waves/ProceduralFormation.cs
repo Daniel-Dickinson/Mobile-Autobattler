@@ -8,7 +8,6 @@ namespace TwoBears.Waves
     [CreateAssetMenu(menuName = "TwoBears/Procedural Formation")]
     public class ProceduralFormation : Formation
     {
-        [SerializeField] private ProceduralUnit[] units;
         [SerializeField] private ProceduralWave[] waves;
 
         //Unlocked units
@@ -42,7 +41,7 @@ namespace TwoBears.Waves
             ProceduralWave proceduralWave = waves[wave];
 
             //Grab unlocked units
-            UpdateUnlockedUnits(wave);
+            UpdateUnlockedUnits(proceduralWave.draft, wave);
 
             //Populate rows
             PopulateRow(frontUnlocked, proceduralWave.frontPoints, ref frontUnits);
@@ -60,7 +59,7 @@ namespace TwoBears.Waves
         }
 
         //Utility
-        private void UpdateUnlockedUnits(int wave)
+        private void UpdateUnlockedUnits(ProceduralDraft draft, int wave)
         {
             //Initialize or clear unit lists
             if (frontUnlocked == null) frontUnlocked = new List<ProceduralUnit>();
@@ -72,18 +71,33 @@ namespace TwoBears.Waves
             if (backUnlocked == null) backUnlocked = new List<ProceduralUnit>();
             else backUnlocked.Clear();
 
+            //Grab units
+            ProceduralUnit[] units = draft.Units;
+
             //Populate lists
             for (int i = 0; i < units.Length; i++)
             {
-                if (units[i].frontUnlocked >= 0 && units[i].frontUnlocked <= (wave + 1)) frontUnlocked.Add(units[i]);
-                if (units[i].middleUnlocked >= 0 && units[i].middleUnlocked <= (wave + 1)) middleUnlocked.Add(units[i]);
-                if (units[i].backUnlocked >= 0 && units[i].backUnlocked <= (wave + 1)) backUnlocked.Add(units[i]);
+                if (units[i].front) frontUnlocked.Add(units[i]);
+                if (units[i].middle) middleUnlocked.Add(units[i]);
+                if (units[i].back) backUnlocked.Add(units[i]);
             }
 
-            //Sort by cost
-            frontUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b) { return b.cost.CompareTo(a.cost); });
-            middleUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b) { return b.cost.CompareTo(a.cost); });
-            backUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b) { return b.cost.CompareTo(a.cost); });
+            //Sort by priority then cost
+            if (frontUnlocked.Count > 1) frontUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b) 
+            {
+                if (b.priority == a.priority) return b.cost.CompareTo(a.cost);
+                else return b.priority.CompareTo(a.priority);
+            });
+            if (middleUnlocked.Count > 1) middleUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b)
+            {
+                if (b.priority == a.priority) return b.cost.CompareTo(a.cost);
+                else return b.priority.CompareTo(a.priority);
+            });
+            if (backUnlocked.Count > 1) backUnlocked.Sort(delegate (ProceduralUnit a, ProceduralUnit b)
+            {
+                if (b.priority == a.priority) return b.cost.CompareTo(a.cost);
+                else return b.priority.CompareTo(a.priority);
+            });
         }
         private void PopulateRow(List<ProceduralUnit> source, int points, ref List<ProceduralUnit> output)
         {
@@ -162,36 +176,18 @@ namespace TwoBears.Waves
     [System.Serializable]
     public class ProceduralWave
     {
+        [Header("Content")]
+        public ProceduralDraft draft;
+        public int reward = 3;
+
+        [Header("Points")]
         [Range(0, 1500)] public int frontPoints = 3;
         [Range(0, 1500)] public int middlePoints = 6;
         [Range(0, 1500)] public int backPoints = 0;
-        public int reward = 3;
 
         public int Total
         {
             get { return frontPoints + middlePoints + backPoints; }
-        }
-    }
-
-    [System.Serializable]
-    public class ProceduralUnit
-    {
-        [Header("Unit")]
-        [Range(0, 50)] public int id = 0;
-        [Range(0, 2)] public int level = 0;
-
-        [Header("Allocation")]
-        [Range(3, 30)] public int cost = 3;
-
-        [Header("Placement")]
-        public int frontUnlocked = 0;
-        public int middleUnlocked = -1;
-        public int backUnlocked = -1;
-
-        //Unit conversion
-        public FormationUnit Unit
-        {
-            get { return new FormationUnit(id, level); }
         }
     }
 }

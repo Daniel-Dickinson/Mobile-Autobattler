@@ -32,9 +32,6 @@ namespace TwoBears.Unit
             Perceivable perceivable = minion.GetComponent<Perceivable>();
             perceivable.Faction = faction;
 
-            Debug.Log(-direction * knockback);
-            Debug.DrawRay(position, direction.normalized, Color.cyan, 100.0f);
-
             //Knock unit backward
             BaseUnit unit = minion.GetComponent<BaseUnit>();
             unit.KnockBack(-direction * knockback);
