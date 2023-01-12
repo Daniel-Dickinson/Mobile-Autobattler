@@ -19,8 +19,8 @@ namespace TwoBears.Unit
         [SerializeField] private LayerMask weapon;
         [SerializeField] private LayerMask armour;
 
-        [Header("Trail")]
-        [SerializeField] private TrailRenderer trail;
+        //Trails
+        private TrailRenderer[] trails;
 
         //State
         private bool Attacking
@@ -46,7 +46,8 @@ namespace TwoBears.Unit
             perceiver = GetComponent<Perceiver>();
             audioSource = GetComponent<AudioSource>();
 
-            if (trail != null) trail.emitting = false;
+            trails = GetComponentsInChildren<TrailRenderer>();
+            SetTrailStatus(false);
         }
 
         //Physics
@@ -156,7 +157,7 @@ namespace TwoBears.Unit
             anim.Play("Attack");
 
             //Start trail
-            if (trail != null) trail.emitting = true;
+            SetTrailStatus(true);
 
             //Initialize ignore
             if (ignore == null) ignore = new List<Rigidbody2D>();
@@ -167,7 +168,16 @@ namespace TwoBears.Unit
         public void StopTrail()
         {
             //Stop trail
-            if (trail != null) trail.emitting = false;
+            SetTrailStatus(false);
+        }
+
+        private void SetTrailStatus(bool emitting)
+        {
+            if (trails == null || trails.Length == 0) return;
+            for (int i = 0; i < trails.Length; i++)
+            {
+                trails[i].emitting = emitting;
+            }
         }
     }
 }

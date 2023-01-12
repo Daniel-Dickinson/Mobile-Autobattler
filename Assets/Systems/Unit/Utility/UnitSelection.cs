@@ -9,7 +9,8 @@ namespace TwoBears.Unit
     {
         [Header("Warriors")] 
         public UnitType serf;
-        public UnitType swarm;
+        public UnitType warrior;
+        public UnitType spellBlade;
 
         [Header("Defenders")]
         public UnitType squire;
@@ -18,6 +19,7 @@ namespace TwoBears.Unit
         [Header("Rangers")]
         public UnitType slinger;
         public UnitType archer;
+        public UnitType knifeThrower;
 
         [Header("Healers")]
         public UnitType priest;
@@ -26,6 +28,7 @@ namespace TwoBears.Unit
         public UnitType mage;
 
         [Header("Summoners")]
+        public UnitType swarm;
         public UnitType necromancer;
         public UnitType broodmother;
 
@@ -38,13 +41,13 @@ namespace TwoBears.Unit
                 default:
                     return null;
 
-                //Base
+                //Warriors
                 case 0:
                     return serf.GetUnit(level);
-
-                //Warriors
                 case 1:
-                    return swarm.GetUnit(level);
+                    return warrior.GetUnit(level);
+                case 2:
+                    return spellBlade.GetUnit(level);
 
                 //Defenders
                 case 10:
@@ -57,6 +60,8 @@ namespace TwoBears.Unit
                     return slinger.GetUnit(level);
                 case 21:
                     return archer.GetUnit(level);
+                case 23:
+                    return knifeThrower.GetUnit(level);
 
                 //Healers
                 case 30:
@@ -67,9 +72,12 @@ namespace TwoBears.Unit
                     return mage.GetUnit(level);
 
                 //Summoners
+
                 case 60:
-                    return necromancer.GetUnit(level);
+                    return swarm.GetUnit(level);
                 case 61:
+                    return necromancer.GetUnit(level);
+                case 62:
                     return broodmother.GetUnit(level);
             }
         }

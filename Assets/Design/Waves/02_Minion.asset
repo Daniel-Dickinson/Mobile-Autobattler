@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
   units:
-  - id: 1
+  - id: 60
     level: 0
     cost: 3
     priority: 2

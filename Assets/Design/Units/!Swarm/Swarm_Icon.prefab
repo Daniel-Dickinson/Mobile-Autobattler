@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit:
-    id: 1
+    id: 60
     level: 0
     sublevel: 0
   shopLevel: 1

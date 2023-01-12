@@ -16,10 +16,14 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
     level02: {fileID: 8543040622007526183, guid: 1b854b20b3d3fe74b90cdeb9a5f63943, type: 3}
     level03: {fileID: 302225585147555472, guid: 62bcf132b83ddd7478d09c14a254b191, type: 3}
-  swarm:
-    level01: {fileID: 1259607334329569763, guid: f2edad55316dc7c42af84a437453c6c4, type: 3}
-    level02: {fileID: 3016629338834196819, guid: 470e9ad044509d44185c84df19ba7442, type: 3}
-    level03: {fileID: 5114233604368127335, guid: 3847a65e60d39f448abafe0b3527ee0d, type: 3}
+  warrior:
+    level01: {fileID: 640184104213289463, guid: e7a6c55b77fd7d34ea583048444224f7, type: 3}
+    level02: {fileID: 8344854004048112758, guid: 5b4d329510908b54abe2c8e901520cdc, type: 3}
+    level03: {fileID: 8275126402343205952, guid: ded9bbb3a27ed02479d6946c8fd27a72, type: 3}
+  spellBlade:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
   squire:
     level01: {fileID: 640184104213289463, guid: ecae7a11f15351c49bab989751bf3d33, type: 3}
     level02: {fileID: 4964975456590046890, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
@@ -36,6 +40,10 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
     level02: {fileID: 4285691939097034649, guid: 0b973928c6e6b714b896eee030e78b04, type: 3}
     level03: {fileID: 6751357914978468102, guid: 32e79c7605b2551418baf7b029ae4ad2, type: 3}
+  knifeThrower:
+    level01: {fileID: 0}
+    level02: {fileID: 0}
+    level03: {fileID: 0}
   priest:
     level01: {fileID: 640184104213289463, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
     level02: {fileID: 2935130641733191631, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
@@ -44,6 +52,10 @@ MonoBehaviour:
     level01: {fileID: 0}
     level02: {fileID: 0}
     level03: {fileID: 0}
+  swarm:
+    level01: {fileID: 1259607334329569763, guid: f2edad55316dc7c42af84a437453c6c4, type: 3}
+    level02: {fileID: 3016629338834196819, guid: 470e9ad044509d44185c84df19ba7442, type: 3}
+    level03: {fileID: 5114233604368127335, guid: 3847a65e60d39f448abafe0b3527ee0d, type: 3}
   necromancer:
     level01: {fileID: 640184104213289463, guid: b37146902adab32448875b3be827d1ca, type: 3}
     level02: {fileID: 2258058325365617780, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}

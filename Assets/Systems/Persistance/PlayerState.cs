@@ -265,6 +265,7 @@ namespace TwoBears.Persistance
         private void UpdateCount()
         {
             ClearCounts();
+
             CountArray(formation.front);
             CountArray(formation.middle);
             CountArray(formation.back);

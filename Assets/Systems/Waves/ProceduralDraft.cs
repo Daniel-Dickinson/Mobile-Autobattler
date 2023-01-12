@@ -66,7 +66,7 @@ namespace TwoBears.Waves
     public class ProceduralUnit
     {
         [Header("Unit")]
-        [Range(0, 50)] public int id = 0;
+        [Range(0, 99)] public int id = 0;
         [Range(0, 2)] public int level = 0;
 
         [Header("Allocation")]
