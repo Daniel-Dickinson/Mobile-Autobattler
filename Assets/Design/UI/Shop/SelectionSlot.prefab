@@ -566,6 +566,14 @@ MonoBehaviour:
   locked: {fileID: 7227571371470125088}
   background: {fileID: 7119738495275475831}
   cost: {fileID: 9091396916680733826}
+  classParent: {fileID: 4482081261241295526}
+  classDisplays:
+  - {fileID: 2095168227105771426, guid: 8983b744d440aa94882bdfe847c708a2, type: 3}
+  - {fileID: 2095168227105771426, guid: d27b8bccde97c2743816b8e51ef477de, type: 3}
+  - {fileID: 2095168227105771426, guid: c61eca43292bcd7429109824886024f6, type: 3}
+  - {fileID: 2095168227105771426, guid: 29d98eb2f9515d24287a38f2fbba0541, type: 3}
+  - {fileID: 2095168227105771426, guid: dbbce0e955ce80b4caafcdc09ae167b1, type: 3}
+  - {fileID: 2095168227105771426, guid: 29e62d161a9514740aa83d748bad9566, type: 3}
 --- !u!82 &5441140868641884529
 AudioSource:
   m_ObjectHideFlags: 0

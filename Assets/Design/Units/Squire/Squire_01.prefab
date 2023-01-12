@@ -263,7 +263,7 @@ MonoBehaviour:
   debugGoal: 0
   debugCrowd: 0
   chargeRange: 0.4
-  chargeSpeed: 4
+  chargeSpeed: 16
   strikeRange: 0.2
   recovery: 1
 --- !u!114 &3217975777293752780
@@ -481,7 +481,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 8, y: 1}
+  m_Size: {x: 8, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -524,7 +524,7 @@ BoxCollider2D:
     border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 8, y: 1}
+    newSize: {x: 8, y: 1.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0

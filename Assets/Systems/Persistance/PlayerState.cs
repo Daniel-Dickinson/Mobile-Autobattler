@@ -112,6 +112,23 @@ namespace TwoBears.Persistance
             }
         }
 
+        public bool UnitInFormation(int id)
+        {
+            if (countedUnits == null) return false;
+            return countedUnits.Contains(id);
+        }
+        public void GetClasses(int id, out UnitClass primary, out UnitClass secondary, out UnitClass tertiary)
+        {
+            GameObject unit = selection.GetUnit(id, 0);
+            BaseUnit baseUnit = unit.GetComponent<BaseUnit>();
+            if (baseUnit == null) baseUnit = unit.GetComponentInChildren<BaseUnit>();
+
+            primary = baseUnit.primary; 
+            secondary = baseUnit.secondary; 
+            tertiary = baseUnit.tertiary;
+        }
+        
+
         //Formation Slots
         public int GetSlotCount(FormationRow row)
         {

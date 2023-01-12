@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 
 using TwoBears.Persistance;
+using TwoBears.Unit;
 
 namespace TwoBears.Shop
 {
@@ -12,12 +13,16 @@ namespace TwoBears.Shop
         [Header("State")]
         [SerializeField] private PlayerState state;
 
-        [Header("UI ELements")]
+        [Header("UI Elements")]
         [SerializeField] private CanvasGroup locked;
         [SerializeField] private CanvasGroup background;
 
         [Header("Cost")]
         [SerializeField] private TextMeshProUGUI cost;
+
+        [Header("Classes")]
+        [SerializeField] private RectTransform classParent;
+        [SerializeField] private ClassDisplay[] classDisplays;
 
         //Lock
         public bool Locked
@@ -79,6 +84,9 @@ namespace TwoBears.Shop
             //Update lock
             UpdateLockState();
 
+            //Clear class display
+            ClearClassDisplay();
+
             //Query state
             QueryState();
         }
@@ -95,6 +103,9 @@ namespace TwoBears.Shop
 
             //Query state
             QueryState();
+
+            //Update class display
+            UpdateClassDisplay();
 
             //Success
             return true;
@@ -123,6 +134,9 @@ namespace TwoBears.Shop
             //Update lock
             UpdateLockState();
 
+            //Clear class displays
+            ClearClassDisplay();
+
             //Query state
             QueryState();
 
@@ -142,6 +156,48 @@ namespace TwoBears.Shop
         private void UpdateLockState()
         {
             locked.alpha = isLocked ? 1.0f : 0.0f;
+        }
+
+        //Class Display
+        private void ClearClassDisplay()
+        {
+            //Destroy all children
+            for (int i = classParent.childCount - 1; i >= 0; i--) Destroy(classParent.GetChild(i).gameObject);
+        }
+        private void AddClassDisplay(UnitClass unitClass, int upgradeID)
+        {
+            if (unitClass == UnitClass.None) return;
+            for (int i = 0; i < classDisplays.Length; i++)
+            {
+                if (classDisplays[i].unitClass == unitClass)
+                {
+                    //Instantiate class display under parent
+                    ClassDisplay display = Instantiate(classDisplays[i], classParent);
+
+                    //Set upgrade status
+                    display.UnitID = upgradeID;
+                    return; 
+                }
+            }
+        }
+        private void UpdateClassDisplay()
+        {
+            //Clear existing
+            ClearClassDisplay();
+
+            //Setup new class displays
+            if (icon != null)
+            {
+                int unitId = icon.Unit.id;
+
+                //Get classes
+                state.GetClasses(unitId, out UnitClass primary, out UnitClass secondary, out UnitClass tertiary);
+
+                //Add our displays
+                AddClassDisplay(primary, unitId);
+                AddClassDisplay(secondary, unitId);
+                AddClassDisplay(tertiary, unitId);
+            }
         }
     }
 }
