@@ -88,6 +88,9 @@ namespace TwoBears.Unit
         private int pathIndex;
         private Path path;
 
+        //AntiCrowding
+        private Vector2 antiCrowd;
+
         //Movement
         private Vector3 moveVelocity;
 
@@ -111,45 +114,81 @@ namespace TwoBears.Unit
 
             //Enable sub-shape
             if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(true);
+
+            //Register
+            Register();
         }
         protected virtual void OnDisable()
         {
            //Disable sub-shape
             if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(false);
+
+            //Deregister
+            Deregister();
         }
         protected virtual void OnDestroy()
         {
             //Kill -- Give other systems a chance to detach events
             OnDeath?.Invoke(this);
         }
-        
-        protected virtual void FixedUpdate()
+        protected void FixedUpdate()
         {
             PerformBehaviour(Time.fixedDeltaTime);
         }
 
-        //Targeting
-        protected virtual void Targeting()
+        //Registration -- Into Unit Manager
+        private void Register()
         {
-            //Get nearest target
-            actionTarget = perceiver.GetNearestTarget();
+            UnitManager.RegisterUnit(this);
+        }
+        private void Deregister()
+        {
+            UnitManager.DeregisterUnit(this);
+        }
 
-            //Movement target same as action
-            movementTarget = actionTarget;
+        //Operations -- Performed by Unit Manager
+        public bool TargetingRequired
+        {
+            get { return state == UnitState.Movement; }
+        }
+        public bool PathfindingRequired
+        {
+            get { return state == UnitState.Movement; }
+        }
+        public bool AntiCrowdingRequired
+        {
+            get { return state == UnitState.Movement; }
+        }
+
+        public void UpdateObstacles()
+        {
+            //Update perceiver obstacles
+            perceiver.UpdateObstacles();
+        }
+        public void UpdateTargeting()
+        {
+            //Update targeting
+            Targeting();
+        }
+        public void UpdatePathfinding()
+        {
+            //Calculate path
+            Pathfinding();
+        }
+        public void UpdateAntiCrowding()
+        {
+            AntiCrowding();
         }
 
         //Behaviour
         private void PerformBehaviour(float deltaTime)
         {
-            //Aquire targets
-            Targeting();
-
-            //Target required
-            if (actionTarget == null) return;
-
             switch (state)
             {
                 case UnitState.Movement:
+
+                    //Target required
+                    if (actionTarget == null) return;
 
                     //Setup action for next frame
                     SetupAction(deltaTime);
@@ -168,6 +207,16 @@ namespace TwoBears.Unit
             }
         }
 
+        //Targeting
+        protected virtual void Targeting()
+        {
+            //Get nearest target
+            actionTarget = perceiver.GetNearestTarget();
+
+            //Movement target same as action
+            movementTarget = actionTarget;
+        }
+
         //Movement
         protected float MovementRange(float distanceToTarget)
         {
@@ -175,9 +224,6 @@ namespace TwoBears.Unit
         }
         protected virtual void Move(float deltaTime)
         {
-            //Calculate path to goal position
-            UpdatePath(movementTarget.transform.position);
-
             //Calculate path position
             Vector3 goalPosition = TraversePath(movementTarget.transform.position);
             Vector3 goalVector = movementTarget.transform.position - transform.position;
@@ -185,11 +231,7 @@ namespace TwoBears.Unit
             float distance = goalVector.magnitude;
 
             //Circle & avoid obstacles as we get close
-            Vector2 circleDir = CalculateCircling(distance, direction);
-            if (circleDir.x != 0) direction = Quaternion.Euler(0, 0, -circleDir.x) * direction;
-
-            //Debug
-            Debug.DrawRay(transform.position, transform.rotation * new Vector2(circleDir.x, 0) * 0.1f, Color.green);
+            if (antiCrowd.x != 0) direction = Quaternion.Euler(0, 0, -antiCrowd.x) * direction;
 
             //Don't get closer than movement range
             if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, movementTarget.transform.position) <= MovementRange(distance))
@@ -198,18 +240,17 @@ namespace TwoBears.Unit
                 goalPosition = movementTarget.transform.position - (direction * MovementRange(distance));
 
                 //Move backwards if crowded
-                if (circleDir.y < 0) goalPosition = transform.position + (circleDir.y * direction * circleSpeed);
+                if (antiCrowd.y < 0) goalPosition = transform.position + (antiCrowd.y * direction * circleSpeed);
             }
             else
             {
                 //Offset goal position to split crowded units up on approach
-                if (distance >= circleRange) goalPosition += new Vector3(circleDir.x, circleDir.y);
+                if (distance >= circleRange) goalPosition += new Vector3(antiCrowd.x, antiCrowd.y);
             }
 
             //Move
             Vector3 movePosition = Vector3.MoveTowards(transform.position, goalPosition, moveSpeed * deltaTime);
             Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, movePosition, ref moveVelocity, moveSmooth);
-
             rb.MovePosition(smoothedPosition);
             
             //Debug move position
@@ -228,8 +269,11 @@ namespace TwoBears.Unit
             if (recoveryTime > 0) recoveryTime -= deltaTime;
 
             //Rotate
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (actionTarget.transform.position - transform.position).normalized);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 300.0f * deltaTime);
+            if (actionTarget != null)
+            {
+                Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (actionTarget.transform.position - transform.position).normalized);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 300.0f * deltaTime);
+            }
 
             //Return to movement after recovery
             if (recoveryTime <= 0 && rb.velocity.magnitude <= 0.05f) state = UnitState.Movement;
@@ -240,8 +284,12 @@ namespace TwoBears.Unit
         protected abstract void Action(float deltaTime);
 
         //Pathfinding
-        private void UpdatePath(Vector3 goalPosition)
+        private void Pathfinding()
         {
+            //Path towards movement target -- fallback self so still valid path
+            Vector3 goalPosition = (movementTarget != null)? movementTarget.transform.position : transform.position;
+
+            //Check path status
             if (path == null || seeker.IsDone())
             {
                 //Update path as required
@@ -276,8 +324,21 @@ namespace TwoBears.Unit
             return nextPosition;
         }
 
-        //Circling / Anticrowding
-        private Vector2 CalculateCircling(float distance, Vector3 direction)
+        //Anticrowding
+        private void AntiCrowding()
+        {
+            //Movement target required
+            if (movementTarget == null) return;
+
+            //Calculate path position
+            Vector3 goalVector = movementTarget.transform.position - transform.position;
+            Vector3 direction = goalVector.normalized;
+            float distance = goalVector.magnitude;
+
+            //Perform
+            antiCrowd = AntiCrowding(distance, direction);
+        }
+        private Vector2 AntiCrowding(float distance, Vector3 direction)
         {
             if (distance <= circleRange) return movementTarget.CalculateApproachDirection(perceiver, direction, distance, circleMode, debugCrowd) * circleSpeed;
             else return perceiver.SelfAntiCrowding(movementTarget, direction);

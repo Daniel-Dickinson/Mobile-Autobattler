@@ -14,6 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front:
   - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
     level: 0
     sublevel: 0
   middle:
@@ -21,9 +33,36 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
     level: 0
     sublevel: 0
-  back: []
+  back:
+  - id: 0
+    level: 1
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 2
+    sublevel: 0
+  - id: 0
+    level: 0
+    sublevel: 0
   waves:
   - draft: {fileID: 11400000, guid: a3105daf75ad8b54899e4b61fd062af3, type: 2}
     reward: 3
@@ -145,27 +184,27 @@ MonoBehaviour:
     frontPoints: 77
     middlePoints: 81
     backPoints: 75
-  - draft: {fileID: 0}
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
     reward: 18
     frontPoints: 78
     middlePoints: 84
     backPoints: 78
-  - draft: {fileID: 0}
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
     reward: 18
     frontPoints: 84
     middlePoints: 87
     backPoints: 81
-  - draft: {fileID: 0}
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
     reward: 18
     frontPoints: 87
     middlePoints: 93
     backPoints: 84
-  - draft: {fileID: 0}
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
     reward: 19
     frontPoints: 90
     middlePoints: 93
     backPoints: 90
-  - draft: {fileID: 0}
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
     reward: 19
     frontPoints: 93
     middlePoints: 96
@@ -525,9 +564,9 @@ MonoBehaviour:
     frontPoints: 21
     middlePoints: 24
     backPoints: 21
-  foldoutOne: 0
-  foldoutTwo: 1
-  foldoutThree: 1
+  foldoutOne: 1
+  foldoutTwo: 0
+  foldoutThree: 0
   foldoutFour: 0
   foldoutFive: 0
   foldoutSix: 0

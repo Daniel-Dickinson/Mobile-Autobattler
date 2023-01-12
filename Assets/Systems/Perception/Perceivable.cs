@@ -63,10 +63,6 @@ namespace TwoBears.Perception
         {
             Deregister();
         }
-        private void Update()
-        {
-            UpdateObstacles();
-        }
 
         //Registration
         private void Register()
@@ -226,7 +222,7 @@ namespace TwoBears.Perception
         }
 
         //Obstacles
-        private void UpdateObstacles()
+        public void UpdateObstacles()
         {
             //Update each segment
             for (int i = 0; i < rayCount; i++)

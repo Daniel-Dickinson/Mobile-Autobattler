@@ -33,5 +33,5 @@ MonoBehaviour:
     cost: 27
     priority: 2
     front: 0
-    middle: 0
+    middle: 1
     back: 1

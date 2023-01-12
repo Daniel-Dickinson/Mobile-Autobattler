@@ -11012,6 +11012,7 @@ GameObject:
   - component: {fileID: 8780573533820108684}
   - component: {fileID: 8780573533820108685}
   - component: {fileID: 8780573533820108686}
+  - component: {fileID: 6416357195569221503}
   m_Layer: 0
   m_Name: Persistance
   m_TagString: Untagged
@@ -11078,6 +11079,22 @@ MonoBehaviour:
   shop: {fileID: 8780573534786166544}
   complete: {fileID: 8780573535364219816}
   defeat: {fileID: 8780573534157516976}
+--- !u!114 &6416357195569221503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8780573533820108682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf691ea9bb563674d99446d64ab2eb0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleOpsPerSecond: 5
+  targetingOpsPerSecond: 5
+  pathfindingOpsPerSecond: 5
+  anticrowdingOpsPerSecond: 10
 --- !u!1 &8780573533930543704
 GameObject:
   m_ObjectHideFlags: 0
