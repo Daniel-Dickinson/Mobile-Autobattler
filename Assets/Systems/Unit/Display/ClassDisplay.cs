@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TwoBears.Persistance;
+
 namespace TwoBears.Unit
 {
     public class ClassDisplay : MonoBehaviour
@@ -11,7 +13,7 @@ namespace TwoBears.Unit
         [SerializeField] private UnitClass unitClass;
 
         [Header("Source")]
-        [SerializeField] private ClassCounter counter;
+        [SerializeField] private PlayerState state;
 
         [Header("Colours")]
         [SerializeField] private Color full = new Color(0.9f, 0.9f, 0.9f, 1.0f);
@@ -33,17 +35,17 @@ namespace TwoBears.Unit
         //Mono
         private void Awake()
         {
-            counter.OnCount += UpdateCount;
+            state.OnFormationChange += UpdateCount;
         }
         private void OnDestroy()
         {
-            counter.OnCount -= UpdateCount;
+            state.OnFormationChange -= UpdateCount;
         }
 
         //Core
         private void UpdateCount()
         {
-            UpdateNubs(counter.GetCount(unitClass));
+            UpdateNubs(state.GetCount(unitClass));
         }
         private void UpdateNubs(int count)
         {

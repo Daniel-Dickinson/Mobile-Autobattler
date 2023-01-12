@@ -15,6 +15,7 @@ MonoBehaviour:
   gold: 15
   shards: 164
   formation: {fileID: 11400000, guid: 1c37859b705e10742af5eb142bd5df21, type: 2}
+  selection: {fileID: 11400000, guid: 5522da90bdc9be84fa3ce9fe2c317bc0, type: 2}
   wave: 0
   shopLevel: 1
   frontSlots: 3

@@ -2,7 +2,6 @@ using UnityEngine;
 
 using Pathfinding;
 using TwoBears.Perception;
-using System.Xml.Serialization;
 
 namespace TwoBears.Unit
 {

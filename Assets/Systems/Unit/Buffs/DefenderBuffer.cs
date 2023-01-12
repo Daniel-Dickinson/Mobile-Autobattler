@@ -12,13 +12,13 @@ namespace TwoBears.Unit
 
         protected override void ApplyBuff(BaseUnit unit)
         {
-            int count = counter.GetCount(UnitClass.Defender);
+            int count = state.GetCount(UnitClass.Defender);
 
             if (IsClass(unit, UnitClass.Defender)) ApplyBuff(unit, count);
         }
         protected override void ApplyBuffs(List<BaseUnit> units)
         {
-            int count = counter.GetCount(UnitClass.Defender);
+            int count = state.GetCount(UnitClass.Defender);
 
             for (int i = 0; i < units.Count; i++)
             {

@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4536503f253d0ce448314febdc1c9cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   attSpd2: 10
   attSpd4: 25
   attSpd6: 50
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a101ce5f3c42ca43858affd3c72fbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   health2: 20
   health4: 40
   health6: 60
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295ace729511c4940b2f4f6925c0f12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   knockback2: 30
   knockback4: 60
   knockback6: 100
@@ -778,7 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305eac3020f550342b0f04d2cf797b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   damage2: 2
   damage4: 4
   health2: 2
@@ -2943,7 +2943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 7
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 1905651345}
@@ -3461,7 +3461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 5
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 173118283}
@@ -3754,7 +3754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 4
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 894417675}
@@ -6112,7 +6112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7636662878996104092}
-  - component: {fileID: 1084509852}
   m_Layer: 5
   m_Name: Units
   m_TagString: Untagged
@@ -6146,21 +6145,6 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 0}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1084509852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2485843638612347836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4385023758a2d74e960222ea97dc636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
-  formation: {fileID: 11400000, guid: 1c37859b705e10742af5eb142bd5df21, type: 2}
-  selection: {fileID: 11400000, guid: 5522da90bdc9be84fa3ce9fe2c317bc0, type: 2}
 --- !u!1 &2500503781873407921
 GameObject:
   m_ObjectHideFlags: 0
@@ -6214,7 +6198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 1
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 2558161490509812404}
@@ -9662,7 +9646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 2
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 4866119667094289489}
@@ -14444,7 +14428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 3
-  counter: {fileID: 1084509852}
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   nub1: {fileID: 2322271923098126447}

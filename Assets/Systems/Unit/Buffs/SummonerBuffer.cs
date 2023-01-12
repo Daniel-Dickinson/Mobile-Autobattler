@@ -16,12 +16,12 @@ namespace TwoBears.Unit
 
         protected override void ApplyBuff(BaseUnit unit)
         {
-            int count = counter.GetCount(UnitClass.Summoner);
+            int count = state.GetCount(UnitClass.Summoner);
             if (IsClass(unit, UnitClass.Minion)) ApplyBuff(unit, count);
         }
         protected override void ApplyBuffs(List<BaseUnit> units)
         {
-            int count = counter.GetCount(UnitClass.Summoner);
+            int count = state.GetCount(UnitClass.Summoner);
 
             for (int i = 0; i < units.Count; i++)
             {

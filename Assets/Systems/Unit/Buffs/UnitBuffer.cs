@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Waves;
+using TwoBears.Persistance;
 
 namespace TwoBears.Unit
 {
@@ -10,7 +11,7 @@ namespace TwoBears.Unit
     public abstract class UnitBuffer : MonoBehaviour
     {
         [Header("Data")]
-        [SerializeField] protected ClassCounter counter;
+        [SerializeField] protected PlayerState state;
 
         private FormationSpawn spawner;
 
