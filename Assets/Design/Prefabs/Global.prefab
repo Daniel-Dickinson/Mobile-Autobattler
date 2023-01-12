@@ -763,6 +763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
+  damage2: 1
+  damage4: 3
+  damage6: 6
   knockback2: 30
   knockback4: 60
   knockback6: 100
@@ -2946,6 +2949,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 1905651345}
   nub2: {fileID: 1455420202}
   nub3: {fileID: 1520691262}
@@ -3464,6 +3468,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 173118283}
   nub2: {fileID: 1233413051}
   nub3: {fileID: 1857613525}
@@ -3757,6 +3762,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 894417675}
   nub2: {fileID: 708509413}
   nub3: {fileID: 1020705054}
@@ -6201,6 +6207,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 2558161490509812404}
   nub2: {fileID: 2632088312481377796}
   nub3: {fileID: 4069998676545784972}
@@ -9649,6 +9656,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 4866119667094289489}
   nub2: {fileID: 6253094090291418342}
   nub3: {fileID: 5898229072493499866}
@@ -12151,10 +12159,10 @@ MonoBehaviour:
   level3Title: Shop III
   level4Title: Shop IV
   level5Title: Shop V
-  level2Cost: 4
-  level3Cost: 16
-  level4Cost: 60
-  level5Cost: 240
+  level2Cost: 3
+  level3Cost: 9
+  level4Cost: 30
+  level5Cost: 90
   level1Slots: 5
   level2Slots: 6
   level3Slots: 8
@@ -14431,6 +14439,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
   full: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   empty: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  flashDuration: 0.2
   nub1: {fileID: 2322271923098126447}
   nub2: {fileID: 4361400448975623197}
   nub3: {fileID: 7586568143074642997}

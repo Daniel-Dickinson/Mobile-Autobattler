@@ -19,7 +19,7 @@ namespace TwoBears.Unit
         [Header("Rangers")]
         public UnitType slinger;
         public UnitType archer;
-        public UnitType knifeThrower;
+        public UnitType assassin;
 
         [Header("Healers")]
         public UnitType priest;
@@ -61,7 +61,7 @@ namespace TwoBears.Unit
                 case 21:
                     return archer.GetUnit(level);
                 case 23:
-                    return knifeThrower.GetUnit(level);
+                    return assassin.GetUnit(level);
 
                 //Healers
                 case 30:

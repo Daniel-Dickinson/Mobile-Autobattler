@@ -46,6 +46,8 @@ namespace TwoBears.Unit
             perceiver = GetComponent<Perceiver>();
             audioSource = GetComponent<AudioSource>();
 
+            ignore = new List<Rigidbody2D>();
+
             trails = GetComponentsInChildren<TrailRenderer>();
             SetTrailStatus(false);
         }
@@ -57,7 +59,7 @@ namespace TwoBears.Unit
             if (!Attacking) return;
 
             //Ignore
-            if (ignore.Contains(other.attachedRigidbody)) return;
+            if (ignore == null || ignore.Contains(other.attachedRigidbody)) return;
 
             //Play hit
             audioSource.Play();

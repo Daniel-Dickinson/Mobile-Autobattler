@@ -40,10 +40,10 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: 8fe4ef1c808e0bf44808d0de140624d0, type: 3}
     level02: {fileID: 4285691939097034649, guid: 0b973928c6e6b714b896eee030e78b04, type: 3}
     level03: {fileID: 6751357914978468102, guid: 32e79c7605b2551418baf7b029ae4ad2, type: 3}
-  knifeThrower:
-    level01: {fileID: 0}
-    level02: {fileID: 0}
-    level03: {fileID: 0}
+  assassin:
+    level01: {fileID: 640184104213289463, guid: 9d175efcdb237c94485cb3a0d24b4d98, type: 3}
+    level02: {fileID: 4148637858993973423, guid: 75e92a11f76a3964a9773efc6487409a, type: 3}
+    level03: {fileID: 5555734064137992716, guid: 8bd62370cde943a4095d8c8a99504ef6, type: 3}
   priest:
     level01: {fileID: 640184104213289463, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
     level02: {fileID: 2935130641733191631, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
