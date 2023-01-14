@@ -134,6 +134,9 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 3
+  title: Assassin
+  description: Hybrid melee/ranged unit that throws knives at short range, before
+    closing in for the kill.
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 7258745277163176259}
   icon3: {fileID: 4248239833670081267}

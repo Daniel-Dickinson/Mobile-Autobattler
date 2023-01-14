@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace TwoBears.Shop
 {
     [RequireComponent(typeof(AudioSource))]
-    public class ShopUnitSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+    public class ShopUnitSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
     {
         [Header("Parent")]
         public Transform iconParent;
@@ -23,10 +22,15 @@ namespace TwoBears.Shop
         private AudioSource aud;
 
         //Contents
+        public ShopUnitIcon Icon
+        {
+            get { return icon; }
+        }
         protected ShopUnitIcon icon;
 
         //Drag operation
-        protected static DragOperation drag;
+        protected static DragOperation drag;    //Tracks drags
+        protected static bool dragged = false;  //Tacks if dragged since last mouse down
 
         //Mono
         private void Awake()
@@ -107,7 +111,7 @@ namespace TwoBears.Shop
         }
 
         //Hover Events
-        public void OnPointerDown(PointerEventData eventData)
+        public virtual void OnPointerDown(PointerEventData eventData)
         {
             //Must be a valid drag
             if (icon == null || !CanRemoveUnit()) return;
@@ -115,34 +119,46 @@ namespace TwoBears.Shop
             //Play on pointer down
             if (aud != null) aud.Play();
 
-            //Highlight
-            hover.alpha = 1.0f;
-        }
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            //Only highlight if dragging
-            if (drag == null) return;
+            //Not yet dragging
+            dragged = false;
 
             //Highlight
             hover.alpha = 1.0f;
         }
-        public void OnPointerExit(PointerEventData eventData)
+        public virtual void OnPointerEnter(PointerEventData eventData)
         {
+            //Highlight
+            hover.alpha = 1.0f;
+        }
+        public virtual void OnPointerExit(PointerEventData eventData)
+        {
+            //Clear highlight
             hover.alpha = 0.0f;
         }
-
+        public virtual void OnPointerUp(PointerEventData eventData)
+        {
+            
+        }
+        
         //Drag Events
-        public void OnBeginDrag(PointerEventData eventData)
+        public virtual void OnBeginDrag(PointerEventData eventData)
         {
             //Must be a valid drag
-            if (icon == null || !CanRemoveUnit()) return;
+            if (icon == null) return;
+
+            //Now dragging on this mouse down
+            dragged = true;
+
+            //Check if unit can be moved
+            if (!CanRemoveUnit()) return;
 
             //Grab pre-requisites
             drag = new DragOperation(this, icon);
 
+            //Sell
             if (sellable) Shop.SetSellState(true);
         }
-        public void OnDrag(PointerEventData eventData)
+        public virtual void OnDrag(PointerEventData eventData)
         {
             //Ignore if not dragging
             if (drag == null) return;
@@ -150,7 +166,7 @@ namespace TwoBears.Shop
             //Update drag
             drag.Update(this, eventData.delta);
         }
-        public void OnEndDrag(PointerEventData eventData)
+        public virtual void OnEndDrag(PointerEventData eventData)
         {
             //Ignore if not dragging
             if (drag == null) return;

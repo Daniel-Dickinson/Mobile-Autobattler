@@ -13,15 +13,19 @@ namespace TwoBears.Shop
         [SerializeField] private FormationUnit unit;
         [Range(1, 5)][SerializeField] private int shopLevel = 1;
 
-        [Header("Icon")]
-        public RectTransform icon1;
-        public RectTransform icon2;
-        public RectTransform icon3;
+        [Header("Info")]
+        public string title;
+        [TextArea(5, 8)] public string description;
+
+        [Header("Icons")]
+        [SerializeField] private RectTransform icon1;
+        [SerializeField] private RectTransform icon2;
+        [SerializeField] private RectTransform icon3;
 
         [Header("Scale")]
-        public float scale1 = 1.0f;
-        public float scale2 = 1.05f;
-        public float scale3 = 1.1f;
+        [SerializeField] private float scale1 = 1.0f;
+        [SerializeField] private float scale2 = 1.05f;
+        [SerializeField] private float scale3 = 1.1f;
 
         //Mono
         private void Awake()
@@ -30,10 +34,37 @@ namespace TwoBears.Shop
             SetIconScale();
         }
 
+        //Icons
+        public GameObject GetIcon(int level)
+        {
+            switch (level)
+            {
+                default:
+                case 0:
+                    return icon1.gameObject;
+                case 1:
+                    return icon2.gameObject;
+                case 2:
+                    return icon3.gameObject;
+            }
+        }
+
         //Access
         public int Cost
         {
             get { return shopLevel * 3; }
+        }
+        public int CostPerLevel(int level)
+        {
+            switch (level)
+            {
+                default:
+                    return Cost;
+                case 1:
+                    return Cost * 3;
+                case 2:
+                    return Cost * 9;
+            }
         }
         public FormationUnit Unit
         {

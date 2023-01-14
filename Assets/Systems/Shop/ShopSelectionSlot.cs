@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 using TwoBears.Persistance;
 using TwoBears.Unit;
+using System;
 
 namespace TwoBears.Shop
 {
@@ -16,6 +18,7 @@ namespace TwoBears.Shop
         [Header("UI Elements")]
         [SerializeField] private CanvasGroup locked;
         [SerializeField] private CanvasGroup background;
+        [SerializeField] private CanvasGroup selected;
 
         [Header("Cost")]
         [SerializeField] private TextMeshProUGUI cost;
@@ -29,6 +32,10 @@ namespace TwoBears.Shop
         [SerializeField] private GameObject particles3;
         [SerializeField] private GameObject particles4;
         [SerializeField] private GameObject particles5;
+
+        //Actions
+        public SelectionAction OnSelected;
+        private bool isSelected = false;
 
         //Lock
         public bool Locked
@@ -70,34 +77,6 @@ namespace TwoBears.Shop
 
             //Can only take if cost is met
             return (state.Gold >= icon.Cost);
-        }
-
-        //Clear
-        public void DirectClear()
-        {
-            //Icon required to clear it
-            if (icon == null) return;
-
-            //Destroy icon
-            Destroy(icon.gameObject);
-
-            //Clear icon
-            icon = null;
-
-            //No longer locked
-            isLocked = false;
-
-            //Update lock
-            UpdateLockState();
-
-            //Clear class display
-            ClearClassDisplay();
-
-            //Updated particles
-            UpdateParticles(0);
-
-            //Query state
-            QueryState();
         }
 
         //Place/Remove
@@ -159,7 +138,81 @@ namespace TwoBears.Shop
             return true;
         }
 
-        //Lock
+        //Clear
+        public void DirectClear()
+        {
+            //Icon required to clear it
+            if (icon == null) return;
+
+            //Destroy icon
+            Destroy(icon.gameObject);
+
+            //Clear icon
+            icon = null;
+
+            //No longer locked
+            isLocked = false;
+
+            //Update lock
+            UpdateLockState();
+
+            //Clear class display
+            ClearClassDisplay();
+
+            //Updated particles
+            UpdateParticles(0);
+
+            //Query state
+            QueryState();
+        }
+
+        //UI Events
+        public override void OnPointerExit(PointerEventData eventData)
+        {
+            hover.alpha = (isSelected && !dragged) ? 1.0f : 0.0f;
+        }
+        public override void OnPointerUp(PointerEventData eventData)
+        {
+            //Base
+            base.OnPointerUp(eventData);
+
+            //Must not be a valid drag
+            if (icon == null || dragged) return;
+
+            //Set as selected
+            SetSelected(true);
+        }
+        public override void OnBeginDrag(PointerEventData eventData)
+        {
+            base.OnBeginDrag(eventData);
+
+            //Invoke on dragged
+            ClearSelected();
+        }
+
+        //Selection
+        public void SetSelected(bool value)
+        {
+            if (isSelected != value)
+            {
+                //Set as selected
+                isSelected = value;
+
+                //Set hover alpha
+                hover.alpha = (isSelected) ? 1.0f : 0.0f;
+                selected.alpha = (isSelected) ? 1.0f : 0.0f;
+            }
+
+            //Invoke on selected
+            if (isSelected == true) OnSelected?.Invoke(this);
+        }
+        private void ClearSelected()
+        {
+            //Clear all selections
+            OnSelected?.Invoke(null);
+        }
+
+        //Locking
         public void ToggleLock()
         {
             if (!isLocked && icon != null) isLocked = true;
@@ -255,4 +308,6 @@ namespace TwoBears.Shop
             }
         }
     }
+
+    public delegate void SelectionAction(ShopUnitSlot slot);
 }

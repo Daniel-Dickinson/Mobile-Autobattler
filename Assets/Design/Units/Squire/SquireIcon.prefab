@@ -58,6 +58,8 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 1
+  title: Squire
+  description: Valiant Defender! or at least he tries to be.
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 4665107175047882670}
   icon3: {fileID: 3386637436315255820}

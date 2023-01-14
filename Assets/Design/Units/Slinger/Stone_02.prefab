@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd5a9236811e0a44b2c5b8baae7c47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolID: Default Poolable
+  poolID: Stone_02
   lifetime: 5
   damage: 2
   impale: 0

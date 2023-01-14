@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 241209585477356017, guid: f0f9394ec9448024485e481616196be6, type: 3}
+      propertyPath: poolID
+      value: Broodshot_02
+      objectReference: {fileID: 0}
     - target: {fileID: 2108657962212615576, guid: f0f9394ec9448024485e481616196be6, type: 3}
       propertyPath: m_Name
       value: Broodshot_02

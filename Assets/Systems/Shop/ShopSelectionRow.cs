@@ -13,6 +13,9 @@ namespace TwoBears.Shop
         public ShopUnitPool pool;
         public ShopSelectionSlot slot;
 
+        [Header("Tooltip")]
+        public ShopTooltip tooltip;
+
         //Slots
         public int SlotCount
         {
@@ -48,6 +51,9 @@ namespace TwoBears.Shop
 
         //Slots
         private List<ShopSelectionSlot> slots;
+
+        //Selection
+        private ShopSelectionSlot selection;
 
         //Mono
         private void Awake()
@@ -92,11 +98,17 @@ namespace TwoBears.Shop
 
             //Add slot
             slots.Add(newSlot);
+
+            //Register to slot
+            newSlot.OnSelected += SelectionChange;
         }
 
         //Populate
         public void PopulateSlots()
         {
+            //Clear selection
+            ClearSelection();
+
             //Slots required to populate
             if (slots == null) return;
 
@@ -123,6 +135,42 @@ namespace TwoBears.Shop
 
             //Place in slot
             slots[index].PlaceUnit(icon);
+        }
+
+        //Selection
+        public void ClearSelection()
+        {
+            //Deselect all slots
+            for (int i = 0; i < slots.Count; i++)
+            {
+                slots[i].SetSelected(false);
+            }
+
+            //Hide tooltip
+            CloseToolTip();
+        }
+        private void SelectionChange(ShopUnitSlot slot)
+        {
+            //Deselect other slots
+            for (int i = 0; i < slots.Count; i++)
+            {
+                if (slots[i] != slot) slots[i].SetSelected(false);
+            }
+
+            //Show tool tip
+            if (slot != null) ShowToolTip(slot);
+            else CloseToolTip();
+        }
+
+        //Tooltip
+        private void ShowToolTip(ShopUnitSlot slot)
+        {
+            tooltip.gameObject.SetActive(true);
+            tooltip.SetUnit(slot.Icon);
+        }
+        private void CloseToolTip()
+        {
+            tooltip.gameObject.SetActive(false);
         }
     }
 }
