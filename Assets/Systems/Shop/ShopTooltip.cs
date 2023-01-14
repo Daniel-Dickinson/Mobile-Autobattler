@@ -80,7 +80,19 @@ namespace TwoBears.Shop
         //Stats
         private void SetStats(ShopUnitIcon icon)
         {
-            cost.text = icon.CostPerLevel(0) + " / " + icon.CostPerLevel(1) + " / " + icon.CostPerLevel(2);
+            //Get stats
+            state.GetStatsPerLevel(icon.Unit.id, 0, out int damage1, out int health1);
+            state.GetStatsPerLevel(icon.Unit.id, 1, out int damage2, out int health2);
+            state.GetStatsPerLevel(icon.Unit.id, 2, out int damage3, out int health3);
+
+            //Set cost
+            cost.text = CostPerLevel(icon, 0) + " / " + CostPerLevel(icon, 1) + " / " + CostPerLevel(icon, 2);
+
+            //Set damage
+            damage.text = damage1 + " / " + damage2 + " / " + damage3;
+
+            //Set health
+            health.text = health1 + " / " + health2 + " / " + health3;
         }
 
         //Class Display
@@ -162,6 +174,20 @@ namespace TwoBears.Shop
                     particles4.SetActive(false);
                     particles5.SetActive(true);
                     break;
+            }
+        }
+
+        //Utility
+        public int CostPerLevel(ShopUnitIcon icon, int level)
+        {
+            switch (level)
+            {
+                default:
+                    return icon.Cost;
+                case 1:
+                    return icon.Cost * 3;
+                case 2:
+                    return icon.Cost * 9;
             }
         }
     }

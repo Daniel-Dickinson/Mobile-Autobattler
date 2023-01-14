@@ -49,23 +49,13 @@ namespace TwoBears.Shop
             }
         }
 
-        //Access
+        //Stats
         public int Cost
         {
             get { return shopLevel * 3; }
         }
-        public int CostPerLevel(int level)
-        {
-            switch (level)
-            {
-                default:
-                    return Cost;
-                case 1:
-                    return Cost * 3;
-                case 2:
-                    return Cost * 9;
-            }
-        }
+
+        //Access
         public FormationUnit Unit
         {
             get { return unit; }

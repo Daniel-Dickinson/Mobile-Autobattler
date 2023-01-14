@@ -16,6 +16,12 @@ namespace TwoBears.Unit
         [SerializeField] private float attackRange = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
+        //Access
+        public int Damage
+        {
+            get { return projectile.Damage; }
+        }
+
         //Components
         private Animator anim;
         private AudioSource audioSource;

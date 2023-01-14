@@ -22,6 +22,12 @@ namespace TwoBears.Unit
         [SerializeField] private LayerMask units;
         [SerializeField] private LayerMask armour;
 
+        //Access
+        public int Damage
+        {
+            get { return damage; }
+        }
+
         //State
         private Faction faction;
         private List<Rigidbody2D> ignore;

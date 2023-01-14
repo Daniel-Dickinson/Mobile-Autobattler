@@ -127,7 +127,29 @@ namespace TwoBears.Persistance
             secondary = baseUnit.secondary; 
             tertiary = baseUnit.tertiary;
         }
-        
+        public void GetStatsPerLevel(int id, int level, out int damage, out int health)
+        {
+            GameObject unit = selection.GetUnit(id, level);
+            BaseUnit baseUnit = unit.GetComponent<BaseUnit>();
+            if (baseUnit == null) baseUnit = unit.GetComponentInChildren<BaseUnit>();
+
+            //Declare health
+            health = baseUnit.MaxHealth;
+            damage = 0;
+
+            //Melee
+            if (baseUnit as MeleeUnit != null || baseUnit as HybridUnit != null)
+            {
+                Weapon weapon = baseUnit.GetComponent<Weapon>();
+                damage = weapon.damage;
+            }
+
+            //Ranged
+            if (baseUnit as RangedUnit != null)
+            {
+                damage = (baseUnit as RangedUnit).Damage;
+            }
+        }
 
         //Formation Slots
         public int GetSlotCount(FormationRow row)
