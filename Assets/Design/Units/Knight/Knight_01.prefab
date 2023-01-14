@@ -258,6 +258,8 @@ MonoBehaviour:
   circleSpeed: 0.2
   hesitanceMin: 0.75
   hesitanceMax: 0.85
+  hitEffect: {fileID: 6521310779412066756, guid: 0dc525acc1e6a634c85423f4b91366f9, type: 3}
+  hitRadius: 0.2
   shapes:
   - {fileID: 2634278092482188335}
   debugGoal: 0
@@ -289,7 +291,6 @@ MonoBehaviour:
   armour:
     serializedVersion: 2
     m_Bits: 256
-  trail: {fileID: 0}
 --- !u!114 &1380182028688600670
 MonoBehaviour:
   m_ObjectHideFlags: 0

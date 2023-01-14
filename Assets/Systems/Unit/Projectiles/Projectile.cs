@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Perception;
+using TwoBears.Pooling;
 
 namespace TwoBears.Unit
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(AudioSource))]
-    public class Projectile : MonoBehaviour
+    public class Projectile : Poolable
     {
         [Header("Stats")]
         [SerializeField] private int damage = 1;
 
         [Header("Impale")]
         [SerializeField] private float impale = 0.0f;
-
-        [Header("Cleanup")]
-        [SerializeField] private float life = 5.0f;
 
         [Header("Layers")]
         [SerializeField] private LayerMask units;
@@ -37,9 +35,6 @@ namespace TwoBears.Unit
         private TrailRenderer trail;
         private AudioSource audioSource;
 
-        //Life
-        private float lifeRemaining;
-
         //Mono
         private void Awake()
         {
@@ -48,16 +43,15 @@ namespace TwoBears.Unit
             audioSource = GetComponent<AudioSource>();
 
             trail.emitting = false;
-
-            lifeRemaining = life;
         }
-        private void FixedUpdate()
-        {
-            //Reduce life
-            lifeRemaining -= Time.fixedDeltaTime;
 
-            //Destroy self
-            if (lifeRemaining <= 0) Destroy(gameObject);
+        //Poolable
+        public override void PoolableInit()
+        {
+            base.PoolableInit();
+
+            //Clear ignore
+            if (ignore != null) ignore.Clear();
         }
 
         //Launch
@@ -126,13 +120,17 @@ namespace TwoBears.Unit
                 //Damage unit
                 otherUnit.RemoveHealth(damage);
 
-                //Ignore
+                //Play hit effect
+                otherUnit.TriggerParticles(-transform.forward);
+
+                //Ignore unit
                 ignore.Add(collision.rigidbody);
 
                 return;
             }
         }
 
+        //Impale
         private void Impale(Collider2D col, Vector3 hit)
         {
             //Calculate direction from launcher
@@ -143,7 +141,7 @@ namespace TwoBears.Unit
             GetComponent<Collider2D>().enabled = false;
 
             //Extend life
-            lifeRemaining = life * 5.0f;
+            lifeRemaining = lifetime * 5.0f;
 
             //Check if unit
             if (col.attachedRigidbody != null)

@@ -173,9 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd5a9236811e0a44b2c5b8baae7c47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolID: Default Poolable
+  lifetime: 5
   damage: 1
   impale: 0.05
-  life: 5
   units:
     serializedVersion: 2
     m_Bits: 64

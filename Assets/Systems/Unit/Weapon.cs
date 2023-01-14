@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TwoBears.Perception;
 using UnityEngine;
+
+using TwoBears.Perception;
 
 namespace TwoBears.Unit
 {
@@ -92,8 +93,10 @@ namespace TwoBears.Unit
                 //Knock unit back
                 Vector3 direction = (other.transform.position - transform.position).normalized;
                 Vector2 force = direction * knockback;
-
                 targetUnit.KnockBack(force);
+
+                //Play hit effect
+                targetUnit.TriggerParticles(-direction);
                 return;
             }
         }
@@ -115,7 +118,6 @@ namespace TwoBears.Unit
 
             //Play hit
             audioSource.Play();
-
 
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
@@ -146,8 +148,11 @@ namespace TwoBears.Unit
                 //Knock unit back
                 Vector3 direction = (other.transform.position - transform.position).normalized;
                 Vector2 force = direction * knockback;
-
                 targetUnit.KnockBack(force);
+
+                //Play hit effect
+                targetUnit.TriggerParticles(-direction);
+
                 return;
             }
         }

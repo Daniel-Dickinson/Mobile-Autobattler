@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Pathfinding;
+using TwoBears.Pooling;
 using TwoBears.Perception;
 
 namespace TwoBears.Unit
@@ -33,6 +34,10 @@ namespace TwoBears.Unit
         [Header("Personality")]
         public float hesitanceMin = 0.5f;
         public float hesitanceMax = 1.0f;
+
+        [Header("Particles")]
+        public Poolable hitEffect;
+        public float hitRadius = 0.2f;
 
         [Header("Subshapes")]
         public GameObject[] shapes;
@@ -356,6 +361,13 @@ namespace TwoBears.Unit
         {
             health = Mathf.Clamp(health + amount, 0, healthPool);
             OnHealed?.Invoke(this);
+        }
+
+        //Particles
+        public void TriggerParticles(Vector3 direction)
+        {
+            //Request particle system
+            PoolManager.RequestPoolable(hitEffect, transform.position + (direction * hitRadius), Quaternion.LookRotation(Vector3.forward, direction));
         }
 
         //Recovering

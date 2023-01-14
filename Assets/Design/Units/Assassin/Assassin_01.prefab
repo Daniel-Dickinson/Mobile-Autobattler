@@ -261,6 +261,8 @@ MonoBehaviour:
   circleSpeed: 0.02
   hesitanceMin: 0.6
   hesitanceMax: 0.8
+  hitEffect: {fileID: 6521310779412066756, guid: 0dc525acc1e6a634c85423f4b91366f9, type: 3}
+  hitRadius: 0.2
   shapes:
   - {fileID: 3244554655505835266}
   - {fileID: 3319767568842175422}

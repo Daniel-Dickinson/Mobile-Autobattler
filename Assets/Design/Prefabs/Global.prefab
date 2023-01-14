@@ -782,8 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
-  damage2: 2
-  damage4: 4
+  damage2: 1
+  damage4: 2
   health2: 2
   health4: 4
 --- !u!1 &503596401
@@ -11005,6 +11005,7 @@ GameObject:
   - component: {fileID: 8780573533820108685}
   - component: {fileID: 8780573533820108686}
   - component: {fileID: 6416357195569221503}
+  - component: {fileID: 3407678095376579330}
   m_Layer: 0
   m_Name: Persistance
   m_TagString: Untagged
@@ -11087,6 +11088,18 @@ MonoBehaviour:
   targetingOpsPerSecond: 5
   pathfindingOpsPerSecond: 5
   anticrowdingOpsPerSecond: 10
+--- !u!114 &3407678095376579330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8780573533820108682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc03ee615db853418c7c8d44a46d9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8780573533930543704
 GameObject:
   m_ObjectHideFlags: 0

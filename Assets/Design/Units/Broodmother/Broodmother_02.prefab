@@ -321,8 +321,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 62672be4c7403e6439192533e7636043, type: 3}
-      propertyPath: healthPool
-      value: 6
+      propertyPath: moveSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 62672be4c7403e6439192533e7636043, type: 3}
       propertyPath: projectile
@@ -334,11 +334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 62672be4c7403e6439192533e7636043, type: 3}
       propertyPath: hesitanceMax
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 62672be4c7403e6439192533e7636043, type: 3}
       propertyPath: hesitanceMin
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3859753814516594116, guid: 62672be4c7403e6439192533e7636043, type: 3}
       propertyPath: moveRangeMax

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3200bbfa8f25d4db525d403d4f4bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 2
+  count: 4
   summon: {fileID: 640184104213289463, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
   radius: 0.1
   minSize: 0

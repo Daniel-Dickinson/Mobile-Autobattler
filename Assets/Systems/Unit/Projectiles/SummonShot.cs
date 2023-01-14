@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TwoBears.Pooling;
 using TwoBears.Perception;
 using TwoBears.Waves;
 
@@ -19,8 +20,9 @@ namespace TwoBears.Unit
             FormationSpawn spawn = launcher.GetComponentInParent<FormationSpawn>();
             SummonUnit(transform.position + (transform.up * -recovery), transform.up, knockback, spawn, faction);
 
-            //Destroy projectile
-            Destroy(gameObject);
+            //Return projectile
+            Poolable projectile = GetComponent<Projectile>();
+            projectile.Return();
         }
 
         private void SummonUnit(Vector3 position, Vector3 direction, float knockback, FormationSpawn spawner, Faction faction)

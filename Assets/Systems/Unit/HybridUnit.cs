@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TwoBears.Pooling;
+
 namespace TwoBears.Unit
 {
     public class HybridUnit : BaseUnit
@@ -179,7 +181,7 @@ namespace TwoBears.Unit
             if (state != UnitState.Actioning) return;
 
             //Instantiate projectile
-            Projectile proj = Instantiate(projectile, barrel.position, Quaternion.LookRotation(Vector3.forward, attackDirection));
+            Projectile proj = PoolManager.RequestPoolable(projectile, barrel.position, Quaternion.LookRotation(Vector3.forward, attackDirection)) as Projectile;
 
             //Add force
             proj.Launch(this, perceiver.Faction, attackDirection * projectileSpeed);

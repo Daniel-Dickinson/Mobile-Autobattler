@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2965820149908257124, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
       propertyPath: count
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2965820149908257124, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
       propertyPath: summon

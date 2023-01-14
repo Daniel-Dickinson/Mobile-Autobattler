@@ -133,7 +133,7 @@ MonoBehaviour:
     id: 62
     level: 0
     sublevel: 0
-  shopLevel: 3
+  shopLevel: 2
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 1211126496992542007}
   icon3: {fileID: 4108613001930901311}

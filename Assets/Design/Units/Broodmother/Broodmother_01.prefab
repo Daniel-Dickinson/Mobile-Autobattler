@@ -249,15 +249,17 @@ MonoBehaviour:
   secondary: 3
   tertiary: 0
   healthPool: 4
-  moveSpeed: 2
+  moveSpeed: 2.5
   moveSmooth: 0.2
   moveRangeMin: 2
   moveRangeMax: 7.5
   circleMode: 1
   circleRange: 6
   circleSpeed: 0.1
-  hesitanceMin: 3
-  hesitanceMax: 4
+  hesitanceMin: 3.5
+  hesitanceMax: 4.5
+  hitEffect: {fileID: 6521310779412066756, guid: 0dc525acc1e6a634c85423f4b91366f9, type: 3}
+  hitRadius: 0.2
   shapes:
   - {fileID: 2270123175400397655}
   debugGoal: 0

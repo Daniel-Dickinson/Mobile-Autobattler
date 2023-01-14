@@ -24,6 +24,12 @@ namespace TwoBears.Shop
         [SerializeField] private RectTransform classParent;
         [SerializeField] private ClassDisplay[] classDisplays;
 
+        [Header("Particles")]
+        [SerializeField] private GameObject particles2;
+        [SerializeField] private GameObject particles3;
+        [SerializeField] private GameObject particles4;
+        [SerializeField] private GameObject particles5;
+
         //Lock
         public bool Locked
         {
@@ -87,6 +93,9 @@ namespace TwoBears.Shop
             //Clear class display
             ClearClassDisplay();
 
+            //Updated particles
+            UpdateParticles(0);
+
             //Query state
             QueryState();
         }
@@ -106,6 +115,9 @@ namespace TwoBears.Shop
 
             //Update class display
             UpdateClassDisplay();
+
+            //Updated particles
+            UpdateParticles(icon.ShopLevel);
 
             //Success
             return true;
@@ -136,6 +148,9 @@ namespace TwoBears.Shop
 
             //Clear class displays
             ClearClassDisplay();
+
+            //Updated particles
+            UpdateParticles(0);
 
             //Query state
             QueryState();
@@ -197,6 +212,46 @@ namespace TwoBears.Shop
                 AddClassDisplay(primary, unitId);
                 AddClassDisplay(secondary, unitId);
                 AddClassDisplay(tertiary, unitId);
+            }
+        }
+
+        //Particles
+        private void UpdateParticles(int unitTier)
+        {
+            switch (unitTier)
+            {
+                default:
+                case 0:
+                case 1:
+                    particles2.SetActive(false);
+                    particles3.SetActive(false);
+                    particles4.SetActive(false);
+                    particles5.SetActive(false);
+                    break;
+                case 2:
+                    particles2.SetActive(true);
+                    particles3.SetActive(false);
+                    particles4.SetActive(false);
+                    particles5.SetActive(false);
+                    break;
+                case 3:
+                    particles2.SetActive(false);
+                    particles3.SetActive(true);
+                    particles4.SetActive(false);
+                    particles5.SetActive(false);
+                    break;
+                case 4:
+                    particles2.SetActive(false);
+                    particles3.SetActive(false);
+                    particles4.SetActive(true);
+                    particles5.SetActive(false);
+                    break;
+                case 5:
+                    particles2.SetActive(false);
+                    particles3.SetActive(false);
+                    particles4.SetActive(false);
+                    particles5.SetActive(true);
+                    break;
             }
         }
     }
