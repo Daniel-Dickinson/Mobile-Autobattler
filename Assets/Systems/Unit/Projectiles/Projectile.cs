@@ -58,6 +58,10 @@ namespace TwoBears.Unit
 
             //Clear ignore
             if (ignore != null) ignore.Clear();
+
+            //Enable physics
+            rb.simulated = true;
+            GetComponent<Collider2D>().enabled = true;
         }
 
         //Launch
@@ -84,11 +88,9 @@ namespace TwoBears.Unit
         //Physics
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            //Reduce life
-            lifeRemaining = Mathf.Min(0.1f, lifeRemaining);
-
-            //Impale
+            //Impale or reduce life on hit
             if (impale > 0) Impale(collision.collider, collision.contacts[0].point);
+            else lifeRemaining = Mathf.Min(0.1f, lifeRemaining);
 
             //Ignore the environment
             if (collision.rigidbody == null) return;

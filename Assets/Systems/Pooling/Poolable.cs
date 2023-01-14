@@ -17,6 +17,13 @@ namespace TwoBears.Pooling
         public Action OnUpdate;
         public Action OnReset;
 
+        //Mono
+        private void OnDestroy()
+        {
+            //Failsafe
+            PoolManager.PoolableDestroyed(this);
+        }
+
         //Lifetime
         protected float lifeRemaining;
 

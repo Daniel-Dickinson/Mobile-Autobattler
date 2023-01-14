@@ -69,6 +69,13 @@ namespace TwoBears.Pooling
                 return false;
             }
         }
+
+        //Destroyed
+        public static void PoolableDestroyed(Poolable item)
+        {
+            //If item is pooled remove it
+            if (pools.TryGetValue(item.PoolID, out ItemPool pool)) pool.Destroyed(item);
+        }
     }
 
     public class ItemPool
@@ -152,6 +159,14 @@ namespace TwoBears.Pooling
 
             //Add to pool
             pooledItems.Add(poolable);
+        }
+
+        //Destoyed
+        public void Destroyed(Poolable poolable)
+        {
+            //Clear item from active & pool
+            pooledItems.Remove(poolable);
+            activeItems.Remove(poolable);
         }
 
         //Update
