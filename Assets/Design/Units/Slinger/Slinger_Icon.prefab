@@ -210,7 +210,7 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 1
-  title: Slinger
+  title: The Slinger
   description: Medium ranged unit that slings ricocheting stones at enemies.
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 3490789490924951669}

@@ -134,7 +134,7 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 2
-  title: Broodmother
+  title: The Broodmother
   description: Medium ranged unit that fires live minions at enemies!
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 1211126496992542007}

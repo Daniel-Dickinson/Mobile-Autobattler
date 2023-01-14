@@ -134,7 +134,7 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   shopLevel: 3
-  title: Necromancer
+  title: The Necromancer
   description: Summons minions from the corpses of enemy units.
   icon1: {fileID: 4788045178686656766}
   icon2: {fileID: 1100460147240033995}
