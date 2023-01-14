@@ -59,6 +59,9 @@ namespace TwoBears.Unit
             //Clear ignore
             if (ignore != null) ignore.Clear();
 
+            //Clear trail
+            if (trail != null) trail.Clear();
+
             //Enable physics
             rb.simulated = true;
             GetComponent<Collider2D>().enabled = true;

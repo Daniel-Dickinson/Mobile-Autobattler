@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134734e13f97a294793a19752550399a, type: 3}
   m_Name: 02_Ranged
   m_EditorClassIdentifier: 
-  parent: {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
+  parents:
+  - {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
   units:
   - id: 20
     level: 0

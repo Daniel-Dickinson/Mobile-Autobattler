@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134734e13f97a294793a19752550399a, type: 3}
   m_Name: 05_!Standard
   m_EditorClassIdentifier: 
-  parent: {fileID: 11400000, guid: f9005dd070090a941880e1c76fe629ae, type: 2}
+  parents:
+  - {fileID: 11400000, guid: f9005dd070090a941880e1c76fe629ae, type: 2}
   units:
   - id: 0
     level: 2

@@ -14,16 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front:
   - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
+    level: 0
     sublevel: 0
   - id: 0
     level: 0
@@ -33,538 +24,616 @@ MonoBehaviour:
     level: 0
     sublevel: 0
   - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
     level: 0
     sublevel: 0
   back:
-  - id: 0
-    level: 1
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
-  - id: 0
-    level: 2
-    sublevel: 0
   - id: 0
     level: 0
     sublevel: 0
   waves:
   - draft: {fileID: 11400000, guid: a3105daf75ad8b54899e4b61fd062af3, type: 2}
     reward: 3
+    locked: 1
     frontPoints: 3
     middlePoints: 6
     backPoints: 0
   - draft: {fileID: 11400000, guid: a3105daf75ad8b54899e4b61fd062af3, type: 2}
-    reward: 3
-    frontPoints: 3
-    middlePoints: 9
+    reward: 4
+    locked: 1
+    frontPoints: 6
+    middlePoints: 6
     backPoints: 0
   - draft: {fileID: 11400000, guid: a3105daf75ad8b54899e4b61fd062af3, type: 2}
     reward: 4
+    locked: 1
     frontPoints: 6
     middlePoints: 9
-    backPoints: 3
+    backPoints: 0
   - draft: {fileID: 11400000, guid: a3105daf75ad8b54899e4b61fd062af3, type: 2}
     reward: 5
+    locked: 1
     frontPoints: 6
     middlePoints: 12
     backPoints: 3
   - draft: {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
-    reward: 6
+    reward: 5
+    locked: 1
     frontPoints: 18
-    middlePoints: 9
+    middlePoints: 12
     backPoints: 0
   - draft: {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
     reward: 6
-    frontPoints: 12
-    middlePoints: 12
-    backPoints: 9
-  - draft: {fileID: 11400000, guid: 21a3682f6e9f586459e924e7d18beb8a, type: 2}
-    reward: 7
+    locked: 1
     frontPoints: 12
     middlePoints: 15
-    backPoints: 12
+    backPoints: 6
+  - draft: {fileID: 11400000, guid: 21a3682f6e9f586459e924e7d18beb8a, type: 2}
+    reward: 7
+    locked: 1
+    frontPoints: 15
+    middlePoints: 18
+    backPoints: 9
   - draft: {fileID: 11400000, guid: 528823322025f3341aa707a9353a340f, type: 2}
     reward: 7
+    locked: 1
     frontPoints: 15
     middlePoints: 18
     backPoints: 15
   - draft: {fileID: 11400000, guid: 2c09dc5e0a2b42d4086e69c4974d05b5, type: 2}
     reward: 8
-    frontPoints: 21
-    middlePoints: 18
-    backPoints: 18
+    locked: 1
+    frontPoints: 18
+    middlePoints: 24
+    backPoints: 15
   - draft: {fileID: 11400000, guid: edb850deefb842c4b8e10bbffd7fc8dd, type: 2}
     reward: 9
-    frontPoints: 21
-    middlePoints: 24
+    locked: 1
+    frontPoints: 24
+    middlePoints: 21
     backPoints: 21
   - draft: {fileID: 11400000, guid: edb850deefb842c4b8e10bbffd7fc8dd, type: 2}
     reward: 9
+    locked: 0
     frontPoints: 24
     middlePoints: 27
-    backPoints: 21
+    backPoints: 24
   - draft: {fileID: 11400000, guid: fd98b3764eb97444e9fbbc570e5e431f, type: 2}
     reward: 10
+    locked: 0
     frontPoints: 27
     middlePoints: 30
     backPoints: 27
   - draft: {fileID: 11400000, guid: a1aa3a78521499643a2cc0923023517e, type: 2}
     reward: 10
-    frontPoints: 30
+    locked: 0
+    frontPoints: 33
     middlePoints: 33
     backPoints: 30
-  - draft: {fileID: 11400000, guid: edb850deefb842c4b8e10bbffd7fc8dd, type: 2}
+  - draft: {fileID: 11400000, guid: d8c826fbfa1153c4d9b5a6630a665faa, type: 2}
     reward: 11
+    locked: 0
     frontPoints: 36
-    middlePoints: 33
+    middlePoints: 36
     backPoints: 36
   - draft: {fileID: 11400000, guid: f9005dd070090a941880e1c76fe629ae, type: 2}
     reward: 12
+    locked: 0
     frontPoints: 39
     middlePoints: 42
-    backPoints: 36
+    backPoints: 39
   - draft: {fileID: 11400000, guid: f9005dd070090a941880e1c76fe629ae, type: 2}
     reward: 12
-    frontPoints: 42
+    locked: 0
+    frontPoints: 45
     middlePoints: 45
-    backPoints: 42
+    backPoints: 45
   - draft: {fileID: 11400000, guid: 78c59cc125d611f448efc10a85b613d5, type: 2}
     reward: 13
-    frontPoints: 45
-    middlePoints: 48
-    backPoints: 45
-  - draft: {fileID: 11400000, guid: 6e9c6d837841bc24085c5b58edd5e69c, type: 2}
-    reward: 13
-    frontPoints: 48
+    locked: 0
+    frontPoints: 51
     middlePoints: 51
     backPoints: 48
-  - draft: {fileID: 11400000, guid: f9005dd070090a941880e1c76fe629ae, type: 2}
-    reward: 14
+  - draft: {fileID: 11400000, guid: 6e9c6d837841bc24085c5b58edd5e69c, type: 2}
+    reward: 13
+    locked: 0
     frontPoints: 54
     middlePoints: 57
     backPoints: 54
-  - draft: {fileID: 11400000, guid: a7270d20e6708c846bb31c3647750723, type: 2}
-    reward: 15
+  - draft: {fileID: 11400000, guid: babd3eec4e11c7643b12f90efcac2014, type: 2}
+    reward: 14
+    locked: 0
     frontPoints: 60
-    middlePoints: 66
+    middlePoints: 60
     backPoints: 60
   - draft: {fileID: 11400000, guid: a7270d20e6708c846bb31c3647750723, type: 2}
     reward: 15
+    locked: 0
     frontPoints: 66
-    middlePoints: 69
-    backPoints: 60
+    middlePoints: 66
+    backPoints: 63
+  - draft: {fileID: 11400000, guid: a7270d20e6708c846bb31c3647750723, type: 2}
+    reward: 15
+    locked: 0
+    frontPoints: 72
+    middlePoints: 72
+    backPoints: 69
   - draft: {fileID: 11400000, guid: db219889d6ff1b145816034003b5784e, type: 2}
     reward: 16
-    frontPoints: 69
-    middlePoints: 72
-    backPoints: 66
+    locked: 0
+    frontPoints: 75
+    middlePoints: 78
+    backPoints: 75
   - draft: {fileID: 11400000, guid: 18a0c383d5612c247ae4a85888ebf196, type: 2}
     reward: 16
-    frontPoints: 72
-    middlePoints: 75
-    backPoints: 72
-  - draft: {fileID: 11400000, guid: a7270d20e6708c846bb31c3647750723, type: 2}
-    reward: 17
-    frontPoints: 77
-    middlePoints: 81
-    backPoints: 75
-  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
-    reward: 18
-    frontPoints: 78
-    middlePoints: 84
-    backPoints: 78
-  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
-    reward: 18
+    locked: 0
     frontPoints: 84
-    middlePoints: 87
+    middlePoints: 84
     backPoints: 81
-  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
-    reward: 18
-    frontPoints: 87
-    middlePoints: 93
-    backPoints: 84
-  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
-    reward: 19
+  - draft: {fileID: 11400000, guid: 3bdfbeabbc37d6f41ab2727686979d4c, type: 2}
+    reward: 17
+    locked: 0
     frontPoints: 90
-    middlePoints: 93
-    backPoints: 90
+    middlePoints: 90
+    backPoints: 87
   - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
-    reward: 19
-    frontPoints: 93
+    reward: 18
+    locked: 0
+    frontPoints: 96
     middlePoints: 96
     backPoints: 93
-  - draft: {fileID: 0}
-    reward: 20
-    frontPoints: 99
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 18
+    locked: 0
+    frontPoints: 102
     middlePoints: 102
-    backPoints: 96
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  - draft: {fileID: 0}
-    reward: 9
-    frontPoints: 21
-    middlePoints: 24
-    backPoints: 21
-  foldoutOne: 1
+    backPoints: 102
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 19
+    locked: 0
+    frontPoints: 108
+    middlePoints: 111
+    backPoints: 108
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 19
+    locked: 0
+    frontPoints: 117
+    middlePoints: 117
+    backPoints: 114
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 20
+    locked: 0
+    frontPoints: 123
+    middlePoints: 126
+    backPoints: 123
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 21
+    locked: 0
+    frontPoints: 132
+    middlePoints: 132
+    backPoints: 129
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 21
+    locked: 0
+    frontPoints: 138
+    middlePoints: 141
+    backPoints: 138
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 22
+    locked: 0
+    frontPoints: 147
+    middlePoints: 147
+    backPoints: 147
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 22
+    locked: 0
+    frontPoints: 156
+    middlePoints: 156
+    backPoints: 156
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 23
+    locked: 0
+    frontPoints: 165
+    middlePoints: 165
+    backPoints: 162
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 24
+    locked: 0
+    frontPoints: 174
+    middlePoints: 174
+    backPoints: 171
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 24
+    locked: 0
+    frontPoints: 183
+    middlePoints: 183
+    backPoints: 180
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 25
+    locked: 0
+    frontPoints: 192
+    middlePoints: 192
+    backPoints: 189
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 25
+    locked: 0
+    frontPoints: 201
+    middlePoints: 201
+    backPoints: 201
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 26
+    locked: 0
+    frontPoints: 210
+    middlePoints: 213
+    backPoints: 210
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 27
+    locked: 0
+    frontPoints: 222
+    middlePoints: 222
+    backPoints: 219
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 27
+    locked: 0
+    frontPoints: 231
+    middlePoints: 231
+    backPoints: 231
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 28
+    locked: 0
+    frontPoints: 240
+    middlePoints: 243
+    backPoints: 240
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 28
+    locked: 0
+    frontPoints: 252
+    middlePoints: 252
+    backPoints: 252
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 29
+    locked: 0
+    frontPoints: 264
+    middlePoints: 264
+    backPoints: 261
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 30
+    locked: 0
+    frontPoints: 273
+    middlePoints: 276
+    backPoints: 273
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 30
+    locked: 0
+    frontPoints: 285
+    middlePoints: 285
+    backPoints: 285
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 31
+    locked: 0
+    frontPoints: 297
+    middlePoints: 297
+    backPoints: 297
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 31
+    locked: 0
+    frontPoints: 309
+    middlePoints: 309
+    backPoints: 309
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 32
+    locked: 0
+    frontPoints: 321
+    middlePoints: 321
+    backPoints: 321
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 33
+    locked: 0
+    frontPoints: 333
+    middlePoints: 333
+    backPoints: 333
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 33
+    locked: 0
+    frontPoints: 345
+    middlePoints: 345
+    backPoints: 345
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 34
+    locked: 0
+    frontPoints: 357
+    middlePoints: 360
+    backPoints: 357
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 34
+    locked: 0
+    frontPoints: 372
+    middlePoints: 372
+    backPoints: 369
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 35
+    locked: 0
+    frontPoints: 384
+    middlePoints: 384
+    backPoints: 384
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 36
+    locked: 0
+    frontPoints: 399
+    middlePoints: 399
+    backPoints: 396
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 36
+    locked: 0
+    frontPoints: 411
+    middlePoints: 411
+    backPoints: 411
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 37
+    locked: 0
+    frontPoints: 426
+    middlePoints: 426
+    backPoints: 423
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 37
+    locked: 0
+    frontPoints: 438
+    middlePoints: 441
+    backPoints: 438
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 38
+    locked: 0
+    frontPoints: 453
+    middlePoints: 456
+    backPoints: 453
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 38
+    locked: 0
+    frontPoints: 468
+    middlePoints: 468
+    backPoints: 468
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 39
+    locked: 0
+    frontPoints: 483
+    middlePoints: 483
+    backPoints: 483
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 40
+    locked: 0
+    frontPoints: 498
+    middlePoints: 498
+    backPoints: 498
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 40
+    locked: 0
+    frontPoints: 513
+    middlePoints: 513
+    backPoints: 513
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 41
+    locked: 0
+    frontPoints: 528
+    middlePoints: 528
+    backPoints: 528
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 41
+    locked: 0
+    frontPoints: 543
+    middlePoints: 546
+    backPoints: 543
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 42
+    locked: 0
+    frontPoints: 561
+    middlePoints: 561
+    backPoints: 558
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 43
+    locked: 0
+    frontPoints: 576
+    middlePoints: 576
+    backPoints: 576
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 43
+    locked: 0
+    frontPoints: 591
+    middlePoints: 594
+    backPoints: 591
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 44
+    locked: 0
+    frontPoints: 609
+    middlePoints: 609
+    backPoints: 609
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 44
+    locked: 0
+    frontPoints: 627
+    middlePoints: 627
+    backPoints: 624
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 45
+    locked: 0
+    frontPoints: 642
+    middlePoints: 645
+    backPoints: 642
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 46
+    locked: 0
+    frontPoints: 660
+    middlePoints: 660
+    backPoints: 660
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 46
+    locked: 0
+    frontPoints: 678
+    middlePoints: 678
+    backPoints: 675
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 47
+    locked: 0
+    frontPoints: 696
+    middlePoints: 696
+    backPoints: 693
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 47
+    locked: 0
+    frontPoints: 714
+    middlePoints: 714
+    backPoints: 711
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 48
+    locked: 0
+    frontPoints: 732
+    middlePoints: 732
+    backPoints: 729
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 49
+    locked: 0
+    frontPoints: 750
+    middlePoints: 750
+    backPoints: 750
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 49
+    locked: 0
+    frontPoints: 768
+    middlePoints: 768
+    backPoints: 768
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 50
+    locked: 0
+    frontPoints: 786
+    middlePoints: 789
+    backPoints: 786
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 50
+    locked: 0
+    frontPoints: 807
+    middlePoints: 807
+    backPoints: 804
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 51
+    locked: 0
+    frontPoints: 825
+    middlePoints: 825
+    backPoints: 825
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 52
+    locked: 0
+    frontPoints: 846
+    middlePoints: 846
+    backPoints: 843
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 52
+    locked: 0
+    frontPoints: 864
+    middlePoints: 867
+    backPoints: 864
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 53
+    locked: 0
+    frontPoints: 885
+    middlePoints: 885
+    backPoints: 885
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 53
+    locked: 0
+    frontPoints: 906
+    middlePoints: 906
+    backPoints: 903
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 54
+    locked: 0
+    frontPoints: 924
+    middlePoints: 927
+    backPoints: 924
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 55
+    locked: 0
+    frontPoints: 945
+    middlePoints: 948
+    backPoints: 945
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 55
+    locked: 0
+    frontPoints: 966
+    middlePoints: 969
+    backPoints: 966
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 56
+    locked: 0
+    frontPoints: 987
+    middlePoints: 990
+    backPoints: 987
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 56
+    locked: 0
+    frontPoints: 1011
+    middlePoints: 1011
+    backPoints: 1008
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 57
+    locked: 0
+    frontPoints: 1032
+    middlePoints: 1032
+    backPoints: 1029
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 58
+    locked: 0
+    frontPoints: 1053
+    middlePoints: 1053
+    backPoints: 1053
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 58
+    locked: 0
+    frontPoints: 1074
+    middlePoints: 1077
+    backPoints: 1074
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 59
+    locked: 0
+    frontPoints: 1098
+    middlePoints: 1098
+    backPoints: 1098
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 59
+    locked: 0
+    frontPoints: 1119
+    middlePoints: 1122
+    backPoints: 1119
+  - draft: {fileID: 11400000, guid: 8e751778aa9a8604db5b7c8e3744a2c7, type: 2}
+    reward: 60
+    locked: 0
+    frontPoints: 1143
+    middlePoints: 1143
+    backPoints: 1143
+  - draft: {fileID: 11400000, guid: 7915811accd22114ebd95c552402002c, type: 2}
+    reward: 61
+    locked: 0
+    frontPoints: 1167
+    middlePoints: 1167
+    backPoints: 1164
+  - draft: {fileID: 11400000, guid: 6d6e7b65905f8f04db7bbcc5d2011520, type: 2}
+    reward: 61
+    locked: 0
+    frontPoints: 1188
+    middlePoints: 1191
+    backPoints: 1188
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 62
+    locked: 0
+    frontPoints: 1212
+    middlePoints: 1215
+    backPoints: 1212
+  - draft: {fileID: 11400000, guid: b3f80953c1fd3d4448e6b233218fcc3f, type: 2}
+    reward: 62
+    locked: 0
+    frontPoints: 1236
+    middlePoints: 1236
+    backPoints: 1236
+  rewardGain: 0.6
+  multiplier: 1.15
+  foldoutOne: 0
   foldoutTwo: 0
   foldoutThree: 0
   foldoutFour: 0

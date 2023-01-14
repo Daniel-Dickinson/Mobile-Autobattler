@@ -8,8 +8,9 @@ namespace TwoBears.Waves
     public class ProceduralDraft : ScriptableObject
     {
         [Header("Parent")]
-        [SerializeField] private ProceduralDraft parent;
+        [SerializeField] private ProceduralDraft[] parents;
 
+        [Header("Units")]
         [SerializeField] private ProceduralUnit[] units;
 
         public ProceduralUnit[] Units
@@ -29,7 +30,14 @@ namespace TwoBears.Waves
         public void CollectUnits(ref List<ProceduralUnit> collection)
         {
             //Collect units recursively
-            if (parent != null) parent.CollectUnits(ref collection);
+            if (parents != null)
+            {
+                //Collect from each parent
+                for (int i = 0; i < parents.Length; i++)
+                {
+                    parents[i].CollectUnits(ref collection);
+                }
+            }
 
             //Add our units
             for (int i = 0; i < units.Length; i++) AddUnit(ref collection, units[i]);

@@ -10,16 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 134734e13f97a294793a19752550399a, type: 3}
-  m_Name: 05_Ranged
+  m_Name: 03_Combined
   m_EditorClassIdentifier: 
   parents:
-  - {fileID: 11400000, guid: a7270d20e6708c846bb31c3647750723, type: 2}
-  - {fileID: 11400000, guid: 6e9c6d837841bc24085c5b58edd5e69c, type: 2}
-  units:
-  - id: 21
-    level: 1
-    cost: 18
-    priority: 2
-    front: 0
-    middle: 0
-    back: 1
+  - {fileID: 11400000, guid: fd98b3764eb97444e9fbbc570e5e431f, type: 2}
+  - {fileID: 11400000, guid: a1aa3a78521499643a2cc0923023517e, type: 2}
+  units: []

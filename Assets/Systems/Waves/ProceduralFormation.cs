@@ -9,7 +9,7 @@ namespace TwoBears.Waves
     public class ProceduralFormation : Formation
     {
         [SerializeField] private ProceduralWave[] waves;
-
+        
         //Unlocked units
         private List<ProceduralUnit> frontUnlocked;
         private List<ProceduralUnit> middleUnlocked;
@@ -21,7 +21,11 @@ namespace TwoBears.Waves
         private List<ProceduralUnit> backUnits;
 
 #if UNITY_EDITOR
-        //Editor Foldouts -- Serialized with object
+        //Balancing fields -- Serialized with object in editor
+        [SerializeField] private float rewardGain = 0.6f;
+        [SerializeField] private float multiplier = 1.15f;
+
+        //Editor Foldouts -- Serialized with object in editor
         [SerializeField] private bool foldoutOne;
         [SerializeField] private bool foldoutTwo;
         [SerializeField] private bool foldoutThree;
@@ -171,16 +175,80 @@ namespace TwoBears.Waves
                 return total;
             }
         }
+
+#if UNITY_EDITOR
+        //Autobalance
+        public void AutoBalanceWaves()
+        {
+            float gold = 3;
+            int pointTotal = 6;
+
+            for (int i = 0; i < waves.Length; i++)
+            {
+                //Grab wave
+                ProceduralWave wave = waves[i];
+
+                //Increment gold
+                gold += rewardGain;
+
+                //Wave lock
+                if (!wave.locked)
+                {
+                    //Set reward
+                    wave.reward = Mathf.FloorToInt(gold);
+
+                    //Calculate unit points
+                    float unitTotal = pointTotal * multiplier;
+                    int wholeUnitTotal = Mathf.CeilToInt(unitTotal / 3.0f);
+
+                    //Divide whole unit total among waves
+                    int front = 0, middle = 0, back = 0;
+                    while (wholeUnitTotal > 0)
+                    {
+                        //Middle
+                        if (wholeUnitTotal > 0)
+                        {
+                            wholeUnitTotal--;
+                            middle++;
+                        }
+
+                        //Front
+                        if (wholeUnitTotal > 0)
+                        {
+                            wholeUnitTotal--;
+                            front++;
+                        }
+
+                        //Back
+                        if (wholeUnitTotal > 0)
+                        {
+                            wholeUnitTotal--;
+                            back++;
+                        }
+                    }
+
+                    //Assign to waves
+                    wave.frontPoints = front * 3;
+                    wave.middlePoints = middle * 3;
+                    wave.backPoints = back * 3;
+                }
+
+                //Increment points
+                pointTotal += Mathf.FloorToInt(gold);
+            }
+        }
     }
+#endif
 
     [System.Serializable]
     public class ProceduralWave
     {
-        [Header("Content")]
         public ProceduralDraft draft;
         public int reward = 3;
 
-        [Header("Points")]
+        //Lock prevents auto balancer influcing values
+        public bool locked = false; 
+
         [Range(0, 1500)] public int frontPoints = 3;
         [Range(0, 1500)] public int middlePoints = 6;
         [Range(0, 1500)] public int backPoints = 0;
