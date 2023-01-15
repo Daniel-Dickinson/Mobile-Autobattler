@@ -12,6 +12,9 @@ namespace TwoBears.Loop
 {
     public class LoopManager : MonoBehaviour
     {
+        [Header("Data")]
+        public PlayerState state;
+
         [Header("Spawners")]
         public FormationSpawn player;
         public FormationSpawn hostile;
@@ -21,7 +24,7 @@ namespace TwoBears.Loop
         
         [Header("UI Elements")]
         public GameObject shop;
-        public GameObject complete;
+        public CompleteUI complete;
         public GameObject defeat;
 
         //State Access
@@ -73,7 +76,7 @@ namespace TwoBears.Loop
 
             //Switch UIs
             shop.SetActive(true);
-            complete.SetActive(false);
+            complete.gameObject.SetActive(false);
             defeat.SetActive(false);
         }
         public void RestartShowShop()
@@ -141,7 +144,10 @@ namespace TwoBears.Loop
         private void ShowComplete()
         {
             //Show UI
-            complete.SetActive(true);
+            complete.gameObject.SetActive(true);
+
+            //Initialize UI
+            complete.OnComplete();
 
             //Clear wave
             PersistanceManager.ClearWaves();
@@ -154,8 +160,26 @@ namespace TwoBears.Loop
         }
         private void ShowDefeat()
         {
-            //Show UI
-            defeat.SetActive(true);
+            //Check if we have enough lives to continue
+            if (state.Lives > 1)
+            {
+                //Show UI
+                complete.gameObject.SetActive(true);
+
+                //Initialize UI
+                complete.OnDefeat();
+
+                //Clear wave & don't increment
+                PersistanceManager.ClearWaves();
+            }
+            else
+            {
+                //Show UI
+                defeat.SetActive(true);
+            }
+
+            //Reduce lives
+            state.Lives -= 1;
 
             //State change
             OnStageChange?.Invoke();

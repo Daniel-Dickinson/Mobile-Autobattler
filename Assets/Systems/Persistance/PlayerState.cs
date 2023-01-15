@@ -12,6 +12,7 @@ namespace TwoBears.Persistance
     public class PlayerState : ScriptableObject
     {
         [Header("Currency")]
+        [SerializeField] private int lives = 3;
         [SerializeField] private int gold = 12;
         [SerializeField] private int shards = 0;
 
@@ -39,6 +40,15 @@ namespace TwoBears.Persistance
         private int summoners;
 
         //General
+        public int Lives
+        {
+            get { return lives; }
+            set
+            {
+                lives = value;
+                OnLifeChange?.Invoke();
+            }
+        }
         public int Wave
         {
             get { return wave; }
@@ -80,6 +90,7 @@ namespace TwoBears.Persistance
         }
 
         //Events
+        public Action OnLifeChange;
         public Action OnWaveChange;
         public Action OnGoldChange;
         public Action OnShardChange;
@@ -398,9 +409,13 @@ namespace TwoBears.Persistance
             //Reset gold
             gold = 15;
 
+            //Reset lives
+            lives = 3;
+
             //Trigger Events
             OnGoldChange?.Invoke();
             OnSlotChange?.Invoke();
+            OnLifeChange?.Invoke();
             OnFormationChange?.Invoke();
         }
     }

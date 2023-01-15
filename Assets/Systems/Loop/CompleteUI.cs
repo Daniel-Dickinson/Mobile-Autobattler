@@ -15,6 +15,10 @@ namespace TwoBears.Loop
         public PlayerState state;
         public ProceduralFormation formation;
 
+        [Header("Titles")]
+        public TextMeshProUGUI headline;
+        public CanvasGroup lifeLost;
+
         [Header("Gold Reward")]
         public TextMeshProUGUI goldText;
         public TextMeshProUGUI goldIncome;
@@ -28,6 +32,10 @@ namespace TwoBears.Loop
         public TextMeshProUGUI shardText;
         public TextMeshProUGUI shardIncome;
 
+        [Header("Audio")]
+        public AudioClip successAudio;
+        public AudioClip defeatAudio;
+
         [Header("AdMenu")]
         public GameObject adMenu;
 
@@ -38,27 +46,47 @@ namespace TwoBears.Loop
         {
             aud = GetComponent<AudioSource>();
         }
-        private void OnEnable()
+
+        public void OnComplete()
         {
             //Play victory audio
+            aud.clip = successAudio;
             aud.Play();
+
+            //Set headline text
+            headline.text = "Wave Completed!";
 
             //Payout rewards
             PayoutRewards();
         }
+        public void OnDefeat()
+        {
+            //Play defeat audio
+            aud.clip = defeatAudio;
+            aud.Play();
 
-        private void PayoutRewards()
+            //Set headline text
+            headline.text = "Wave Failed";
+
+            //Payout gold for previous wave
+            PayoutRewards(false);
+        }
+
+        private void PayoutRewards(bool success = true)
         {
             //Calculate rewards
             int wave = state.Wave;
             int goldReward = formation.GetGoldReward(wave);
-            int merchReward = 0;
-            int shardReward = ((wave + 1) % 5 == 0) ? 1 : 0;
+            int merchReward = (success) ? 0 : 0;
+            int shardReward = (success) ? (((wave + 1) % 5 == 0) ? 1 : 0) : 0;
 
             //Update displays
-            UpdateGoldDisplay(goldReward, wave);
+            UpdateGoldDisplay(goldReward, wave, success);
             UpdateMerchantDisplay(merchReward);
             UpdateShardDisplay(shardReward, wave);
+
+            //Update life lost
+            lifeLost.gameObject.SetActive(!success);
 
             //#if UNITY_IOS || UNITY_ANDRIOD
             //if ((state.Wave - 1) % 5 != 0 || adMenu == null) state.Shards += 1;
@@ -71,9 +99,9 @@ namespace TwoBears.Loop
             state.Gold += goldReward + merchReward;
             state.Shards += shardReward;
         }
-        private void UpdateGoldDisplay(int gold, int wave)
+        private void UpdateGoldDisplay(int gold, int wave, bool success)
         {
-            goldText.text = "Wave " + (wave + 1) + " Completed";
+            goldText.text = "Wave " + (wave + 1) + (success? " Completed" : " Failed");
             goldIncome.text = "+" + gold;
         }
         private void UpdateMerchantDisplay(int gold)
