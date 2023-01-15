@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.28627452, g: 0.65882355, b: 0.7490196, a: 1}
+  m_Color: {r: 0.47843137, g: 0.69803923, b: 0.7490196, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -280,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e717f72ee5831841bf634b33b32e030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standard: {r: 0.28627452, g: 0.65882355, b: 0.7490196, a: 1}
-  stunned: {r: 0.10319373, g: 0.23748691, b: 0.27, a: 1}
+  standard: {r: 0.47843137, g: 0.69803923, b: 0.7490196, a: 1}
+  stunned: {r: 0.17246073, g: 0.25162303, b: 0.27, a: 1}
   enemy: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
   killed: {r: 0.25, g: 0.25, b: 0.25, a: 1}
 --- !u!82 &1090827339424147645

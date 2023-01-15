@@ -36,8 +36,6 @@ namespace TwoBears.Cameras
                 float localStrength = strength * multiplier;
                 float localSpeed = speed * multiplier;
 
-                Debug.Log("Shake!");
-
                 controller.Shake(localDuration, localSpeed, localStrength);
             }
         }
