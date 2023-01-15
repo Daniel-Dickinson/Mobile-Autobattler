@@ -24,10 +24,8 @@ namespace TwoBears.Shop
         }
 
         //Mono
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-            
             state.OnGoldChange += QueryState;
 
             QueryState();

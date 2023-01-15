@@ -5,6 +5,7 @@ using UnityEngine;
 using TwoBears.Waves;
 using TwoBears.Perception;
 using TwoBears.Persistance;
+using TwoBears.Relics;
 using TwoBears.Unit;
 using System;
 
@@ -24,6 +25,7 @@ namespace TwoBears.Loop
         
         [Header("UI Elements")]
         public GameObject shop;
+        public RelicSelection relic;
         public CompleteUI complete;
         public GameObject defeat;
 
@@ -49,7 +51,20 @@ namespace TwoBears.Loop
             //Attach to summon events
             player.OnSummon += TrackPlayerSummon;
             hostile.OnSummon += TrackHostileSummon;
+
+            //Attach to relic selected
+            relic.OnItemChosen += OnRelicSelected;
         }
+        private void OnDestroy()
+        {
+            //Detach to summon events
+            player.OnSummon -= TrackPlayerSummon;
+            hostile.OnSummon -= TrackHostileSummon;
+
+            //Detach to relic selected
+            relic.OnItemChosen -= OnRelicSelected;
+        }
+
         private void OnEnable()
         {
             //Start at shop
@@ -60,13 +75,7 @@ namespace TwoBears.Loop
             //Track remaining units
             TrackUnits();
         }
-        private void OnDestroy()
-        {
-            //Detach to summon events
-            player.OnSummon -= TrackPlayerSummon;
-            hostile.OnSummon -= TrackHostileSummon;
-        }
-
+        
         //UI Access
         public void ShowShop()
         {
@@ -76,6 +85,7 @@ namespace TwoBears.Loop
 
             //Switch UIs
             shop.SetActive(true);
+            relic.gameObject.SetActive(false);
             complete.gameObject.SetActive(false);
             defeat.SetActive(false);
         }
@@ -124,7 +134,7 @@ namespace TwoBears.Loop
             }
 
             //Show complete
-            ShowComplete();
+            OnWaveComplete();
         }
         private IEnumerator DelayedDefeat(float delay)
         {
@@ -139,10 +149,42 @@ namespace TwoBears.Loop
             }
 
             //Show defeat
-            ShowDefeat();
+            OnWaveDefeat();
         }
-        private void ShowComplete()
+        
+        private void OnWaveComplete()
         {
+            if ((state.Wave + 1) % 5 == 0)
+            {
+                //Delay complete UI until after a relic
+                relic.gameObject.SetActive(true);
+
+                //Initialize relic UI
+                relic.Initialize();
+            }
+            else
+            {
+                //Show UI
+                complete.gameObject.SetActive(true);
+
+                //Initialize UI
+                complete.OnComplete();
+
+                //Clear wave
+                PersistanceManager.ClearWaves();
+
+                //Increment wave
+                state.Wave++;
+
+                //Stage change
+                OnStageChange?.Invoke();
+            }
+        }
+        private void OnRelicSelected()
+        {
+            //Hide relic UI
+            relic.gameObject.SetActive(false);
+
             //Show UI
             complete.gameObject.SetActive(true);
 
@@ -153,12 +195,12 @@ namespace TwoBears.Loop
             PersistanceManager.ClearWaves();
 
             //Increment wave
-            PersistanceManager.State.Wave++;
-            
+            state.Wave++;
+
             //Stage change
             OnStageChange?.Invoke();
         }
-        private void ShowDefeat()
+        private void OnWaveDefeat()
         {
             //Check if we have enough lives to continue
             if (state.Lives > 1)

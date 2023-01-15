@@ -52,9 +52,6 @@ namespace TwoBears.Shop
         //Slots
         private List<ShopSelectionSlot> slots;
 
-        //Selection
-        private ShopSelectionSlot selection;
-
         //Mono
         private void Awake()
         {
@@ -140,10 +137,13 @@ namespace TwoBears.Shop
         //Selection
         public void ClearSelection()
         {
-            //Deselect all slots
-            for (int i = 0; i < slots.Count; i++)
+            if (slots != null)
             {
-                slots[i].SetSelected(false);
+                //Deselect all slots
+                for (int i = 0; i < slots.Count; i++)
+                {
+                    slots[i].SetSelected(false);
+                }
             }
 
             //Hide tooltip

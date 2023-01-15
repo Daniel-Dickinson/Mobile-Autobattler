@@ -12,6 +12,7 @@ namespace TwoBears.Unit
     {
         [Header("Data")]
         [SerializeField] protected PlayerState state;
+        [SerializeField] protected BuffTiming timing;
 
         private FormationSpawn spawner;
 
@@ -19,13 +20,30 @@ namespace TwoBears.Unit
         private void Awake()
         {
             spawner = GetComponent<FormationSpawn>();
-            spawner.OnSpawn += BuffAllUnits;
-            spawner.OnSummon += ApplyBuff;
+
+            if (timing == BuffTiming.Primary)
+            {
+                spawner.OnSpawn += BuffAllUnits;
+                spawner.OnSummon += ApplyBuff;
+            }
+            else
+            {
+                spawner.PostSpawn += BuffAllUnits;
+                spawner.PostSummon += ApplyBuff;
+            }
         }
         private void OnDestroy()
         {
-            spawner.OnSpawn -= BuffAllUnits;
-            spawner.OnSummon -= ApplyBuff;
+            if (timing == BuffTiming.Primary)
+            {
+                spawner.OnSpawn -= BuffAllUnits;
+                spawner.OnSummon -= ApplyBuff;
+            }
+            else
+            {
+                spawner.PostSpawn -= BuffAllUnits;
+                spawner.PostSummon -= ApplyBuff;
+            }
         }
 
         //Core
@@ -48,4 +66,6 @@ namespace TwoBears.Unit
             return false;
         }
     }
+
+    public enum BuffTiming { Primary, Secondary };
 }

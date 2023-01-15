@@ -24,7 +24,10 @@ namespace TwoBears.Waves
 
         //Events
         public Action OnSpawn;
+        public Action PostSpawn;
+
         public UnitEvent OnSummon;
+        public UnitEvent PostSummon;
 
         //Spawns
         public List<BaseUnit> Spawns

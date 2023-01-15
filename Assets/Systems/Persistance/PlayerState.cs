@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Waves;
+using TwoBears.Relics;
 using TwoBears.Unit;
 
 namespace TwoBears.Persistance
@@ -28,6 +29,10 @@ namespace TwoBears.Persistance
         [SerializeField] private int frontSlots = 2;
         [SerializeField] private int middleSlots = 3;
         [SerializeField] private int backSlots = 2;
+
+        [Header("Relics")]
+        [SerializeField] private RelicLibrary unlocks;
+        [SerializeField] private List<int> relics;
 
         //Class Counts
         private List<int> countedUnits;
@@ -96,7 +101,61 @@ namespace TwoBears.Persistance
         public Action OnShardChange;
         public Action OnShopLevelChange;
         public Action OnFormationChange;
+        public Action OnRelicsChange;
         public Action OnSlotChange;
+
+        //Relics
+        public void AddRelic(int relicID)
+        {
+            //Initialize
+            if (relics == null) relics = new List<int>();
+
+            //Add new relic
+            relics.Add(relicID);
+
+            //Track relic object
+            Relic relic = unlocks.GetRelicFromID(relicID);
+            if (relic != null)
+            {
+                if (relicObjects == null) relicObjects = new List<Relic>();
+                relicObjects.Add(relic);
+            }
+
+            //Change
+            OnRelicsChange?.Invoke();
+        }
+        public Relic GetRandomUnlockedRelic(List<int> exclude)
+        {
+            return unlocks.GetRandomUnlockedRelic(relics, exclude);
+        }
+        private void ClearRelics()
+        {
+            if (relics != null) relics.Clear();
+            if (relicObjects != null) relicObjects.Clear();
+
+            OnRelicsChange?.Invoke();
+        }
+
+        public List<Relic> GetRelicObjects
+        {
+            get 
+            {
+                if (relicObjects == null)
+                {
+                    //Initialize list
+                    relicObjects = new List<Relic>();
+
+                    //Add relics
+                    for (int i = 0; i < relics.Count; i++)
+                    {
+                        Relic relic = unlocks.GetRelicFromID(relics[i]);
+                        if (relic != null) relicObjects.Add(relic);
+                    }
+                }
+                return relicObjects;
+            }
+        }
+        private List<Relic> relicObjects;
 
         //Class Counts
         public int GetCount(UnitClass unitClass)
@@ -411,6 +470,9 @@ namespace TwoBears.Persistance
 
             //Reset lives
             lives = 3;
+
+            //Clear relics
+            ClearRelics();
 
             //Trigger Events
             OnGoldChange?.Invoke();

@@ -19,16 +19,13 @@ namespace TwoBears.Shop
         private Image image;
         private Button button;
 
-        //Mono
-        protected virtual void Awake()
-        {
-            image = GetComponent<Image>();
-            button = GetComponent<Button>();
-        }
-
         //Core
         protected virtual void SetState(bool value)
         {
+            //Initialize
+            if (image == null) image = GetComponent<Image>();
+            if (button == null) button = GetComponent<Button>();
+
             //Set color
             image.color = value? active : inactive;
 

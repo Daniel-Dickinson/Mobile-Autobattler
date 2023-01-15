@@ -16,6 +16,7 @@ namespace TwoBears.Unit
         [Header("Stats")]
         public int damage = 1;
         public float knockback = 0.5f;
+        public float lifesteal = 0.0f;
 
         [Header("Layers")]
         [SerializeField] private LayerMask units;
@@ -99,6 +100,9 @@ namespace TwoBears.Unit
                 //Add hit unit to ignore
                 ignore.Add(other.attachedRigidbody);
 
+                //Apply lifesteal
+                ApplyLifesteal(targetUnit);
+
                 //Damage unit
                 targetUnit.RemoveHealth(damage);
 
@@ -157,6 +161,9 @@ namespace TwoBears.Unit
                 Perceivable target = targetUnit.GetComponent<Perceivable>();
                 if (target == null || target.Faction == perceiver.Faction) return;
 
+                //Apply lifesteal
+                ApplyLifesteal(targetUnit);
+
                 //Damage unit
                 targetUnit.RemoveHealth(damage);
 
@@ -178,25 +185,14 @@ namespace TwoBears.Unit
             }
         }
 
-        //Access
-        public virtual void Strike()
+        //Lifesteal
+        private void ApplyLifesteal(BaseUnit other)
         {
-            //Play animation
-            anim.Play("Attack");
+            //Grab base unit
+            BaseUnit unit = GetComponent<BaseUnit>();
 
-            //Start trail
-            SetStatus(true);
-
-            //Initialize ignore
-            if (ignore == null) ignore = new List<Rigidbody2D>();
-            else ignore.Clear();
-        }
-
-        //Stop Trail -- Called by attack animation when appropriate
-        public void StopTrail()
-        {
-            //Stop trail
-            SetStatus(false);
+            //Restore health
+            if (other != null && unit != null) unit.RestoreHealth(Mathf.CeilToInt(Mathf.Max(other.Health, damage) * lifesteal));
         }
 
         //Status
@@ -211,6 +207,25 @@ namespace TwoBears.Unit
             {
                 trails[i].emitting = status;
             }
+        }
+
+        //Access
+        public virtual void Strike()
+        {
+            //Play animation
+            anim.Play("Attack");
+
+            //Start trail
+            SetStatus(true);
+
+            //Initialize ignore
+            if (ignore == null) ignore = new List<Rigidbody2D>();
+            else ignore.Clear();
+        }
+        public void StopTrail()
+        {
+            //Stop trail
+            SetStatus(false);
         }
     }
 }

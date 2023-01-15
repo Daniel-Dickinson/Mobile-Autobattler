@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e47515c5e7bfa4aa87b4b1f4fe109b, type: 3}
+  m_Name: '!Library'
+  m_EditorClassIdentifier: 
+  unlockables:
+  - relic: {fileID: 7812175787660262704, guid: 0b662d1b6db6daf4fb884c27122cf0cc, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 6478361114132848815, guid: 8c8ea0ee513cc664faf8a2f2f058cf8e, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 7812175787660262704, guid: ed4ce39580f915c45983ac36e3240033, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 7812175787660262704, guid: d9c6e2e1992186745b53737174053148, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 7812175787660262704, guid: c9f86e4e60da87e449972bd6042fe075, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 7812175787660262704, guid: 17b83e09ec0857748a25dce3ce8a6d14, type: 3}
+    unlocked: 1
+    level: 0

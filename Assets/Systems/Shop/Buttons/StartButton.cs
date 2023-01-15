@@ -12,10 +12,8 @@ namespace TwoBears.Shop
         public PlayerState state;
 
         //Mono
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-            
             state.OnFormationChange += QueryState;
 
             QueryState();
