@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TwoBears.Cameras;
 using TwoBears.Perception;
 using TwoBears.Pooling;
 
@@ -10,6 +11,8 @@ namespace TwoBears.Unit
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(CameraShaker))]
+
     public class Projectile : Poolable
     {
         [Header("Stats")]
@@ -40,6 +43,7 @@ namespace TwoBears.Unit
         private Rigidbody2D rb;
         private TrailRenderer trail;
         private AudioSource audioSource;
+        private CameraShaker shaker;
 
         //Mono
         private void Awake()
@@ -47,6 +51,7 @@ namespace TwoBears.Unit
             rb = GetComponent<Rigidbody2D>();
             trail = GetComponent<TrailRenderer>();
             audioSource = GetComponent<AudioSource>();
+            shaker = GetComponent<CameraShaker>();
 
             trail.emitting = false;
         }
@@ -113,6 +118,11 @@ namespace TwoBears.Unit
             //Deactivate on armour hits
             if (armour == (armour | (1 << collision.rigidbody.gameObject.layer)))
             {
+
+                //Camera shake
+                shaker.Trigger();
+
+                //Ignore uint
                 ignore.Add(collision.rigidbody);
                 return;
             }
@@ -132,10 +142,13 @@ namespace TwoBears.Unit
                 otherUnit.RemoveHealth(damage);
 
                 //Play hit effect
-                otherUnit.TriggerParticles(-transform.forward);
+                otherUnit.TriggerParticles(-transform.forward, damage);
 
                 //Ignore unit
                 ignore.Add(collision.rigidbody);
+
+                //Camera shake
+                shaker.Trigger();
 
                 return;
             }

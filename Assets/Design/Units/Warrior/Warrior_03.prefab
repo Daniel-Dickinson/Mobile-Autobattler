@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: chargeRange
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4362521774403849137, guid: 5b4d329510908b54abe2c8e901520cdc, type: 3}
+      propertyPath: strength
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6306182311181511757, guid: 5b4d329510908b54abe2c8e901520cdc, type: 3}
       propertyPath: damage
       value: 6

@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: hesitanceMin
       value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 8563250367052484456, guid: 75e92a11f76a3964a9773efc6487409a, type: 3}
+      propertyPath: strength
+      value: 2.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

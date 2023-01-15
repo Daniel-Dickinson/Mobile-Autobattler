@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5197269632914789532}
   - component: {fileID: 3217975777293752780}
   - component: {fileID: 1380182028688600670}
+  - component: {fileID: 5162900872695070256}
   - component: {fileID: 1090827339424147645}
   m_Layer: 6
   m_Name: Minion_01
@@ -307,6 +308,22 @@ MonoBehaviour:
   stunned: {r: 0.27, g: 0.15973821, b: 0.0791623, a: 1}
   enemy: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
   killed: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+--- !u!114 &5162900872695070256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640184104213289463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134546a3bef54cd4d925bc4996c7fa9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  duration: 0.6
+  strength: 1
+  speed: 2
 --- !u!82 &1090827339424147645
 AudioSource:
   m_ObjectHideFlags: 0

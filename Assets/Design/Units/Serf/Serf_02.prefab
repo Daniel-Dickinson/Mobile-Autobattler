@@ -364,6 +364,14 @@ PrefabInstance:
       propertyPath: knockback
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5162900872695070256, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
+      propertyPath: duration
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162900872695070256, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
+      propertyPath: strength
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5197269632914789532, guid: 34dc4afabf3141c45aa22b3773e4f28a, type: 3}
       propertyPath: healthPool
       value: 6

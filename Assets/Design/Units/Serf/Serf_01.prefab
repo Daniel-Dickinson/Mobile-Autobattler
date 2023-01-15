@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 640184104213289457}
   - component: {fileID: 5197269632914789532}
   - component: {fileID: 3217975777293752780}
+  - component: {fileID: 5162900872695070256}
   - component: {fileID: 1380182028688600670}
   - component: {fileID: 1090827339424147645}
   m_Layer: 6
@@ -292,6 +293,22 @@ MonoBehaviour:
   armour:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &5162900872695070256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640184104213289463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134546a3bef54cd4d925bc4996c7fa9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 0
+  duration: 0.6
+  strength: 1.4
+  speed: 2
 --- !u!114 &1380182028688600670
 MonoBehaviour:
   m_ObjectHideFlags: 0

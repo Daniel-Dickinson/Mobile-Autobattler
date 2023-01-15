@@ -364,10 +364,13 @@ namespace TwoBears.Unit
         }
 
         //Particles
-        public void TriggerParticles(Vector3 direction)
+        public void TriggerParticles(Vector3 direction, int damage)
         {
             //Request particle system
-            PoolManager.RequestPoolable(hitEffect, transform.position + (direction * hitRadius), Quaternion.LookRotation(Vector3.forward, direction));
+            Poolable hit = PoolManager.RequestPoolable(hitEffect, transform.position + (direction * hitRadius), Quaternion.LookRotation(Vector3.forward, direction));
+
+            //Activate particles
+            hit.GetComponent<HitEffect>().ActivateParticles(damage);
         }
 
         //Recovering

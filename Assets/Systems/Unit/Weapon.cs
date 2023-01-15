@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TwoBears.Cameras;
 using TwoBears.Perception;
 
 namespace TwoBears.Unit
@@ -9,6 +10,7 @@ namespace TwoBears.Unit
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Perceiver))]
     [RequireComponent(typeof(AudioSource))]
+    [RequireComponent(typeof(CameraShaker))]
     public class Weapon : MonoBehaviour
     {
         [Header("Stats")]
@@ -20,6 +22,9 @@ namespace TwoBears.Unit
         [SerializeField] private LayerMask weapon;
         [SerializeField] private LayerMask armour;
 
+        //Weapon state
+        private bool liveEdge;
+
         //Trails
         private TrailRenderer[] trails;
 
@@ -28,7 +33,7 @@ namespace TwoBears.Unit
         {
             get
             {
-                return anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") || anim.GetNextAnimatorStateInfo(0).IsName("Attack");
+                return liveEdge;
             }
         }
 
@@ -36,6 +41,7 @@ namespace TwoBears.Unit
         private Animator anim;
         private Perceiver perceiver;
         private AudioSource audioSource;
+        private CameraShaker shaker;
 
         //Ignore
         private List<Rigidbody2D> ignore;
@@ -46,11 +52,14 @@ namespace TwoBears.Unit
             anim = GetComponent<Animator>();
             perceiver = GetComponent<Perceiver>();
             audioSource = GetComponent<AudioSource>();
+            shaker = GetComponent<CameraShaker>();
 
             ignore = new List<Rigidbody2D>();
 
             trails = GetComponentsInChildren<TrailRenderer>();
-            SetTrailStatus(false);
+            SetStatus(false);
+
+            liveEdge = false;
         }
 
         //Physics
@@ -68,6 +77,9 @@ namespace TwoBears.Unit
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
             {
+                //Camera shake
+                shaker.Trigger();
+
                 //Add armoured unit to ignore
                 ignore.Add(other.attachedRigidbody);
                 return;
@@ -95,8 +107,11 @@ namespace TwoBears.Unit
                 Vector2 force = direction * knockback;
                 targetUnit.KnockBack(force);
 
+                //Camera shake
+                shaker.Trigger();
+
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction);
+                targetUnit.TriggerParticles(-direction, damage);
                 return;
             }
         }
@@ -122,6 +137,9 @@ namespace TwoBears.Unit
             //Deactivate on armour hits
             if (armour == (armour | (1 << other.gameObject.layer)))
             {
+                //Camera shake
+                shaker.Trigger();
+
                 //Add armoured unit to ignore
                 ignore.Add(other);
 
@@ -150,8 +168,11 @@ namespace TwoBears.Unit
                 Vector2 force = direction * knockback;
                 targetUnit.KnockBack(force);
 
+                //Camera shake
+                shaker.Trigger();
+
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction);
+                targetUnit.TriggerParticles(-direction, damage);
 
                 return;
             }
@@ -164,7 +185,7 @@ namespace TwoBears.Unit
             anim.Play("Attack");
 
             //Start trail
-            SetTrailStatus(true);
+            SetStatus(true);
 
             //Initialize ignore
             if (ignore == null) ignore = new List<Rigidbody2D>();
@@ -175,15 +196,20 @@ namespace TwoBears.Unit
         public void StopTrail()
         {
             //Stop trail
-            SetTrailStatus(false);
+            SetStatus(false);
         }
 
-        private void SetTrailStatus(bool emitting)
+        //Status
+        private void SetStatus(bool status)
         {
+            //Edge 
+            liveEdge = status;
+
+            //Setup trails
             if (trails == null || trails.Length == 0) return;
             for (int i = 0; i < trails.Length; i++)
             {
-                trails[i].emitting = emitting;
+                trails[i].emitting = status;
             }
         }
     }

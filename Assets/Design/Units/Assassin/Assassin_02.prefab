@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.65
       objectReference: {fileID: 0}
+    - target: {fileID: 5162900872695070256, guid: 9d175efcdb237c94485cb3a0d24b4d98, type: 3}
+      propertyPath: strength
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6518207719201092499, guid: 9d175efcdb237c94485cb3a0d24b4d98, type: 3}
       propertyPath: damage
       value: 4

@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: shapes.Array.data[3]
       value: 
       objectReference: {fileID: 5936591601195050805}
+    - target: {fileID: 838522953802056045, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
+      propertyPath: strength
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4812476460885556066, guid: dcbc2e593ce734841b458207ab988ff0, type: 3}
       propertyPath: m_Size.x
       value: 12

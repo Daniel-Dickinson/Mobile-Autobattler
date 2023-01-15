@@ -152,6 +152,14 @@ PrefabInstance:
       propertyPath: damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5162900872695070256, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
+      propertyPath: duration
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162900872695070256, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
+      propertyPath: strength
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5197269632914789532, guid: 4fe56b0506c7835448beb9dc5dfe395c, type: 3}
       propertyPath: healthPool
       value: 2

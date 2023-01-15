@@ -31,8 +31,9 @@ namespace TwoBears.Unit
         //Selection
         public void SetSelected()
         {
-            //Set selection
-            selection = unitClass;
+            //Toggle selection
+            if (selection != unitClass) selection = unitClass;
+            else selection = UnitClass.None;
 
             //Selection changed
             onSelectionChange?.Invoke();
