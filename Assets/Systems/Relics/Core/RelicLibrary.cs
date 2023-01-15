@@ -17,7 +17,7 @@ namespace TwoBears.Relics
             RelicUnlock unlock = unlockables[Random.Range(0, unlockables.Length)];
 
             //Check if unlocked or in exluded relics
-            while (!unlock.unlocked || existing.Contains(unlock.relic.ID) || exclude.Contains(unlock.relic.ID) || safety > 100)
+            while (!unlock.unlocked || existing.Contains(unlock.relic.ID) || exclude.Contains(unlock.relic.ID) || safety < 100)
             {
                 //Try another relic until we find one thats unlocked
                 unlock = unlockables[Random.Range(0, unlockables.Length)];
