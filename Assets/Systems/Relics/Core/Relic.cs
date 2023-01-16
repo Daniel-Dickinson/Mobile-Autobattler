@@ -19,6 +19,9 @@ namespace TwoBears.Relics
         public string title;
         [TextArea(4, 5)] public string information;
 
+        [Header("Tooltip")]
+        public GameObject tooltip;
+
         //Access
         public int ID
         {
@@ -31,14 +34,31 @@ namespace TwoBears.Relics
         //Components
         private Button button;
 
+        //Tooltips
+        private bool tooltipEnabled = false;
+
+        private static int selectedRelic = -1;
+        private static Action OnRelicSelected;
+
         //Mono
         private void Awake()
         {
+            //Grab button & attach
             button = GetComponent<Button>();
             button.onClick.AddListener(Press);
+
+            //Attach to relic selected event
+            OnRelicSelected += UpdateTooltip;
+
+            //Disable tooltip by default
+            tooltip.SetActive(false);
         }
         private void OnDestroy()
         {
+            //Detach to relic selected event
+            OnRelicSelected += UpdateTooltip;
+
+            //Detach from button event
             button.onClick.RemoveListener(Press);
         }
 
@@ -50,8 +70,43 @@ namespace TwoBears.Relics
         private void Press()
         {
             OnPress?.Invoke();
+
+            //Toggle tooltip
+            ToggleTooltip();
+        }
+        public void EnableTooltip()
+        {
+            tooltipEnabled = true;
         }
 
+        private void ToggleTooltip()
+        {
+            if (tooltip == null) return;
+            if (!tooltipEnabled) return;
+
+            if (selectedRelic == id)
+            {
+                selectedRelic = -1;
+                OnRelicSelected?.Invoke();
+            }
+            else
+            {
+                selectedRelic = id;
+                OnRelicSelected?.Invoke();
+            }
+        }
+        private void UpdateTooltip()
+        {
+            if (tooltip == null) return;
+            tooltip.SetActive(tooltipEnabled && selectedRelic == id);
+        }
+
+        public static void CloseAllTooltips()
+        {
+            selectedRelic = -1;
+            OnRelicSelected?.Invoke();
+        }
+        
         //Utility
         protected bool IsClass(BaseUnit unit, UnitClass unitClass)
         {

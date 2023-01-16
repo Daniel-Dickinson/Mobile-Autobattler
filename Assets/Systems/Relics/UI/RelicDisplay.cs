@@ -57,7 +57,11 @@ namespace TwoBears.Relics
                 //Add a new copy of each relic -- Clean & reliable
                 for (int i = 0; i < relics.Count; i++)
                 {
-                    Instantiate(relics[i], transform, false);
+                    //Instantiate
+                    Relic relic = Instantiate(relics[i], transform, false);
+
+                    //Enable tooltip
+                    relic.EnableTooltip();
                 }
             }
             else
@@ -66,6 +70,12 @@ namespace TwoBears.Relics
                 botBar.alpha = 0;
             }
             
+        }
+
+        //Selection
+        public void ClearSelection()
+        {
+            Relic.CloseAllTooltips();
         }
     }
 }

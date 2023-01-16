@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using TwoBears.Persistance;
+using System;
 
 namespace TwoBears.Unit
 {
@@ -34,6 +35,9 @@ namespace TwoBears.Unit
         [SerializeField] private Image link2;
         [SerializeField] private Image link4;
         [SerializeField] private Image link6;
+
+        [Header("Tooltip")]
+        [SerializeField] private ClassTooltipValues[] values;
 
         //Internal count
         private int count;
@@ -81,8 +85,11 @@ namespace TwoBears.Unit
             if (unitId >= 0) flashUpgrade = !state.UnitInFormation(unitId);
             else flashUpgrade = false;
 
-            //Update
+            //Update Nubs
             UpdateNubs(count);
+
+            //Update tooltip values
+            UpdateTooltipValues();
         }
         private void UpdateNubs(int count)
         {
@@ -121,6 +128,15 @@ namespace TwoBears.Unit
         {
             if (count == trueCount) UpdateNubs(count + 1);
             else UpdateNubs(count);
+        }
+
+        //Tooltip
+        private void UpdateTooltipValues()
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i].UpdateDisplay(trueCount);
+            }
         }
     }
 }

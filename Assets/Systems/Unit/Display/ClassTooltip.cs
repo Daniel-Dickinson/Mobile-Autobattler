@@ -15,8 +15,8 @@ namespace TwoBears.Unit
         [SerializeField] private CanvasGroup selected;
 
         //Shared
-        public static UnitClass selection;
-        public static Action onSelectionChange;
+        private static UnitClass selection;
+        private static Action onSelectionChange;
 
         //Mono
         private void Awake()
@@ -36,6 +36,11 @@ namespace TwoBears.Unit
             else selection = UnitClass.None;
 
             //Selection changed
+            onSelectionChange?.Invoke();
+        }
+        public static void ClearSelection()
+        {
+            selection = UnitClass.None;
             onSelectionChange?.Invoke();
         }
 

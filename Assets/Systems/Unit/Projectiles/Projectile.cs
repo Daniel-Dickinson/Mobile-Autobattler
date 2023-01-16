@@ -101,9 +101,6 @@ namespace TwoBears.Unit
             if (impale > 0) Impale(collision.collider, collision.contacts[0].point);
             else lifeRemaining = Mathf.Min(0.1f, lifeRemaining);
 
-            //Ignore the environment
-            if (collision.rigidbody == null) return;
-
             //Ignore
             if (ignore.Contains(collision.rigidbody)) return;
 
@@ -116,10 +113,12 @@ namespace TwoBears.Unit
             //Play on hit
             OnHit?.Invoke(launcher, faction, collision);
 
+            //Ignore the environment
+            if (collision.rigidbody == null) return;
+
             //Deactivate on armour hits
             if (armour == (armour | (1 << collision.rigidbody.gameObject.layer)))
             {
-
                 //Camera shake
                 shaker.Trigger();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Unit;
+using TwoBears.Relics;
 
 namespace TwoBears.Shop
 {
@@ -14,11 +15,13 @@ namespace TwoBears.Shop
         public void ClearAllTooltips()
         {
             //Clear class tooltip
-            ClassTooltip.selection = UnitClass.None;
-            ClassTooltip.onSelectionChange?.Invoke();
+            ClassTooltip.ClearSelection();
 
             //Clear unit tooltip
             selectionRow.ClearSelection();
+
+            //Clear relic tooltip
+            Relic.CloseAllTooltips();
         }
     }
 }
