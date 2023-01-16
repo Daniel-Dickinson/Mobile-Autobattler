@@ -6,23 +6,25 @@ using TwoBears.Unit;
 
 namespace TwoBears.Relics
 {
-    public class Lifesteal : Relic
+    public class Regen : Relic
     {
         [Header("Effect")]
         [SerializeField] private UnitClass unitClass;
-        [SerializeField] private float lifesteal = 0.5f;
-
+        [SerializeField] private int amount = 3;
+        [SerializeField] private float tickSpeed = 0.33f;
+        
         //Core
         public override void ApplyBuff(RelicBuffer buffer, BaseUnit unit)
         {
             //Unit must match class
             if (!IsClass(unit, unitClass)) return;
 
-            //Grab weapon
-            Weapon weapon = GetComponent<Weapon>();
+            //Add passive regen to unit
+            PassiveRegen behaviour = unit.gameObject.AddComponent<PassiveRegen>();
 
-            //Apply lifesteal
-            if (weapon != null) weapon.Lifesteal += lifesteal;
+            //Setup behaviour
+            behaviour.amount = amount;
+            behaviour.tickSpeed = tickSpeed;
         }
         public override void ApplyBuffs(RelicBuffer buffer, List<BaseUnit> units)
         {

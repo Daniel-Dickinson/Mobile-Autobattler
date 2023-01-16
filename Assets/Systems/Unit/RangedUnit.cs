@@ -29,6 +29,15 @@ namespace TwoBears.Unit
         //Targeting
         private Vector3 attackDirection;
 
+        //Buffing
+        public override void IncreaseRange(float amount)
+        {
+            base.IncreaseRange(amount);
+
+            //Increase attackRangee range
+            attackRange *= (1.0f + amount);
+        }
+
         //Mono
         protected override void OnEnable()
         {
@@ -80,6 +89,9 @@ namespace TwoBears.Unit
 
             //Instantiate projectile
             Projectile proj = PoolManager.RequestPoolable(projectile, barrel.position, Quaternion.LookRotation(Vector3.forward, attackDirection)) as Projectile;
+
+            //Apply damage multiplier
+            proj.Damage = Mathf.CeilToInt(proj.Damage * damageMultiplier);
 
             //Add force
             proj.Launch(this, perceiver.Faction, attackDirection * projectileSpeed);

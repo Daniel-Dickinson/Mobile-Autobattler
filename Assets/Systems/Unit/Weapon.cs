@@ -14,35 +14,54 @@ namespace TwoBears.Unit
     public class Weapon : MonoBehaviour
     {
         [Header("Stats")]
-        public int damage = 1;
-        public float knockback = 0.5f;
-        public float lifesteal = 0.0f;
+        [SerializeField] private int damage = 1;
+        [SerializeField] private float knockback = 0.5f;
+        [SerializeField] private float lifesteal = 0.0f;
 
         [Header("Layers")]
         [SerializeField] private LayerMask units;
         [SerializeField] private LayerMask weapon;
         [SerializeField] private LayerMask armour;
 
+        //Access
+        public int BaseDamage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
+        public float DamageMultiplier
+        {
+            get { return damageMultiplier; }
+            set { damageMultiplier = value; }
+        }
+
+        public int Damage
+        {
+            get { return Mathf.CeilToInt(damage * damageMultiplier); }
+        }
+        public float Lifesteal
+        {
+            get { return lifesteal; }
+            set { lifesteal = value; }
+        }
+        public float Knockback
+        {
+            get { return knockback; }
+            set { knockback = value; }
+        }
+
+        //Buffs
+        private float damageMultiplier = 1.0f;
+
         //Weapon state
         private bool liveEdge;
-
-        //Trails
-        private TrailRenderer[] trails;
-
-        //State
-        private bool Attacking
-        {
-            get
-            {
-                return liveEdge;
-            }
-        }
 
         //Components
         private Animator anim;
         private Perceiver perceiver;
         private AudioSource audioSource;
         private CameraShaker shaker;
+        private TrailRenderer[] trails;
 
         //Ignore
         private List<Rigidbody2D> ignore;
@@ -67,7 +86,7 @@ namespace TwoBears.Unit
         private void OnTriggerStay2D(Collider2D other)
         {
             //Weapon must be active
-            if (!Attacking) return;
+            if (!liveEdge) return;
 
             //Ignore
             if (ignore == null || ignore.Contains(other.attachedRigidbody)) return;
@@ -104,7 +123,7 @@ namespace TwoBears.Unit
                 ApplyLifesteal(targetUnit);
 
                 //Damage unit
-                targetUnit.RemoveHealth(damage);
+                targetUnit.RemoveHealth(Damage);
 
                 //Knock unit back
                 Vector3 direction = (other.transform.position - transform.position).normalized;
@@ -115,7 +134,7 @@ namespace TwoBears.Unit
                 shaker.Trigger();
 
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction, damage);
+                targetUnit.TriggerParticles(-direction, Damage);
                 return;
             }
         }
@@ -133,7 +152,7 @@ namespace TwoBears.Unit
             if (ignore == null || ignore.Contains(collision.rigidbody)) return;
 
             //Weapon must be active
-            if (!Attacking) return;
+            if (!liveEdge) return;
 
             //Play hit
             audioSource.Play();
@@ -165,7 +184,7 @@ namespace TwoBears.Unit
                 ApplyLifesteal(targetUnit);
 
                 //Damage unit
-                targetUnit.RemoveHealth(damage);
+                targetUnit.RemoveHealth(Damage);
 
                 //Add hit unit to ignore
                 ignore.Add(other);
@@ -179,7 +198,7 @@ namespace TwoBears.Unit
                 shaker.Trigger();
 
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction, damage);
+                targetUnit.TriggerParticles(-direction, Damage);
 
                 return;
             }
@@ -188,11 +207,17 @@ namespace TwoBears.Unit
         //Lifesteal
         private void ApplyLifesteal(BaseUnit other)
         {
+            //Lifesteal required
+            if (lifesteal == 0) return;
+
             //Grab base unit
             BaseUnit unit = GetComponent<BaseUnit>();
 
+            //Unit must be alive
+            if (unit.Health == 0) return;
+
             //Restore health
-            if (other != null && unit != null) unit.RestoreHealth(Mathf.CeilToInt(Mathf.Max(other.Health, damage) * lifesteal));
+            if (other != null && unit != null) unit.RestoreHealth(Mathf.CeilToInt(Mathf.Max(other.Health, Damage) * lifesteal));
         }
 
         //Status

@@ -211,7 +211,7 @@ namespace TwoBears.Persistance
             if (baseUnit as MeleeUnit != null || baseUnit as HybridUnit != null)
             {
                 Weapon weapon = baseUnit.GetComponent<Weapon>();
-                damage = weapon.damage;
+                damage = weapon.Damage;
             }
 
             //Ranged

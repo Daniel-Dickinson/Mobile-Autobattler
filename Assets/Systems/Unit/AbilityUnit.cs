@@ -19,6 +19,15 @@ namespace TwoBears.Unit
         private Vector3 abilityDirection;
         private Perceivable abilityTarget;
 
+        //Buffing
+        public override void IncreaseRange(float amount)
+        {
+            base.IncreaseRange(amount);
+
+            //Increase attackRangee range
+            abilityRange *= (1.0f + amount);
+        }
+
         //Ability
         protected override void Targeting()
         {

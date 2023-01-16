@@ -39,7 +39,7 @@ namespace TwoBears.Unit
             unit.RaiseMaxHealth(GetHealthBuff(count));
 
             //Increase damage
-            weapon.damage += GetDamageBuff(count);
+            weapon.BaseDamage += GetDamageBuff(count);
         }
         private int GetDamageBuff(int count)
         {

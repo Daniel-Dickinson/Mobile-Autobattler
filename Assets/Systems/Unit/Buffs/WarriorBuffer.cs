@@ -14,6 +14,28 @@ namespace TwoBears.Unit
         [SerializeField] private float knockback4 = 40;
         [SerializeField] private float knockback6 = 60;
 
+        //Access
+        public void ApplyBuffExternal(BaseUnit unit)
+        {
+            //Grab internaal count
+            int count = state.GetCount(UnitClass.Warrior);
+
+            //Grab weapon
+            Weapon weapon = unit.GetComponent<Weapon>();
+            if (weapon == null) return;
+
+            //Calculate knockback buff
+            float buff = GetKnockbackPercentile(count);
+            float buffMultiplier = 1 + (buff / 100.0f);
+
+            //Increase knockback
+            weapon.Knockback *= buffMultiplier;
+
+            //Increase base damage
+            weapon.BaseDamage += GetDamage(count);
+        }
+
+        //Core
         protected override void ApplyBuff(BaseUnit unit)
         {
             int count = state.GetCount(UnitClass.Warrior);
@@ -41,10 +63,10 @@ namespace TwoBears.Unit
             float buffMultiplier = 1 + (buff / 100.0f);
 
             //Increase knockback
-            weapon.knockback *= buffMultiplier;
+            weapon.Knockback *= buffMultiplier;
 
             //Increase damage
-            weapon.damage += GetDamage(count);
+            weapon.BaseDamage += GetDamage(count);
         }
 
         private int GetDamage(int count)

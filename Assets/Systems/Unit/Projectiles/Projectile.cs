@@ -29,6 +29,7 @@ namespace TwoBears.Unit
         public int Damage
         {
             get { return damage; }
+            set { damage = value; }
         }
 
         //State

@@ -21,11 +21,22 @@ namespace TwoBears.Unit
         [SerializeField] private float projectileRange = 4.0f;
         [SerializeField] private float projectileRecovery = 0.1f;
 
+        //Buffs
+        public override float DamageMultiplier
+        {
+            get => base.DamageMultiplier;
+            set
+            {
+                base.DamageMultiplier = value;
+
+                if (weapon == null) weapon = GetComponent<Weapon>();
+                weapon.DamageMultiplier = value;
+            }
+        }
+
         //Components
         private Animator anim;
         private AudioSource audioSource;
-
-        //Weapons
         protected Weapon weapon;
 
         //Action
@@ -182,6 +193,9 @@ namespace TwoBears.Unit
 
             //Instantiate projectile
             Projectile proj = PoolManager.RequestPoolable(projectile, barrel.position, Quaternion.LookRotation(Vector3.forward, attackDirection)) as Projectile;
+
+            //Apply damage multiplier
+            proj.Damage = Mathf.CeilToInt(proj.Damage * damageMultiplier);
 
             //Add force
             proj.Launch(this, perceiver.Faction, attackDirection * projectileSpeed);

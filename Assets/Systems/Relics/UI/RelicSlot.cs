@@ -70,6 +70,8 @@ namespace TwoBears.Relics
         //Select
         public void Select()
         {
+            Debug.Log(index);
+
             selected = index;
             OnSelection?.Invoke();
 

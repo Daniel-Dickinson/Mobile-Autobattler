@@ -10,6 +10,21 @@ namespace TwoBears.Unit
         [SerializeField] private float health4 = 40;
         [SerializeField] private float health6 = 60;
 
+        //Access
+        public void ApplyBuffExternal(BaseUnit unit)
+        {
+            //Grab internal count
+            int count = state.GetCount(UnitClass.Defender);
+
+            //Calculate buff
+            float buff = GetBuffPercentile(count);
+            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * (buff / 100));
+
+            //Increase health pool
+            unit.RaiseMaxHealth(buffMultiplier);
+        }
+
+        //Core
         protected override void ApplyBuff(BaseUnit unit)
         {
             int count = state.GetCount(UnitClass.Defender);

@@ -19,6 +19,19 @@ namespace TwoBears.Unit
         private Vector3 attackPosition;
         private float attackTime;
 
+        //Buffs
+        public override float DamageMultiplier 
+        { 
+            get => base.DamageMultiplier;
+            set
+            {
+                base.DamageMultiplier = value;
+
+                if (weapon == null) weapon = GetComponent<Weapon>();
+                weapon.DamageMultiplier = value;
+            } 
+        }
+
         //Mono
         protected override void OnEnable()
         {

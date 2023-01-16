@@ -6,11 +6,12 @@ using TwoBears.Unit;
 
 namespace TwoBears.Relics
 {
-    public class Lifesteal : Relic
+    public class Frenzy : Relic
     {
         [Header("Effect")]
         [SerializeField] private UnitClass unitClass;
-        [SerializeField] private float lifesteal = 0.5f;
+        [SerializeField] private float damageMultiplier = 0.5f;
+        [SerializeField] private float attackSpeedMultiplier = 2.0f;
 
         //Core
         public override void ApplyBuff(RelicBuffer buffer, BaseUnit unit)
@@ -18,11 +19,12 @@ namespace TwoBears.Relics
             //Unit must match class
             if (!IsClass(unit, unitClass)) return;
 
-            //Grab weapon
-            Weapon weapon = GetComponent<Weapon>();
+            //Apply damage multiplier
+            unit.DamageMultiplier *= damageMultiplier;
 
-            //Apply lifesteal
-            if (weapon != null) weapon.Lifesteal += lifesteal;
+            //Apply attack speed
+            unit.hesitanceMin *= (1 / attackSpeedMultiplier);
+            unit.hesitanceMax *= (1 / attackSpeedMultiplier);
         }
         public override void ApplyBuffs(RelicBuffer buffer, List<BaseUnit> units)
         {

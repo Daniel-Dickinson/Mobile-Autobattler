@@ -112,8 +112,9 @@ namespace TwoBears.Waves
                 SpawnUnit(formation.back[x], new Vector3(localX, localY, 0));
             }
 
-            //Spawn event
+            //Spawn events
             OnSpawn?.Invoke();
+            PostSpawn?.Invoke();
         }
         public void SpawnUnit(FormationUnit unit, Vector3 localPosition)
         {
@@ -162,6 +163,7 @@ namespace TwoBears.Waves
 
             //On Summon
             OnSummon?.Invoke(unit);
+            PostSummon?.Invoke(unit);
         }
 
         //Debug

@@ -46,12 +46,13 @@ namespace TwoBears.Unit
         [SerializeField] private bool debugGoal = false;
         [SerializeField] private bool debugCrowd = false;
 
-        //Health
-        public void RaiseMaxHealth(int delta)
+        //Access
+        public Rigidbody2D RigidBody
         {
-            healthPool += delta;
-            health += delta;
+            get { return rb; }
         }
+
+        //Health
         public int MaxHealth
         {
             get { return healthPool; }
@@ -69,12 +70,6 @@ namespace TwoBears.Unit
         public UnitEvent OnDamaged;
         public UnitEvent OnHealed;
         public UnitEvent OnDeath;
-
-        //Access
-        public Rigidbody2D RigidBody
-        {
-            get { return rb; }
-        }
 
         //Components
         protected Perceiver perceiver;
@@ -99,7 +94,18 @@ namespace TwoBears.Unit
         private Vector3 moveVelocity;
 
         //Recovery
-        private float recoveryTime;        
+        private float recoveryTime;
+
+        //Buffs
+        public virtual float DamageMultiplier
+        {
+            get { return damageMultiplier; }
+            set
+            {
+                damageMultiplier = value;
+            }
+        }
+        protected float damageMultiplier = 1.0f;
 
         //Mono
         protected virtual void OnEnable()
@@ -182,6 +188,18 @@ namespace TwoBears.Unit
         public void UpdateAntiCrowding()
         {
             AntiCrowding();
+        }
+
+        //Buffing
+        public virtual void RaiseMaxHealth(int delta)
+        {
+            healthPool += delta;
+            health += delta;
+        }
+        public virtual void IncreaseRange(float amount)
+        {
+            //Increase max move range
+            moveRangeMax *= (1.0f + amount);
         }
 
         //Behaviour
@@ -359,6 +377,8 @@ namespace TwoBears.Unit
         }
         public void RestoreHealth(int amount)
         {
+            Debug.Log(amount);
+
             health = Mathf.Clamp(health + amount, 0, healthPool);
             OnHealed?.Invoke(this);
         }

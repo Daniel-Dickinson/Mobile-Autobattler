@@ -6,11 +6,11 @@ using TwoBears.Unit;
 
 namespace TwoBears.Relics
 {
-    public class Lifesteal : Relic
+    public class RangeIncrease : Relic
     {
         [Header("Effect")]
         [SerializeField] private UnitClass unitClass;
-        [SerializeField] private float lifesteal = 0.5f;
+        [SerializeField] private float amount = 0.4f;
 
         //Core
         public override void ApplyBuff(RelicBuffer buffer, BaseUnit unit)
@@ -18,11 +18,8 @@ namespace TwoBears.Relics
             //Unit must match class
             if (!IsClass(unit, unitClass)) return;
 
-            //Grab weapon
-            Weapon weapon = GetComponent<Weapon>();
-
-            //Apply lifesteal
-            if (weapon != null) weapon.Lifesteal += lifesteal;
+            //Increase movement & attack range
+            unit.IncreaseRange(amount);
         }
         public override void ApplyBuffs(RelicBuffer buffer, List<BaseUnit> units)
         {

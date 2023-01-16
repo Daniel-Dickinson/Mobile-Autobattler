@@ -19,15 +19,18 @@ MonoBehaviour:
   - relic: {fileID: 6478361114132848815, guid: 8c8ea0ee513cc664faf8a2f2f058cf8e, type: 3}
     unlocked: 1
     level: 0
-  - relic: {fileID: 7812175787660262704, guid: ed4ce39580f915c45983ac36e3240033, type: 3}
+  - relic: {fileID: -1854165626724131656, guid: d9c6e2e1992186745b53737174053148, type: 3}
     unlocked: 1
     level: 0
-  - relic: {fileID: 7812175787660262704, guid: d9c6e2e1992186745b53737174053148, type: 3}
+  - relic: {fileID: 737186996485551794, guid: ed4ce39580f915c45983ac36e3240033, type: 3}
     unlocked: 1
     level: 0
-  - relic: {fileID: 7812175787660262704, guid: c9f86e4e60da87e449972bd6042fe075, type: 3}
+  - relic: {fileID: 5146106403582374430, guid: c9f86e4e60da87e449972bd6042fe075, type: 3}
     unlocked: 1
     level: 0
-  - relic: {fileID: 7812175787660262704, guid: 17b83e09ec0857748a25dce3ce8a6d14, type: 3}
+  - relic: {fileID: 6247826059471774013, guid: 17b83e09ec0857748a25dce3ce8a6d14, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 4983742972182334163, guid: 07621d1db4b67a54fa10ba8334c8a2a3, type: 3}
     unlocked: 1
     level: 0
