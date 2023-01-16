@@ -67,8 +67,8 @@ namespace TwoBears.Unit
         protected UnitState state;
 
         //Events
-        public UnitEvent OnDamaged;
-        public UnitEvent OnHealed;
+        public UnitHealthEvent OnDamaged;
+        public UnitHealthEvent OnHealed;
         public UnitEvent OnDeath;
 
         //Components
@@ -124,9 +124,6 @@ namespace TwoBears.Unit
 
             //Enable sub-shape
             if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(true);
-
-            //Register
-            Register();
         }
         protected virtual void OnDisable()
         {
@@ -147,8 +144,11 @@ namespace TwoBears.Unit
         }
 
         //Registration -- Into Unit Manager
-        private void Register()
+        public void Initialize()
         {
+            //Set faction before registration
+            //Must be called manually after faction is set
+
             UnitManager.RegisterUnit(this);
         }
         private void Deregister()
@@ -252,22 +252,34 @@ namespace TwoBears.Unit
             Vector3 direction = goalVector.normalized;
             float distance = goalVector.magnitude;
 
-            //Circle & avoid obstacles as we get close
-            if (antiCrowd.x != 0) direction = Quaternion.Euler(0, 0, -antiCrowd.x) * direction;
-
-            //Don't get closer than movement range
-            if ((path != null && pathIndex >= path.path.Count - 1) || Vector3.Distance(goalPosition, movementTarget.transform.position) <= MovementRange(distance))
+            //Switch between movement behaviours -- AntiCrowd returns very different between modes
+            if (distance <= circleRange)
             {
-                //Charge forward by default
-                goalPosition = movementTarget.transform.position - (direction * MovementRange(distance));
+                //Calculate ideal surround distance
+                float surroundDistance = MovementRange(distance);
 
-                //Move backwards if crowded
-                if (antiCrowd.y < 0) goalPosition = transform.position + (antiCrowd.y * direction * circleSpeed);
+                //Circle & avoid obstacles as we get close
+                if (antiCrowd.x != 0) direction = Quaternion.Euler(0, 0, -antiCrowd.x) * direction;
+
+                //Don't get closer than movement range
+                if ((path != null && pathIndex >= path.path.Count - 1) || distance <= surroundDistance)
+                {
+                    if (antiCrowd.y >= 0)
+                    {
+                        //Charge forward by default
+                        goalPosition = movementTarget.transform.position - (direction * surroundDistance);
+                    }
+                    else
+                    {
+                        //Move backwards if crowded
+                        goalPosition = transform.position + (antiCrowd.y * direction * circleSpeed);
+                    }
+                }
             }
             else
             {
                 //Offset goal position to split crowded units up on approach
-                if (distance >= circleRange) goalPosition += new Vector3(antiCrowd.x, antiCrowd.y);
+                goalPosition += new Vector3(antiCrowd.x, antiCrowd.y, 0);
             }
 
             //Move
@@ -331,7 +343,7 @@ namespace TwoBears.Unit
         }
         private Vector3 TraversePath(Vector3 goalPosition)
         {
-            if (path == null) return goalPosition;
+            if (path == null) return transform.position;
 
             //Get next position
             Vector3 nextPosition = (Vector3)path.path[pathIndex].position;
@@ -350,7 +362,11 @@ namespace TwoBears.Unit
         private void AntiCrowding()
         {
             //Movement target required
-            if (movementTarget == null) return;
+            if (movementTarget == null)
+            {
+                antiCrowd = Vector2.zero;
+                return;
+            }
 
             //Calculate path position
             Vector3 goalVector = movementTarget.transform.position - transform.position;
@@ -363,24 +379,29 @@ namespace TwoBears.Unit
         private Vector2 AntiCrowding(float distance, Vector3 direction)
         {
             if (distance <= circleRange) return movementTarget.CalculateApproachDirection(perceiver, direction, distance, circleMode, debugCrowd) * circleSpeed;
-            else return perceiver.SelfAntiCrowding(movementTarget, direction);
+            else return perceiver.NearestAntiCrowding(movementTarget);
         }
 
         //Health
         public void RemoveHealth(int damage)
         {
-            //Damage
-            health -= damage;
-            OnDamaged?.Invoke(this);
+            //Can only lower to zero
+            int delta = Mathf.Min(health, damage);
 
+            //Damage
+            health -= delta;
+            OnDamaged?.Invoke(delta);
+
+            //Kill if zero
             if (health <= 0) Kill();
         }
         public void RestoreHealth(int amount)
         {
-            Debug.Log(amount);
+            //Can only raise to max health
+            int delta = Mathf.Min(amount, healthPool - health);
 
-            health = Mathf.Clamp(health + amount, 0, healthPool);
-            OnHealed?.Invoke(this);
+            health = Mathf.Clamp(health + delta, 0, healthPool);
+            OnHealed?.Invoke(delta);
         }
 
         //Particles
@@ -435,4 +456,5 @@ namespace TwoBears.Unit
     public enum UnitClass { None, Warrior, Defender, Ranger, Healer, Caster, Merchant, Summoner, Minion }
 
     public delegate void UnitEvent(BaseUnit unit);
+    public delegate void UnitHealthEvent(int delta);
 }

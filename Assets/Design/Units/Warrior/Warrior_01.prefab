@@ -224,7 +224,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   crowdingRadius: 1
-  crowdingSpread: 0.4
+  crowdingSpread: 0.5
   rayCount: 32
   nearDistance: 2
   farDistance: 6
@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   knockback: 6
+  lifesteal: 0
   units:
     serializedVersion: 2
     m_Bits: 64

@@ -116,7 +116,7 @@ namespace TwoBears.Perception
         }
 
         //Crowding
-        public Vector2 SelfAntiCrowding(Perceivable target, Vector3 direction)
+        public Vector2 NearestAntiCrowding(Perceivable target)
         {
             //Track crowding
             Vector3 nearestVector = Vector2.zero;
@@ -150,18 +150,69 @@ namespace TwoBears.Perception
             }
 
             //Calculate direction to unit
-            Vector3 nearestDirection = nearestVector.normalized;
-
-            //Calculate relative direction
-            Vector3 relativeDirection = transform.InverseTransformDirection(-nearestDirection);
+            Vector3 nearestDirection = -nearestVector.normalized;
 
             //Calculate severity
             float crowdingStrength = (1 - Mathf.Clamp01(nearestDistance / crowdingRadius)) * crowdingSpread;
 
             //Calculate anti-crowding
-            Vector3 crowding = relativeDirection * crowdingStrength;
+            Vector3 crowding = nearestDirection * crowdingStrength;
 
             Debug.DrawRay(transform.position, nearestDirection * 0.1f, Color.red);
+
+            //Return total crowding
+            return crowding;
+        }
+        public Vector2 CumulativeAntiCrowding(Perceivable target, Vector3 inputDirection)
+        {
+            //Track crowding
+            int total = 0;
+            Vector3 crowdingVector = Vector2.zero;
+
+            for (int i = 0; i < perceivables.Count; i++)
+            {
+                //Grab other
+                Perceivable other = perceivables[i];
+
+                //Must be valid
+                if (other == null) continue;
+
+                //Don't test against self or target
+                if (other == this) continue;
+                if (other == target) continue;
+
+                //Calculate vector to unit
+                Vector3 otherVector = transform.position - other.transform.position;
+                float otherDistance = otherVector.magnitude;
+
+                //Distance check
+                if (otherDistance > crowdingRadius) continue;
+
+                //Calculate direction of vector
+                Vector3 vectorDirection = crowdingVector.normalized;
+
+                //Invert vector strength relative to crowding radius
+                float crowdingStrength = (1 - Mathf.Clamp01(crowdingVector.magnitude / crowdingRadius));
+
+                //Add vector
+                crowdingVector += vectorDirection * crowdingStrength;
+
+                //Track vector
+                total++;
+            }
+
+            //Valid vector required
+            if (total == 0) return Vector2.zero;
+
+            //Average out vector
+            crowdingVector /= total;
+
+            //Apply vector spread
+            Vector3 crowding = crowdingVector * crowdingSpread;
+
+            //NaN check
+            if (float.IsNaN(crowding.x)) crowding.x = 0;
+            if (float.IsNaN(crowding.y)) crowding.y = 0;
 
             //Return total crowding
             return crowding;
@@ -188,7 +239,7 @@ namespace TwoBears.Perception
                 float otherDistance = otherVector.magnitude;
 
                 //Distance check
-                if (otherDistance > inputDistance * 1.2f) continue;
+                if (otherDistance > inputDistance * 1.6f) continue;
 
                 //Calculate direction to unit
                 Vector3 otherDirection = otherVector.normalized;

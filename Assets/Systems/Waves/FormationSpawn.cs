@@ -25,9 +25,11 @@ namespace TwoBears.Waves
         //Events
         public Action OnSpawn;
         public Action PostSpawn;
+        public Action TrackSpawn;
 
         public UnitEvent OnSummon;
         public UnitEvent PostSummon;
+        public UnitEvent TrackSummon;
 
         //Spawns
         public List<BaseUnit> Spawns
@@ -115,6 +117,7 @@ namespace TwoBears.Waves
             //Spawn events
             OnSpawn?.Invoke();
             PostSpawn?.Invoke();
+            TrackSpawn?.Invoke();
         }
         public void SpawnUnit(FormationUnit unit, Vector3 localPosition)
         {
@@ -141,14 +144,22 @@ namespace TwoBears.Waves
             //Rename
             spawn.name = source.name;
 
-            //Track unit
+            //Track unit & initialize
             BaseUnit spawnedUnit = spawn.GetComponent<BaseUnit>();
-            if (spawnedUnit != null) spawns.Add(spawnedUnit);
+            if (spawnedUnit != null)
+            {
+                spawns.Add(spawnedUnit);
+                spawnedUnit.Initialize();
+            }
             else
             {
-                //Track swarm units
+                //Track swarm units & initialize
                 BaseUnit[] spawnedUnits = spawn.GetComponentsInChildren<BaseUnit>();
-                for (int i = 0; i < spawnedUnits.Length; i++) spawns.Add(spawnedUnits[i]);
+                for (int i = 0; i < spawnedUnits.Length; i++)
+                {
+                    spawns.Add(spawnedUnits[i]);
+                    spawnedUnits[i].Initialize();
+                }
             }
         }
 
@@ -161,9 +172,13 @@ namespace TwoBears.Waves
             //Add unit -- can now be cleared at end of round
             spawns.Add(unit);
 
+            //Initialize unit
+            unit.Initialize();
+
             //On Summon
             OnSummon?.Invoke(unit);
             PostSummon?.Invoke(unit);
+            TrackSummon?.Invoke(unit);
         }
 
         //Debug

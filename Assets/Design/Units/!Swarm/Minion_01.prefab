@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
-  radius: 0.4
+  radius: 0.3
   unitMask:
     serializedVersion: 2
     m_Bits: 448
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   knockback: 4
+  lifesteal: 0
   units:
     serializedVersion: 2
     m_Bits: 64

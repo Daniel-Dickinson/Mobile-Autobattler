@@ -47,12 +47,12 @@ namespace TwoBears.Unit
             SetColor(unit);
         }
 
-        private void OnDamage(BaseUnit unit)
+        private void OnDamage(int delta)
         {
             StopAllCoroutines();
             StartCoroutine(FrameFlash(Color.white));
         }
-        private void OnHeal(BaseUnit unit)
+        private void OnHeal(int delta)
         {
             StopAllCoroutines();
 

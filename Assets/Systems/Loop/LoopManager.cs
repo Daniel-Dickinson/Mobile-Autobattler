@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 using TwoBears.Waves;
-using TwoBears.Perception;
 using TwoBears.Persistance;
 using TwoBears.Relics;
 using TwoBears.Unit;
-using System;
 
 namespace TwoBears.Loop
 {
@@ -19,6 +18,9 @@ namespace TwoBears.Loop
         [Header("Spawners")]
         public FormationSpawn player;
         public FormationSpawn hostile;
+
+        [Header("Combat")]
+        public BattleBar battleBar;
 
         [Header("Waves")]
         public ProceduralFormation waves;
@@ -111,6 +113,9 @@ namespace TwoBears.Loop
             //Spawn units
             PersistanceManager.SetupWaves();
 
+            //Initialize Battle bar
+            battleBar.Show();
+
             //Track units
             TrackHostileUnits();
             TrackPlayerUnits();
@@ -170,15 +175,18 @@ namespace TwoBears.Loop
                 //Initialize UI
                 complete.OnComplete();
 
-                //Clear wave
-                PersistanceManager.ClearWaves();
-
                 //Increment wave
                 state.Wave++;
 
                 //Stage change
                 OnStageChange?.Invoke();
             }
+
+            //Hide battle bar
+            battleBar.Hide();
+
+            //Clear wave
+            PersistanceManager.ClearWaves();
         }
         private void OnRelicSelected()
         {
@@ -190,9 +198,6 @@ namespace TwoBears.Loop
 
             //Initialize UI
             complete.OnComplete();
-
-            //Clear wave
-            PersistanceManager.ClearWaves();
 
             //Increment wave
             state.Wave++;
@@ -222,6 +227,9 @@ namespace TwoBears.Loop
 
             //Reduce lives
             state.Lives -= 1;
+
+            //Hide battle bar
+            battleBar.Hide();
 
             //State change
             OnStageChange?.Invoke();
