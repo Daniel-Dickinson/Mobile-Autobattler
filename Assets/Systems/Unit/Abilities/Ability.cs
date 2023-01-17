@@ -4,10 +4,11 @@ using UnityEngine;
 
 using TwoBears.Perception;
 using TwoBears.Waves;
+using TwoBears.Pooling;
 
 namespace TwoBears.Unit
 {
-    public abstract class Ability : MonoBehaviour
+    public abstract class Ability : Poolable
     {
         public abstract bool IsTargetValid(Perceivable self, Perceivable target);
         public abstract void Trigger(Perceivable self, Perceivable target);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TwoBears.Perception;
+using TwoBears.Pooling;
 using UnityEngine;
 
 namespace TwoBears.Unit
@@ -9,13 +10,28 @@ namespace TwoBears.Unit
     {
         [Header("Ability")]
         [SerializeField] private Ability ability;
+        [SerializeField] private AbilityMode mode;
         [SerializeField] private TargetingMode targeting;
-        [SerializeField] private bool attachToTarget = false;
         [SerializeField] private float abilityRange = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
+        //Buff Access
+        public int ChainIncrease
+        {
+            get { return chainIncrease; }
+            set { chainIncrease = value; }
+        }
+        public float AOEMultiplier
+        {
+            get { return aoeMultiplier; }
+            set { aoeMultiplier = value; }
+        }
+
+        //Buffing
+        private int chainIncrease = 0;
+        private float aoeMultiplier = 1.0f;
+
         //Targeting
-        private Vector3 abilityPosition;
         private Vector3 abilityDirection;
         private Perceivable abilityTarget;
 
@@ -73,7 +89,6 @@ namespace TwoBears.Unit
                     abilityTarget = actionTarget;
 
                     //Calculate direction
-                    abilityPosition = abilityTarget.transform.position;
                     abilityDirection = (abilityTarget.transform.position - transform.position).normalized;
                 }
             }
@@ -81,20 +96,29 @@ namespace TwoBears.Unit
         protected override void Action(float deltaTime)
         {
             //Projectile required
-            if (ability == null) return;
+            if (this.ability == null) return;
 
             //Must still be attacking
             if (state != UnitState.Actioning) return;
 
-            //Declare ability
-            Ability proj = null;
+            switch (mode)
+            {
+                case AbilityMode.Attached:
 
-            //Instantiate projectile
-            if (attachToTarget) proj = Instantiate(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection), abilityTarget.transform);
-            else proj = Instantiate(ability, abilityPosition, Quaternion.LookRotation(Vector3.forward, abilityDirection));
+                    Ability instance = PoolManager.RequestPoolable(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection), abilityTarget.transform) as Ability;
+                    instance.Trigger(perceiver, abilityTarget);
+                    break;
 
-            //Tigger ability
-            proj.Trigger(perceiver, abilityTarget);
+                case AbilityMode.Chain:
+
+                    ChainAbility chain = PoolManager.RequestPoolable(ability, transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection)) as ChainAbility;
+
+                    chain.ChainIncrease = chainIncrease;
+                    chain.DistanceMultiplier *= aoeMultiplier;
+
+                    chain.Trigger(perceiver, abilityTarget);
+                    break;
+            }            
 
             //Play animation
             //if (anim != null) anim.Play("Attack");
@@ -105,4 +129,5 @@ namespace TwoBears.Unit
     }
 
     public enum TargetingMode { Caster, Healer, Necromancer }
+    public enum AbilityMode { Attached, Chain }
 }

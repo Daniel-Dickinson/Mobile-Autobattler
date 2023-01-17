@@ -38,6 +38,12 @@ namespace TwoBears.Perception
         protected static List<Perceivable> perceivables;
         protected static List<Perceivable> corpses;
 
+        //Data Access
+        public static List<Perceivable> Perceivables
+        {
+            get { return perceivables; }
+        }
+
         //Access
         public Faction Faction
         {

@@ -34,3 +34,9 @@ MonoBehaviour:
   - relic: {fileID: 4983742972182334163, guid: 07621d1db4b67a54fa10ba8334c8a2a3, type: 3}
     unlocked: 1
     level: 0
+  - relic: {fileID: 737186996485551794, guid: 0c82a8f62ea03e7438f1276034bac235, type: 3}
+    unlocked: 1
+    level: 0
+  - relic: {fileID: 8243553826115841037, guid: b6f63ac37254b8e42be89f07bf969130, type: 3}
+    unlocked: 1
+    level: 0

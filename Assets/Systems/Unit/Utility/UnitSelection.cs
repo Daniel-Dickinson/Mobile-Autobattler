@@ -25,7 +25,7 @@ namespace TwoBears.Unit
         public UnitType priest;
 
         [Header("Casters")]
-        public UnitType mage;
+        public UnitType wizard;
 
         [Header("Summoners")]
         public UnitType swarm;
@@ -69,7 +69,7 @@ namespace TwoBears.Unit
 
                 //Casters
                 case 40:
-                    return mage.GetUnit(level);
+                    return wizard.GetUnit(level);
 
                 //Summoners
 

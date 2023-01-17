@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 1965794169}
   - component: {fileID: 1965794171}
   - component: {fileID: 2202004004490725319}
+  - component: {fileID: 2640548637894799593}
   - component: {fileID: 2255191668840986671}
   m_Layer: 0
   m_Name: Player
@@ -1257,6 +1258,23 @@ MonoBehaviour:
   damage4: 1
   health2: 2
   health4: 2
+--- !u!114 &2640548637894799593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451538162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da2f0fdf4849da419242a98f2723287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: {fileID: 11400000, guid: 4ef1b24167f471f4a80d12dcbba6e692, type: 2}
+  timing: 0
+  aoe2: 20
+  aoe4: 40
+  aoe6: 60
 --- !u!114 &2255191668840986671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27496,7 +27514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: 0}
+  m_AnchoredPosition: {x: 6, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5222638703637407273
@@ -38327,7 +38345,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7083557563290562127
 MonoBehaviour:

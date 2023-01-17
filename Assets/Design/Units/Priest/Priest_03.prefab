@@ -186,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: abilityRange
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: hesitanceMax
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: moveRangeMax
-      value: 5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: shapes.Array.size
