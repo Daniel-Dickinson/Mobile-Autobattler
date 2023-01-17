@@ -142,7 +142,7 @@ namespace TwoBears.Unit
                 otherUnit.RemoveHealth(damage);
 
                 //Play hit effect
-                otherUnit.TriggerParticles(-transform.forward, damage);
+                otherUnit.TriggerHitParticles(-transform.forward, damage);
 
                 //Ignore unit
                 ignore.Add(collision.rigidbody);

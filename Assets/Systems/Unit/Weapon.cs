@@ -134,7 +134,7 @@ namespace TwoBears.Unit
                 shaker.Trigger();
 
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction, Damage);
+                targetUnit.TriggerHitParticles(-direction, Damage);
                 return;
             }
         }
@@ -198,7 +198,7 @@ namespace TwoBears.Unit
                 shaker.Trigger();
 
                 //Play hit effect
-                targetUnit.TriggerParticles(-direction, Damage);
+                targetUnit.TriggerHitParticles(-direction, Damage);
 
                 return;
             }

@@ -260,6 +260,7 @@ MonoBehaviour:
   circleSpeed: 1
   hesitanceMin: 0.6
   hesitanceMax: 0.8
+  healEffect: {fileID: 4765556252206250711, guid: c59bdad116859654b9f203e4f02e0fb6, type: 3}
   hitEffect: {fileID: 6521310779412066756, guid: 0dc525acc1e6a634c85423f4b91366f9, type: 3}
   hitRadius: 0.2
   shapes:

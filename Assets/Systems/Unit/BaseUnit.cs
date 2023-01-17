@@ -36,6 +36,7 @@ namespace TwoBears.Unit
         public float hesitanceMax = 1.0f;
 
         [Header("Particles")]
+        public Poolable healEffect;
         public Poolable hitEffect;
         public float hitRadius = 0.2f;
 
@@ -401,13 +402,28 @@ namespace TwoBears.Unit
         {
             //Can only raise to max health
             int delta = Mathf.Min(amount, healthPool - health);
+            if (delta == 0) return;
 
+            //Play particles
+            TriggerHealParticles(delta);
+
+            //Increase health
             health = Mathf.Clamp(health + delta, 0, healthPool);
+
+            //Heal event
             OnHealed?.Invoke(delta);
         }
 
         //Particles
-        public void TriggerParticles(Vector3 direction, int damage)
+        public void TriggerHealParticles(int healing)
+        {
+            //Request particle system
+            Poolable heal = PoolManager.RequestPoolable(healEffect, transform.position, Quaternion.LookRotation(Vector3.forward, transform.up), transform);
+
+            //Activate particles
+            heal.GetComponent<HealEffect>().ActivateParticles(healing);
+        }
+        public void TriggerHitParticles(Vector3 direction, int damage)
         {
             //Request particle system
             Poolable hit = PoolManager.RequestPoolable(hitEffect, transform.position + (direction * hitRadius), Quaternion.LookRotation(Vector3.forward, direction));

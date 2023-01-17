@@ -19,7 +19,7 @@ namespace TwoBears.Relics
             if (!IsClass(unit, unitClass)) return;
 
             //Grab weapon
-            Weapon weapon = GetComponent<Weapon>();
+            Weapon weapon = unit.GetComponent<Weapon>();
 
             //Apply lifesteal
             if (weapon != null) weapon.Lifesteal += lifesteal;
