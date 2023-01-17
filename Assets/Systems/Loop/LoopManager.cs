@@ -24,12 +24,18 @@ namespace TwoBears.Loop
 
         [Header("Waves")]
         public ProceduralFormation waves;
-        
+        public int finalWave = 100;
+
+        [Header("Demo")]
+        public bool isDemo;
+        public int demoCap = 35;
+
         [Header("UI Elements")]
         public GameObject shop;
         public RelicSelection relic;
         public CompleteUI complete;
-        public GameObject defeat;
+        public DefeatUI defeat;
+        public DemoUI demo;
 
         //State Access
         public static LoopStage Stage
@@ -89,7 +95,8 @@ namespace TwoBears.Loop
             shop.SetActive(true);
             relic.gameObject.SetActive(false);
             complete.gameObject.SetActive(false);
-            defeat.SetActive(false);
+            defeat.gameObject.SetActive(false);
+            demo.gameObject.SetActive(false);
         }
         public void RestartShowShop()
         {
@@ -159,27 +166,36 @@ namespace TwoBears.Loop
         
         private void OnWaveComplete()
         {
-            if ((state.Wave + 1) % 5 == 0)
+            //Check for demo
+            if (isDemo && (state.Wave + 1) > demoCap)
             {
-                //Delay complete UI until after a relic
-                relic.gameObject.SetActive(true);
-
-                //Initialize relic UI
-                relic.Initialize();
+                demo.gameObject.SetActive(true);
+                demo.OnComplete();
             }
             else
             {
-                //Show UI
-                complete.gameObject.SetActive(true);
+                if ((state.Wave + 1) % 5 == 0)
+                {
+                    //Delay complete UI until after a relic
+                    relic.gameObject.SetActive(true);
 
-                //Initialize UI
-                complete.OnComplete();
+                    //Initialize relic UI
+                    relic.Initialize();
+                }
+                else
+                {
+                    //Show UI
+                    complete.gameObject.SetActive(true);
 
-                //Increment wave
-                state.Wave++;
+                    //Initialize UI
+                    complete.OnComplete();
 
-                //Stage change
-                OnStageChange?.Invoke();
+                    //Increment wave
+                    state.Wave++;
+
+                    //Stage change
+                    OnStageChange?.Invoke();
+                }
             }
 
             //Hide battle bar
@@ -222,7 +238,8 @@ namespace TwoBears.Loop
             else
             {
                 //Show UI
-                defeat.SetActive(true);
+                defeat.gameObject.SetActive(true);
+                defeat.OnDefeat();
             }
 
             //Reduce lives

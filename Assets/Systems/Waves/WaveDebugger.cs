@@ -27,7 +27,9 @@ namespace TwoBears.Waves
         //Core
         private void DebugInput()
         {
+        #if UNITY_EDITOR
             if (Input.GetKeyDown(clearWave)) spawner.KillAll();
+        #endif
         }
     }
 }

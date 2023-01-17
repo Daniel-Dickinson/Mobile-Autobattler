@@ -343,7 +343,9 @@ namespace TwoBears.Unit
         }
         private Vector3 TraversePath(Vector3 goalPosition)
         {
+            //Valid path required
             if (path == null) return transform.position;
+            if (path.path == null || path.path.Count == 0) return transform.position;
 
             //Get next position
             Vector3 nextPosition = (Vector3)path.path[pathIndex].position;

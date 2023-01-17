@@ -19,6 +19,9 @@ namespace TwoBears.Relics
         public string title;
         [TextArea(4, 5)] public string information;
 
+        [Header("Selection")]
+        public CanvasGroup darkener;
+
         [Header("Tooltip")]
         public GameObject tooltip;
 
@@ -77,6 +80,9 @@ namespace TwoBears.Relics
         public void EnableTooltip()
         {
             tooltipEnabled = true;
+
+            //Darken tooltip
+            darkener.alpha = 1.0f;
         }
 
         private void ToggleTooltip()
@@ -98,7 +104,13 @@ namespace TwoBears.Relics
         private void UpdateTooltip()
         {
             if (tooltip == null) return;
-            tooltip.SetActive(tooltipEnabled && selectedRelic == id);
+
+            //Update display
+            if (tooltipEnabled)
+            {
+                tooltip.SetActive(selectedRelic == id);
+                darkener.alpha = (selectedRelic == id)? 0.0f: 1.0f;
+            }
         }
 
         public static void CloseAllTooltips()

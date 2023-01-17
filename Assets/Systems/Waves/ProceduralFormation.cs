@@ -176,7 +176,7 @@ namespace TwoBears.Waves
             }
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         //Autobalance
         public void AutoBalanceWaves()
         {
@@ -237,8 +237,9 @@ namespace TwoBears.Waves
                 pointTotal += Mathf.FloorToInt(gold);
             }
         }
+        #endif
     }
-#endif
+
 
     [System.Serializable]
     public class ProceduralWave
