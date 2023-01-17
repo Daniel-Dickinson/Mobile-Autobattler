@@ -404,7 +404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defenders passively heal 3 health every 3 seconds.
+  m_text: Defenders passively heal 2 health every 4 seconds.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84ca95b1dd2759d43ba005dbc5c31b9c, type: 2}
   m_sharedMaterial: {fileID: -561441160537615080, guid: 84ca95b1dd2759d43ba005dbc5c31b9c, type: 2}
@@ -1023,9 +1023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   title: Holy Oil
-  information: Defenders passively heal 3 health every 3 seconds.
+  information: Defenders passively heal 2 health every 4 seconds.
   darkener: {fileID: 5589616564818489893}
   tooltip: {fileID: 7651812135979509741}
   unitClass: 2
-  amount: 3
-  tickSpeed: 0.33
+  amount: 2
+  tickSpeed: 0.25
