@@ -94,6 +94,13 @@ namespace TwoBears.Unit
         private float recoveryTime;
 
         //Buffs
+        public virtual float MoveSpeedIncrease
+        {
+            get { return moveSpeedIncrease; }
+            set { moveSpeedIncrease = value; }
+        }
+        private float moveSpeedIncrease = 0;
+        
         public virtual float DamageMultiplier
         {
             get { return damageMultiplier; }
@@ -247,7 +254,7 @@ namespace TwoBears.Unit
         protected virtual void Move(float deltaTime)
         {
             //Calculate move speed
-            float speed = moveSpeed * globalMoveSpeedModifier;
+            float speed = (moveSpeed + moveSpeedIncrease) * globalMoveSpeedModifier;
 
             //Calculate path position
             Vector2 goalPosition = TraversePath(movementTarget.transform.position, speed);
@@ -286,10 +293,7 @@ namespace TwoBears.Unit
                 goalPosition += antiCrowd;
             }
 
-            //Move
-            //Vector3 movePosition = Vector3.MoveTowards(transform.position, goalPosition, moveSpeed * 0.1f * deltaTime);
-            //rb.MovePosition(movePosition);
-
+            //Set velocity to move
             rb.velocity = (goalPosition - rb.position).normalized * speed;
 
             //Debug move position

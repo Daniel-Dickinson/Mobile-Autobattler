@@ -6,33 +6,22 @@ namespace TwoBears.Unit
 {
     public class WarriorBuffer : UnitBuffer
     {
+        [Header("Damage")]
         [SerializeField] private int damage2 = 1;
         [SerializeField] private int damage4 = 3;
         [SerializeField] private int damage6 = 6;
 
-        [SerializeField] private float knockback2 = 20;
-        [SerializeField] private float knockback4 = 40;
-        [SerializeField] private float knockback6 = 60;
+        [Header("Move Speed")]
+        [SerializeField] private float moveSpeed2 = 1.0f;
+        [SerializeField] private float moveSpeed4 = 1.5f;
+        [SerializeField] private float moveSpeed6 = 2.0f;
 
         //Access
         public void ApplyBuffExternal(BaseUnit unit)
         {
             //Grab internaal count
             int count = state.GetCount(UnitClass.Warrior);
-
-            //Grab weapon
-            Weapon weapon = unit.GetComponent<Weapon>();
-            if (weapon == null) return;
-
-            //Calculate knockback buff
-            float buff = GetKnockbackPercentile(count);
-            float buffMultiplier = 1 + (buff / 100.0f);
-
-            //Increase knockback
-            weapon.Knockback *= buffMultiplier;
-
-            //Increase base damage
-            weapon.BaseDamage += GetDamage(count);
+            ApplyBuff(unit, count);
         }
 
         //Core
@@ -54,16 +43,12 @@ namespace TwoBears.Unit
 
         private void ApplyBuff(BaseUnit unit, int count)
         {
+            //Increase movespeed
+            unit.MoveSpeedIncrease += GetMoveSpeedIncrease(count);
+
             //Grab weapon
             Weapon weapon = unit.GetComponent<Weapon>();
             if (weapon == null) return;
-
-            //Calculate knockback buff
-            float buff = GetKnockbackPercentile(count);
-            float buffMultiplier = 1 + (buff / 100.0f);
-
-            //Increase knockback
-            weapon.Knockback *= buffMultiplier;
 
             //Increase damage
             weapon.BaseDamage += GetDamage(count);
@@ -86,7 +71,7 @@ namespace TwoBears.Unit
                     return damage6;
             }
         }
-        private float GetKnockbackPercentile(int count)
+        private float GetMoveSpeedIncrease(int count)
         {
             switch (count)
             {
@@ -95,12 +80,12 @@ namespace TwoBears.Unit
                     return 0;
                 case 2:
                 case 3:
-                    return knockback2;
+                    return moveSpeed2;
                 case 4:
                 case 5:
-                    return knockback4;
+                    return moveSpeed4;
                 case > 5:
-                    return knockback6;
+                    return moveSpeed6;
             }
         }
     }
