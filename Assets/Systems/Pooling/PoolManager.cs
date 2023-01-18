@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TwoBears.Loop;
+using TwoBears.Persistance;
 using UnityEngine;
 
 namespace TwoBears.Pooling
@@ -14,6 +16,14 @@ namespace TwoBears.Pooling
         {
             //Set as manager
             manager = this;
+
+            //Attach to clear event
+            PersistanceManager.OnClear += ReturnAllPoolables;
+        }
+        private void OnDestroy()
+        {
+            //Detach from clear event
+            PersistanceManager.OnClear -= ReturnAllPoolables;
         }
         private void Update()
         {
@@ -67,6 +77,14 @@ namespace TwoBears.Pooling
             {
                 Debug.LogWarning("Poolable Instantiated directly! Please ");
                 return false;
+            }
+        }
+        public static void ReturnAllPoolables()
+        {
+            if (pools == null) return;
+            foreach (KeyValuePair<string, ItemPool> pair in pools)
+            {
+                pair.Value.ReturnAll(manager);
             }
         }
 
@@ -159,6 +177,10 @@ namespace TwoBears.Pooling
 
             //Add to pool
             pooledItems.Add(poolable);
+        }
+        public void ReturnAll(PoolManager manager)
+        {
+            for (int i = activeItems.Count - 1; i >= 0; i--) Return(manager, activeItems[i]);
         }
 
         //Destoyed

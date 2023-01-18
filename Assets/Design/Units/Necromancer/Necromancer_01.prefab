@@ -248,15 +248,15 @@ MonoBehaviour:
   secondary: 5
   tertiary: 0
   healthPool: 4
-  moveSpeed: 12
+  moveSpeed: 5
   moveSmooth: 0.2
   moveRangeMin: 1
-  moveRangeMax: 5.5
+  moveRangeMax: 6.6
   circleMode: 1
   circleRange: 3
   circleSpeed: 0.01
-  hesitanceMin: 3
-  hesitanceMax: 4
+  hesitanceMin: 0.6
+  hesitanceMax: 1
   healEffect: {fileID: 4765556252206250711, guid: c59bdad116859654b9f203e4f02e0fb6, type: 3}
   hitEffect: {fileID: 6521310779412066756, guid: 0dc525acc1e6a634c85423f4b91366f9, type: 3}
   hitRadius: 0.2
@@ -264,10 +264,10 @@ MonoBehaviour:
   - {fileID: 3060194206358215901}
   debugGoal: 0
   debugCrowd: 0
-  ability: {fileID: 2965820149908257124, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+  ability: {fileID: 5664907577405114311, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+  mode: 1
   targeting: 2
-  attachToTarget: 0
-  abilityRange: 6
+  abilityRange: 7
   recovery: 0.1
 --- !u!114 &1380182028688600670
 MonoBehaviour:

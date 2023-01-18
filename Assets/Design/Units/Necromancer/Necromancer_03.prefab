@@ -247,26 +247,18 @@ PrefabInstance:
     - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 5661194901769859353, guid: 8b6006af909be3e4badabc849a976e32, type: 3}
+      objectReference: {fileID: 2965026755219427258, guid: 8b6006af909be3e4badabc849a976e32, type: 3}
     - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
       propertyPath: healthPool
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
       propertyPath: abilityRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
-      propertyPath: hesitanceMax
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
-      propertyPath: hesitanceMin
-      value: 2.2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2372541934244895800, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
       propertyPath: moveRangeMax
-      value: 9.5
+      value: 8.6
       objectReference: {fileID: 0}
     - target: {fileID: 5340621677364441898, guid: 663addd784123b3409a3c902fa6dc5cb, type: 3}
       propertyPath: m_LocalScale.x

@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 3988129102394126779, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 6555456649819972966, guid: 76e4f1b7c8063ef49b66eddff507436b, type: 3}
+      objectReference: {fileID: 4512261032282212991, guid: de46331af64528b4d904148645669c98, type: 3}
     - target: {fileID: 3988129102394126779, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
       propertyPath: moveSpeed
       value: 13
@@ -338,11 +338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
       propertyPath: hesitanceMax
-      value: 2.3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
       propertyPath: hesitanceMin
-      value: 1.4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: 2eaeff2ddcb357244a3fb50d4352e212, type: 3}
       propertyPath: moveRangeMax

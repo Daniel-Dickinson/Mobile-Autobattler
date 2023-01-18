@@ -121,7 +121,7 @@ namespace TwoBears.Unit
             seeker = GetComponent<Seeker>();
 
             //Randomize build time
-            targetTime = Random.Range(0, hesitanceMax);
+            targetTime = Random.Range(hesitanceMin, hesitanceMax);
 
             //Enable sub-shape
             if (shapes != null) foreach (GameObject shape in shapes) shape.SetActive(true);
@@ -441,15 +441,19 @@ namespace TwoBears.Unit
             recoveryTime = duration;
 
             //Randomize build time
-            targetTime = UnityEngine.Random.Range(hesitanceMin, hesitanceMax);
+            targetTime = Random.Range(hesitanceMin, hesitanceMax);
         }
-        public void KnockBack(Vector2 knockback)
+        public virtual void KnockBack(Vector2 knockback)
         {
             state = UnitState.Recovering;
 
             //Add knockback force
             if (rb == null) rb = GetComponent<Rigidbody2D>();
             rb.AddForce(knockback, ForceMode2D.Impulse);
+
+            //Add minimaal recovery time
+            //Prevents instant recovery before velocity has time to apply
+            recoveryTime = 0.1f;
 
             //Randomize build time
             targetTime = Random.Range(hesitanceMin, hesitanceMax);

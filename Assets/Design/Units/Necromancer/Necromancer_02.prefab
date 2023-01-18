@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
       propertyPath: ability
       value: 
-      objectReference: {fileID: 7238816188528808763, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      objectReference: {fileID: 270231523239128472, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
     - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
       propertyPath: healthPool
       value: 4
@@ -333,16 +333,8 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
-      propertyPath: hesitanceMax
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
-      propertyPath: hesitanceMin
-      value: 2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
       propertyPath: moveRangeMax
-      value: 7.5
+      value: 7.6
       objectReference: {fileID: 0}
     - target: {fileID: 3988129102394126779, guid: b37146902adab32448875b3be827d1ca, type: 3}
       propertyPath: shapes.Array.size

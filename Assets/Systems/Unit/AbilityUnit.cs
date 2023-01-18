@@ -15,6 +15,9 @@ namespace TwoBears.Unit
         [SerializeField] private float abilityRange = 4.0f;
         [SerializeField] private float recovery = 0.1f;
 
+        //Channel ability
+        private ChannelAbility channel;
+
         //Buff Access
         public int ChainIncrease
         {
@@ -55,7 +58,7 @@ namespace TwoBears.Unit
                     break;
                 case TargetingMode.Healer:
                     actionTarget = perceiver.GetNearestWoundedAlly();
-                    movementTarget = perceiver.GetMostWoundedAlly();
+                    movementTarget = actionTarget;
                     break;
                 case TargetingMode.Necromancer:
                     actionTarget = perceiver.GetNearestVisibleCorpse();
@@ -74,7 +77,7 @@ namespace TwoBears.Unit
             float distance = Vector3.Distance(actionTarget.transform.position, transform.position);
 
             //Setup attack for next frame when available
-            if (distance < abilityRange && ability != null && ability.IsTargetValid(perceiver, actionTarget))
+            if (channel == null && distance < abilityRange && ability != null && ability.IsTargetValid(perceiver, actionTarget))
             {
                 //Reduce targeting time
                 targetTime -= deltaTime;
@@ -82,7 +85,7 @@ namespace TwoBears.Unit
                 //Attack when targeting complete
                 if (targetTime <= 0)
                 {
-                    //Now attacking
+                    //Now actioning
                     state = UnitState.Actioning;
 
                     //Set ability target
@@ -96,17 +99,31 @@ namespace TwoBears.Unit
         protected override void Action(float deltaTime)
         {
             //Projectile required
-            if (this.ability == null) return;
+            if (ability == null) return;
 
-            //Must still be attacking
+            //Must still be actioning
             if (state != UnitState.Actioning) return;
+
+            //Ignore if already channeling
+            if (channel != null) return;
 
             switch (mode)
             {
-                case AbilityMode.Attached:
+                case AbilityMode.Instant:
 
                     Ability instance = PoolManager.RequestPoolable(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection), abilityTarget.transform) as Ability;
                     instance.Trigger(perceiver, abilityTarget);
+                    Hold(recovery);
+                    break;
+
+                case AbilityMode.Channeled:
+
+                    channel = PoolManager.RequestPoolable(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection)) as ChannelAbility;
+
+                    channel.OnComplete += ClearChannel;
+                    channel.OnInterrupt += ClearChannel;
+
+                    channel.Trigger(perceiver, abilityTarget);
                     break;
 
                 case AbilityMode.Chain:
@@ -117,17 +134,34 @@ namespace TwoBears.Unit
                     chain.DistanceMultiplier *= aoeMultiplier;
 
                     chain.Trigger(perceiver, abilityTarget);
+                    Hold(recovery);
                     break;
-            }            
+            }
+        }
 
-            //Play animation
-            //if (anim != null) anim.Play("Attack");
+        //Channeling
+        public override void KnockBack(Vector2 knockback)
+        {
+            //Knockback
+            base.KnockBack(knockback);
+
+            //Interupt channels
+            if (channel != null) channel.Interrupt();
+        }
+        public void ClearChannel()
+        {
+            //Detach
+            channel.OnComplete -= ClearChannel;
+            channel.OnInterrupt -= ClearChannel;
 
             //Now recovering
             Hold(recovery);
+
+            //Clear
+            channel = null;
         }
     }
 
     public enum TargetingMode { Caster, Healer, Necromancer }
-    public enum AbilityMode { Attached, Chain }
+    public enum AbilityMode { Instant, Channeled, Chain }
 }

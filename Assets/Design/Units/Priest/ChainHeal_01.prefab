@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5300283343561238720}
   - component: {fileID: 7750495705081685387}
-  - component: {fileID: -2004296511592981439}
+  - component: {fileID: 7441356964360620992}
   - component: {fileID: 5023283069337733851}
   - component: {fileID: 8825879806901322778}
   - component: {fileID: 599169264757147090}
   m_Layer: 7
-  m_Name: Lightening_01
+  m_Name: ChainHeal_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2004296511592981439
+--- !u!114 &7441356964360620992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,18 +97,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2108657962212615576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f514f0dcf04ba3c4c930326bd12a9c1b, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1e410e88991014ebfb9fedc1849f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolID: Lightening_01
+  poolID: ChainHeal_01
   lifetime: 1
   chainLength: 2
   chainDistance: 1
-  chainSpeed: 40
-  chainDelay: 0.35
+  chainSpeed: 24
+  chainDelay: 0.45
   audioSource: {fileID: 599169264757147090}
-  damage: 1
-  knockback: 2
+  heal: 1
 --- !u!114 &5023283069337733851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnAwake: 0
   duration: 0.6
-  strength: 1
+  strength: 0.4
   speed: 2
 --- !u!96 &8825879806901322778
 TrailRenderer:
@@ -146,7 +145,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9b91a381249ef0547a46e089134cf730, type: 2}
+  - {fileID: 2100000, guid: 04a84ca6ebca25041878d44f87333d46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,7 +176,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.03167315
+        value: 0.056056693
         inSlope: 0.043489225
         outSlope: 0.043489225
         tangentMode: 0
@@ -186,12 +185,12 @@ TrailRenderer:
         outWeight: 0.2062937
       - serializedVersion: 3
         time: 1
-        value: 0.040649414
-        inSlope: -0.040769372
-        outSlope: -0.040769372
+        value: 0.01626587
+        inSlope: -0.16608596
+        outSlope: -0.16608596
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.1993007
+        inWeight: 0.19580418
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -233,7 +232,7 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.005
+  m_MinVertexDistance: 0.001
   m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
@@ -248,10 +247,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2bc7bfb1f4ece4548ac0622b33a707d2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1fcbcfcd1b207884eba36f6e8e1d4b57, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
-  m_Pitch: 2.9
+  m_Pitch: 2
   Loop: 0
   Mute: 0
   Spatialize: 0

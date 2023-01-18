@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 270231523239128472, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 270231523239128472, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: poolID
+      value: Summon_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 270231523239128472, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: summon
+      value: 
+      objectReference: {fileID: 1167430230353761507, guid: d07cd0e6a1230004592e50661c3f0807, type: 3}
+    - target: {fileID: 270231523239128472, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: channelTime
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 537931889643290277, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: m_Name
       value: Summon_03
@@ -59,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 4693901872439763100, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6096881887334708424, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
+      propertyPath: m_Name
+      value: Summon_03
       objectReference: {fileID: 0}
     - target: {fileID: 7238816188528808763, guid: 334c52204c681174bbe1168b8e09a91d, type: 3}
       propertyPath: count

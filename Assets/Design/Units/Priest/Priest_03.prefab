@@ -177,6 +177,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
+      propertyPath: ability
+      value: 
+      objectReference: {fileID: 2562892415191294689, guid: 4e47e4a5a7c32c34e8337e1094c670ed, type: 3}
+    - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: moveSpeed
       value: 14
       objectReference: {fileID: 0}
@@ -190,11 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: hesitanceMax
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: hesitanceMin
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1657719939135074179, guid: c7fe97f8a6db91e49a587b7911f4b69f, type: 3}
       propertyPath: moveRangeMax

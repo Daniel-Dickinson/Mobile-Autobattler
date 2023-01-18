@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2004296511592981439, guid: a3dd8077991fab3448a086927e9c46cc, type: 3}
       propertyPath: poolID
-      value: Lightening_02
+      value: Lightning_02
       objectReference: {fileID: 0}
     - target: {fileID: -2004296511592981439, guid: a3dd8077991fab3448a086927e9c46cc, type: 3}
       propertyPath: knockback
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2108657962212615576, guid: a3dd8077991fab3448a086927e9c46cc, type: 3}
       propertyPath: m_Name
-      value: Lightening_02
+      value: Lightning_02
       objectReference: {fileID: 0}
     - target: {fileID: 5023283069337733851, guid: a3dd8077991fab3448a086927e9c46cc, type: 3}
       propertyPath: strength

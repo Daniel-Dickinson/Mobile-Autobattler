@@ -109,6 +109,12 @@ namespace TwoBears.Unit
         //Trigger
         protected abstract void TriggerChainEffect(BaseUnit unit, Vector3 direction);
 
+        //Targeting
+        protected virtual bool IsValidChainTarget(BaseUnit unit)
+        {
+            return true;
+        }
+
         //Chaining
         private IEnumerator JumpToUnit(BaseUnit unit)
         {
@@ -194,6 +200,9 @@ namespace TwoBears.Unit
 
                 //Grab base unit
                 BaseUnit unit = targets[i].GetComponent<BaseUnit>();
+
+                //Custom targeting - Defined per ability
+                if (!IsValidChainTarget(unit)) continue;
 
                 //Check if already targeted
                 if (units.Contains(unit)) continue;

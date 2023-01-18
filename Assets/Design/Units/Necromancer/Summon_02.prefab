@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1855971814249356951, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+      propertyPath: m_Name
+      value: Summon_02
+      objectReference: {fileID: 0}
     - target: {fileID: 2965820149908257124, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
       propertyPath: count
       value: 4
@@ -63,6 +67,22 @@ PrefabInstance:
     - target: {fileID: 5344325225312654586, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
       propertyPath: m_Name
       value: Summon_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664907577405114311, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+      propertyPath: count
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664907577405114311, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+      propertyPath: poolID
+      value: Summon_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664907577405114311, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+      propertyPath: summon
+      value: 
+      objectReference: {fileID: 3158279786559933985, guid: c927298cbe08af84293e1c84539b518e, type: 3}
+    - target: {fileID: 5664907577405114311, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
+      propertyPath: channelTime
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 7428219846927699481, guid: 2060992ed3ef40140b995df05b591ad4, type: 3}
       propertyPath: m_Volume

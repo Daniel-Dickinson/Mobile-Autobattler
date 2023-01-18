@@ -41,20 +41,25 @@ namespace TwoBears.Unit
                 default:
                 case 1:
                     effect1.gameObject.SetActive(true);
+                    effect1.Play();
                     break;
                 case 2:
                     effect2.gameObject.SetActive(true);
+                    effect2.Play();
                     break;
                 case 3:
                 case 4:
                     effect3.gameObject.SetActive(true);
+                    effect3.Play();
                     break;
                 case 5:
                 case 6:
                     effect4.gameObject.SetActive(true);
+                    effect4.Play();
                     break;
                 case >6:
                     effect5.gameObject.SetActive(true);
+                    effect5.Play();
                     break;
             }
         }
