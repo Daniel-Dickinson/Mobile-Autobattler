@@ -26,24 +26,17 @@ namespace TwoBears.Unit
         {
             set { chainIncrease = value; }
         }
-        public float DistanceMultiplier
-        {
-            get { return distanceMultiplier; }
-            set { distanceMultiplier = value; }
-        }
+        private int chainIncrease = 0;
 
         //Buffing
         private int ChainLength
         {
             get { return chainLength + chainIncrease; }
         }
-        private int chainIncrease = 0;
-
         private float ChainDistance
         {
-            get { return chainDistance * distanceMultiplier; }
+            get { return chainDistance * aoeMultiplier; }
         }
-        private float distanceMultiplier = 1.0f;
 
         //Chaining
         private int chains = 0;
@@ -104,6 +97,9 @@ namespace TwoBears.Unit
 
             //Clear trail
             trail.Clear();
+
+            //Reset buffs
+            chainIncrease = 0;
         }
 
         //Trigger

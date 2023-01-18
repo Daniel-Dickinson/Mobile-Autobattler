@@ -6,9 +6,10 @@ namespace TwoBears.Unit
 {
     public class DefenderBuffer : UnitBuffer
     {
-        [SerializeField] private float health2 = 20;
-        [SerializeField] private float health4 = 40;
-        [SerializeField] private float health6 = 60;
+        [Header("Effect")]
+        [SerializeField] private int health2 = 2;
+        [SerializeField] private int health4 = 4;
+        [SerializeField] private int health6 = 6;
 
         //Access
         public void ApplyBuffExternal(BaseUnit unit)
@@ -16,12 +17,8 @@ namespace TwoBears.Unit
             //Grab internal count
             int count = state.GetCount(UnitClass.Defender);
 
-            //Calculate buff
-            float buff = GetBuffPercentile(count);
-            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * (buff / 100));
-
             //Increase health pool
-            unit.RaiseMaxHealth(buffMultiplier);
+            unit.RaiseMaxHealth(GetBuff(count));
         }
 
         //Core
@@ -43,14 +40,10 @@ namespace TwoBears.Unit
 
         private void ApplyBuff(BaseUnit unit, int count)
         {
-            //Calculate buff
-            float buff = GetBuffPercentile(count);
-            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * (buff / 100));
-
             //Increase health pool
-            unit.RaiseMaxHealth(buffMultiplier);
+            unit.RaiseMaxHealth(GetBuff(count));
         }
-        private float GetBuffPercentile(int count)
+        private int GetBuff(int count)
         {
             switch (count)
             {

@@ -14,15 +14,8 @@ namespace TwoBears.Unit
         //Access
         public void ApplyBuffExternal(BaseUnit unit)
         {
-            //Grab internal count
             int count = state.GetCount(UnitClass.Caster);
-
-            //Calculate buff
-            float buff = GetBuffPercentile(count);
-            int buffMultiplier = Mathf.CeilToInt(unit.MaxHealth * (buff / 100));
-
-            //Increase health pool
-            unit.RaiseMaxHealth(buffMultiplier);
+            ApplyBuff(unit, count);
         }
 
         //Core
@@ -44,16 +37,17 @@ namespace TwoBears.Unit
 
         private void ApplyBuff(BaseUnit unit, int count)
         {
-            //Grab Ability unit
-            AbilityUnit abilityUnit = unit as AbilityUnit;
-            if (abilityUnit == null) return;
-
             //Calculate buff
             float buff = GetBuffPercentile(count);
-            float buffMultiplier = 1 + (buff / 100.0f);
+            float buffMultiplier = 1 + Mathf.Clamp01(buff / 100.0f);
 
-            //Increase health pool
-            abilityUnit.AOEMultiplier *= buffMultiplier;
+            //Grab & buff ability unit
+            AbilityUnit abilityUnit = unit as AbilityUnit;
+            if (abilityUnit != null) abilityUnit.AOEMultiplier *= buffMultiplier;
+
+            //Grab & buff child passives
+            PassiveAbility[] passives = unit.GetComponentsInChildren<PassiveAbility>();
+            for (int i = 0; i < passives.Length; i++) passives[i].AOEMultiplier *= buffMultiplier;
         }
         private float GetBuffPercentile(int count)
         {

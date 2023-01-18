@@ -32,7 +32,7 @@ namespace TwoBears.Unit
         protected override void TriggerChainEffect(BaseUnit unit, Vector3 direction)
         {
             //Remove health
-            unit.RemoveHealth(damage);
+            unit.RemoveHealth(damage + damageIncrease);
 
             //Knockback slightly
             unit.KnockBack(direction * knockback);

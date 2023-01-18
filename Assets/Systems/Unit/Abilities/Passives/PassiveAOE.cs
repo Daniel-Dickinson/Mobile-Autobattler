@@ -8,7 +8,7 @@ using UnityEditor;
 namespace TwoBears.Unit
 {
     [RequireComponent(typeof(AOESpellEffect))]
-    public abstract class PassiveAOE : MonoBehaviour
+    public abstract class PassiveAOE : PassiveAbility
     {
         [Header("Metrics")]
         public float period = 3.0f;

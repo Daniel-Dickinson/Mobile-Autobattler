@@ -103,7 +103,7 @@ MonoBehaviour:
   poolID: ChainHeal_01
   lifetime: 1
   chainLength: 2
-  chainDistance: 1
+  chainDistance: 2
   chainSpeed: 24
   chainDelay: 0.45
   audioSource: {fileID: 599169264757147090}

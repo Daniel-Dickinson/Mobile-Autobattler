@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: chainLength
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7441356964360620992, guid: da831c2f157007142acf70eae6337e1b, type: 3}
+      propertyPath: chainDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

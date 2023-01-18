@@ -19,26 +19,26 @@ namespace TwoBears.Unit
         private ChannelAbility channel;
 
         //Buff Access
+        public int HealIncrease
+        {
+            get { return healIncrease; }
+            set { healIncrease = value; }
+        }
         public int ChainIncrease
         {
             get { return chainIncrease; }
             set { chainIncrease = value; }
+        }
+        public int DamageIncrease
+        {
+            get { return damageIncrease; }
+            set { damageIncrease = value; }
         }
         public float AOEMultiplier
         {
             get { return aoeMultiplier; }
             set { aoeMultiplier = value; }
         }
-
-        //Buffing
-        private int chainIncrease = 0;
-        private float aoeMultiplier = 1.0f;
-
-        //Targeting
-        private Vector3 abilityDirection;
-        private Perceivable abilityTarget;
-
-        //Buffing
         public override void IncreaseRange(float amount)
         {
             base.IncreaseRange(amount);
@@ -46,6 +46,16 @@ namespace TwoBears.Unit
             //Increase attackRangee range
             abilityRange *= (1.0f + amount);
         }
+
+        //Buffing
+        private int healIncrease = 0;
+        private int chainIncrease = 0;
+        private int damageIncrease = 0;
+        private float aoeMultiplier = 1.0f;
+
+        //Targeting
+        private Vector3 abilityDirection;
+        private Perceivable abilityTarget;        
 
         //Ability
         protected override void Targeting()
@@ -65,7 +75,6 @@ namespace TwoBears.Unit
                     movementTarget = actionTarget;
                     break;
             }
-            
         }
 
         protected override void SetupAction(float deltaTime)
@@ -111,30 +120,53 @@ namespace TwoBears.Unit
             {
                 case AbilityMode.Instant:
 
+                    //Request
                     Ability instance = PoolManager.RequestPoolable(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection), abilityTarget.transform) as Ability;
+
+                    //Apply buffs
+                    instance.HealIncrease = healIncrease;
+                    instance.DamageIncrease = damageIncrease;
+                    instance.AOEMultiplier *= aoeMultiplier;
+
+                    //Trigger & hold
                     instance.Trigger(perceiver, abilityTarget);
                     Hold(recovery);
                     break;
 
                 case AbilityMode.Channeled:
 
+                    //Request
                     channel = PoolManager.RequestPoolable(ability, abilityTarget.transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection)) as ChannelAbility;
 
+                    //Attach to channel
                     channel.OnComplete += ClearChannel;
                     channel.OnInterrupt += ClearChannel;
 
+                    //Apply buffs
+                    channel.HealIncrease = healIncrease;
+                    channel.DamageIncrease = damageIncrease;
+                    channel.AOEMultiplier *= aoeMultiplier;
+
+                    //Trigger & hold
                     channel.Trigger(perceiver, abilityTarget);
                     break;
 
                 case AbilityMode.Chain:
 
+                    //Request
                     ChainAbility chain = PoolManager.RequestPoolable(ability, transform.position, Quaternion.LookRotation(Vector3.forward, abilityDirection)) as ChainAbility;
 
-                    chain.ChainIncrease = chainIncrease;
-                    chain.DistanceMultiplier *= aoeMultiplier;
+                    //Apply buffs
+                    chain.HealIncrease = healIncrease;
+                    chain.DamageIncrease = damageIncrease;
+                    chain.AOEMultiplier *= aoeMultiplier;
 
+                    chain.ChainIncrease = chainIncrease;
+
+                    //Trigger & hold
                     chain.Trigger(perceiver, abilityTarget);
                     Hold(recovery);
+
                     break;
             }
         }

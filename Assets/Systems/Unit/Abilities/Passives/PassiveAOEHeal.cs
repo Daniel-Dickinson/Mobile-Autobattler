@@ -16,7 +16,7 @@ namespace TwoBears.Unit
         }
         protected override void ApplyEffect(BaseUnit unit)
         {
-            unit.RestoreHealth(heal);
+            unit.RestoreHealth(heal + healIncrease);
         }
     }
 }

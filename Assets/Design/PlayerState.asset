@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   gold: 15
-  shards: 164
+  shards: 0
   formation: {fileID: 11400000, guid: 1c37859b705e10742af5eb142bd5df21, type: 2}
   selection: {fileID: 11400000, guid: 5522da90bdc9be84fa3ce9fe2c317bc0, type: 2}
   wave: 0
@@ -23,3 +23,4 @@ MonoBehaviour:
   middleSlots: 4
   backSlots: 3
   unlocks: {fileID: 11400000, guid: 217f5829c49296243a8f9fd393a837f1, type: 2}
+  relics: 

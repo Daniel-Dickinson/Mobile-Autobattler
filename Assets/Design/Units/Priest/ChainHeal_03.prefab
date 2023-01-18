@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: chainLength
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4512261032282212991, guid: de46331af64528b4d904148645669c98, type: 3}
+      propertyPath: chainDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4942896326773285927, guid: de46331af64528b4d904148645669c98, type: 3}
       propertyPath: m_Name
       value: ChainHeal_03

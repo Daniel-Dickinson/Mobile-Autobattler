@@ -39,7 +39,7 @@ namespace TwoBears.Unit
         protected override void TriggerChainEffect(BaseUnit unit, Vector3 direction)
         {
             //Remove health
-            unit.RestoreHealth(heal);
+            unit.RestoreHealth(heal + healIncrease);
         }
     }
 }

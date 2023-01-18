@@ -10,6 +10,40 @@ namespace TwoBears.Unit
 {
     public abstract class Ability : Poolable
     {
+        //Buff Access
+        public int HealIncrease
+        {
+            get { return healIncrease; }
+            set { healIncrease = value; }
+        }
+        public int DamageIncrease
+        {
+            get { return damageIncrease; }
+            set { damageIncrease = value; }
+        }
+        public float AOEMultiplier
+        {
+            get { return aoeMultiplier; }
+            set { aoeMultiplier = value; }
+        }
+
+        //Buffing
+        protected int healIncrease = 0;
+        protected int damageIncrease = 0;
+        protected float aoeMultiplier = 1.0f;
+
+        //Poolable
+        public override void PoolableReset()
+        {
+            base.PoolableReset();
+
+            //Reset buffs
+            healIncrease = 0;
+            damageIncrease = 0;
+            aoeMultiplier = 1.0f;
+        }
+
+        //Core
         public abstract bool IsTargetValid(Perceivable self, Perceivable target);
         public abstract void Trigger(Perceivable self, Perceivable target);
 
