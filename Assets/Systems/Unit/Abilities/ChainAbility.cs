@@ -118,13 +118,16 @@ namespace TwoBears.Unit
         //Chaining
         private IEnumerator JumpToUnit(BaseUnit unit)
         {
+            //Valid unit required
+            if (unit == null) yield break;
+
             //Enable trail
             trail.emitting = true;
 
             //Calculate direction
             Vector3 vector = unit.transform.position - transform.position;
 
-            while (Vector3.Distance(transform.position, unit.transform.position) > 0.05f)
+            while (unit != null && Vector3.Distance(transform.position, unit.transform.position) > 0.05f)
             {
                 //Move towards target unit
                 transform.position = Vector3.MoveTowards(transform.position, unit.transform.position, chainSpeed * Time.deltaTime);
@@ -136,12 +139,15 @@ namespace TwoBears.Unit
             //Disable trail
             trail.emitting = false;
 
+            //Valid unit required
+            if (unit == null) yield break;
+
             //Trigger
             TriggerChainInstance(unit, vector.normalized);
 
             //Wait chain delay
             float timePassed = 0;
-            while (timePassed < chainDelay)
+            while (unit != null && timePassed < chainDelay)
             {
                 //Track time passed
                 timePassed += Time.deltaTime;

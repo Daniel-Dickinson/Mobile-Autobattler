@@ -32,6 +32,10 @@ MonoBehaviour:
     level01: {fileID: 640184104213289463, guid: cdc40a10f31c5114bb51abed43619e7f, type: 3}
     level02: {fileID: 6772033609569869831, guid: ae06214009b5f4e4bbfa24bdf2a6f1fe, type: 3}
     level03: {fileID: 8874280651698988275, guid: c81c4dde2834d2b4cad9cc147d2a7f20, type: 3}
+  paladin:
+    level01: {fileID: 6087990270205684291, guid: 0c3f3b7dba40f664aa6f178a5c29ee6e, type: 3}
+    level02: {fileID: 6971138240541784235, guid: 2ea0c0c00d9bfad419d4e031c4f826f5, type: 3}
+    level03: {fileID: 4340986603315259139, guid: 0f5771f90d04a8344951623fbce88712, type: 3}
   slinger:
     level01: {fileID: 640184104213289463, guid: 60aeb0f6bb6247649b80b9898c15b8df, type: 3}
     level02: {fileID: 2561308623121996728, guid: c30a2a4c553b1f44383e555df24734ef, type: 3}

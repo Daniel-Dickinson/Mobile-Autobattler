@@ -22,7 +22,6 @@ namespace TwoBears.Unit
 
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 0.5f;
-        [SerializeField] private float moveSmooth = 0.01f;
         [SerializeField] private float moveRangeMin = 0.5f;
         [SerializeField] private float moveRangeMax = 0.5f;
 
@@ -91,9 +90,6 @@ namespace TwoBears.Unit
         //AntiCrowding
         private Vector2 antiCrowd;
 
-        //Movement
-        private Vector3 moveVelocity;
-
         //Recovery
         private float recoveryTime;
 
@@ -107,6 +103,9 @@ namespace TwoBears.Unit
             }
         }
         protected float damageMultiplier = 1.0f;
+
+        //Tuning
+        private const float globalMoveSpeedModifier = 0.06f;
 
         //Mono
         protected virtual void OnEnable()
@@ -247,8 +246,11 @@ namespace TwoBears.Unit
         }
         protected virtual void Move(float deltaTime)
         {
+            //Calculate move speed
+            float speed = moveSpeed * globalMoveSpeedModifier;
+
             //Calculate path position
-            Vector3 goalPosition = TraversePath(movementTarget.transform.position);
+            Vector2 goalPosition = TraversePath(movementTarget.transform.position, speed);
             Vector3 goalVector = movementTarget.transform.position - transform.position;
             Vector3 direction = goalVector.normalized;
             float distance = goalVector.magnitude;
@@ -279,20 +281,22 @@ namespace TwoBears.Unit
             }
             else
             {
-                //Offset goal position to split crowded units up on approach
-                goalPosition += new Vector3(antiCrowd.x, antiCrowd.y, 0);
+                //Localize goal then add anticrowding
+                goalPosition = rb.position + ((goalPosition - rb.position).normalized * speed);
+                goalPosition += antiCrowd;
             }
 
             //Move
-            Vector3 movePosition = Vector3.MoveTowards(transform.position, goalPosition, moveSpeed * deltaTime);
-            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, movePosition, ref moveVelocity, moveSmooth);
-            rb.MovePosition(smoothedPosition);
-            
+            //Vector3 movePosition = Vector3.MoveTowards(transform.position, goalPosition, moveSpeed * 0.1f * deltaTime);
+            //rb.MovePosition(movePosition);
+
+            rb.velocity = (goalPosition - rb.position).normalized * speed;
+
             //Debug move position
             if (debugGoal)
             {
-                Debug.DrawLine(goalPosition + new Vector3(-0.1f, 0, 0), goalPosition + new Vector3(0.1f, 0, 0), Color.green);
-                Debug.DrawLine(goalPosition + new Vector3(0, -0.1f, 0), goalPosition + new Vector3(0, 0.1f, 0), Color.green);
+                Debug.DrawLine(goalPosition + new Vector2(-0.1f, 0), goalPosition + new Vector2(0.1f, 0), Color.green);
+                Debug.DrawLine(goalPosition + new Vector2(0, -0.1f), goalPosition + new Vector2(0, 0.1f), Color.green);
             }
 
             //Rotate
@@ -342,20 +346,29 @@ namespace TwoBears.Unit
                 }
             }
         }
-        private Vector3 TraversePath(Vector3 goalPosition)
+        private Vector3 TraversePath(Vector3 goalPosition, float speed = 0.5f)
         {
             //Valid path required
             if (path == null) return transform.position;
             if (path.path == null || path.path.Count == 0) return transform.position;
 
+            //Move directly to goal if at last position
+            if (pathIndex >= path.path.Count - 1) return goalPosition;
+
             //Get next position
             Vector3 nextPosition = (Vector3)path.path[pathIndex].position;
 
-            //Move to goal if at last position
-            if (pathIndex >= path.path.Count - 1) return goalPosition;
-
             //If we've reached the position get increment
-            if (Vector3.Distance(transform.position, nextPosition) < 0.5f) pathIndex++;
+            while (Vector3.Distance(transform.position, nextPosition) < speed)
+            {
+                pathIndex++;
+
+                //Move to goal if at last position
+                if (pathIndex >= path.path.Count - 1) return goalPosition;
+
+                //Next position
+                nextPosition = (Vector3)path.path[pathIndex].position;
+            }
 
             //Return position of next node
             return nextPosition;

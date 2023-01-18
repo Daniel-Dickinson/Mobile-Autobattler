@@ -232,7 +232,7 @@ namespace TwoBears.Shop
             //Destroy all children
             for (int i = classParent.childCount - 1; i >= 0; i--) Destroy(classParent.GetChild(i).gameObject);
         }
-        private void AddClassDisplay(UnitClass unitClass, int upgradeID)
+        private void AddClassDisplay(UnitClass unitClass, int upgradeID, bool narrow)
         {
             if (unitClass == UnitClass.None) return;
             for (int i = 0; i < classDisplays.Length; i++)
@@ -241,6 +241,13 @@ namespace TwoBears.Shop
                 {
                     //Instantiate class display under parent
                     ClassDisplay display = Instantiate(classDisplays[i], classParent);
+
+                    //Narrow
+                    if (narrow)
+                    {
+                        RectTransform rect = display.transform as RectTransform;
+                        rect.sizeDelta = new Vector2(34, rect.sizeDelta.y);
+                    }
 
                     //Set upgrade status
                     display.UnitID = upgradeID;
@@ -261,10 +268,13 @@ namespace TwoBears.Shop
                 //Get classes
                 state.GetClasses(unitId, out UnitClass primary, out UnitClass secondary, out UnitClass tertiary);
 
+                //When 3 classes are displayed narrow the displays
+                bool narrow = tertiary != UnitClass.None;
+
                 //Add our displays
-                AddClassDisplay(primary, unitId);
-                AddClassDisplay(secondary, unitId);
-                AddClassDisplay(tertiary, unitId);
+                AddClassDisplay(primary, unitId, narrow);
+                AddClassDisplay(secondary, unitId, narrow);
+                AddClassDisplay(tertiary, unitId, narrow);
             }
         }
 

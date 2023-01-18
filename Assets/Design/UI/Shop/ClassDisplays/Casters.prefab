@@ -428,6 +428,7 @@ MonoBehaviour:
   link2: {fileID: 2355281148910981319}
   link4: {fileID: 4869937360423662428}
   link6: {fileID: 5898217143476791817}
+  values: []
 --- !u!1 &4515229193715197975
 GameObject:
   m_ObjectHideFlags: 0

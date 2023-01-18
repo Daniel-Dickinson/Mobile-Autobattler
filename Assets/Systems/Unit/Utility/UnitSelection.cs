@@ -15,6 +15,7 @@ namespace TwoBears.Unit
         [Header("Defenders")]
         public UnitType squire;
         public UnitType knight;
+        public UnitType paladin;
 
         [Header("Rangers")]
         public UnitType slinger;
@@ -54,6 +55,8 @@ namespace TwoBears.Unit
                     return squire.GetUnit(level);
                 case 11:
                     return knight.GetUnit(level);
+                case 12:
+                    return paladin.GetUnit(level);
 
                 //Rangers
                 case 20:

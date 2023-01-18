@@ -6,9 +6,6 @@ namespace TwoBears.Unit
 {
     public class AOESpellEffect : MonoBehaviour
     {
-        [Header("Metrics")]
-        public float radius = 0.5f;
-
         [Header("Components")]
         [SerializeField] private Transform indicator;
 
